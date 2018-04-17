@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <title>Corruption Profiler</title>
+  <meta charset="utf-8"/>
+  <link rel="stylesheet" href="../styles/layout.css" type="text/css">
+  <!--[if lt IE 9]><script src="scripts/html5shiv.js"></script><![endif]-->
+</head>
+<body>
+<div class="wrapper row1">
+  <header id="header" class="clear">
+    <div id="hgroup">
+      <h1><a href="../index.html">Corruption Profiler</a></h1>
+      <h2>A tool for analysing public expenses</h2>
+    </div>
+    <nav>
+      <ul>
+        <li><span class="selected-header">Home</span></li>
+        <li><a href="#">Data</a></li>
+        <li><a href="#">Insights</a></li>
+        <li><a href="#">Help</a></li>
+      </ul>
+    </nav>
+    <div class="clear"></div>
+  </header>
+</div>
+<!-- content -->
+<div class="wrapper row2">
+  <div id="container">
+    <!-- content body -->
+    <aside id="left_column">
+      <h2 class="title">Categories</h2>
+      <nav>
+        <ul>
+          <li><a href="../index.html">Description</a></li>
+          <li><a href="./work-progress.html">Work progress</a></li>
+          <li><span class="selected-link">Problems and issues</span></li>
+          <li><a href="#">Tools used</a></li>
+          <li><a href="#">Misc</a></li>
+        </ul>
+      </nav>
+    </aside>
+    <!-- main content -->
+    <div id="content">
+      <!-- section 1 -->
+      <section>
+        <!-- article 1 -->
+        <article>
+          <h2><a href="#">Problems and issues</a></h2>
+          <address>
+          Victor, vfp@cin.ufpe.br
+          </address>
+          <time datetime="2018-04-17T08:15+00:00">Friday, 17<sup>th</sup> April 2018</time>
+
+          <p></p>
+
+          <h4>Zeroed data</h4>
+          <p>One of the first points identified was the predominance of zero series in the model. This is due to the fact that the mandates of the deputies are mixed, with those who worked during the entire term, those who went on leave at least once, those who assumed in the midst of a legislature, and those who have been removed or abdicated to run for office. The first solution was to build a filter to remove candidates below the first percentile of the data, but this was not able to remedy the problem, so a filter was used to remove all Members who were more than 3 months old at no cost. This eventually removed?% Of the data, which motivated us to seek alternatives to preserve some of this data.</p>
+
+          <p>The question of zeroed data is directly linked to a bias of the model, because when many MPs have zero expenses for a given month this becomes a significant attribute for clustering, but this behavior is not interesting for the work, because when this dominates the division of sets adds little knowledge to the solution obtained. Removing deputies with these conditions and preserving only those with large amounts of information is an alternative, however this causes data loss.</p>
+
+          <p>Imputation techniques were considered in order to fill these gaps in the series of expenditures as a way of reducing the predominance of this characteristic in clusters, however, it is necessary to be careful with the amount of data to be imputed, since some Members have more than 90% of the In this case the imputation has a very small accuracy and ends up introducing a high amount of noise. For the scope of this work it was tried to apply the imputation in deputies with up to 1/6 of the missing data, about?% Of the data removed. However, the results obtained were not significantly different from those without the use of deputies whose data were imputed, contrary to the hypothesis that more information would modify the form of the clusters.</p>
+
+          <h4>Normalization</h4>
+          <p>Another important issue is the standardization of expenditures. The focus of this project in this step is to identify spending patterns as well as their behavior and characteristics. In this way, the absolute value of the expenses does not bring additional information, but ends up acting to mask certain behaviors. In this way, we opted for a form of normalization that preserves the relative expenses among the members, assigning the vector V '(dx) = [v'1dx, v'2dx, ..., v'ndx] to the deputy dx, where v' (Ui) - min (Ui) and Ui = [vid1, vid2, ..., vidm], placing the expenses of the deputies within the interval [0,1]. In this way it would be possible to identify out-of-pocket expenses on average without the actual value of the expense could distort this relationship. Then the standardization function was applied to each type of expenditure of the deputies, since the use of the average ends up overshadowing situations in which a deputy can carry out an above average expenditure in one type of expense, but below in another, maintaining its general expenditure in the average.</p>
+
+          <p>From the segmentation of the series left to choose which of the types of expenses would be evaluated first and for this it was necessary to identify a metric capable of pointing out which expenses would bring the greatest amount of information to the model. First, the standard deviation of the types of expenditure was used, but this measure tends to benefit higher absolute values ​​and those with lower averages. The solution found was to measure through the interquartile distance, finally obtaining a less biased list of types</p>
+
+          <h4>Evaluation</h4>
+          <p>A crucial point for the validation of this work is to measure the quality of the developed model. To do this you have to answer two important questions: is the division of clusters good? and what characteristics are present in each set?</p>
+
+          <p>To answer the first question we used measures of stability of the clusters. The first metric applied was the silhouette, which measures the separation of each cluster, applying a score for each sample according to the distance between it and the other points in the cluster compared to outside it. Another applied measure was presented [5], where a classifier is trained using a sample with its labels obtained in clustering and the accuracy of the classifier applied to a test set determines the quality of the division of the groups. The silhouette technique brings a visual benefit of easy interpretation to the model and the classifier brings a score that can be objectively compared between the divisions obtained by varying the parameters of the model.</p>
+
+          <p>The answer to the second question is more complex to answer and is crucial to determining the validity of the project. Some alternatives were considered in order to answer this question, but without much result. These alternatives and related problems are described below.</p>
+
+          <ul>
+            <li>For each cluster the mean time series and the variance of each instance were extracted. The hypothesis considered in this approach was to find in each cluster a set of instances with greater variance, which would lead to the conclusion that those attributes would be the representatives of that cluster. However, the series of each cluster were very similar.</li>
+
+            <li>A Random Forest classifier was trained for each cluster in a binary way, where the other clusters were marked as 'others'. This procedure had the objective of extracting from the classifier the most important attributes that could determine the content of the group. However, the employed classifier ended up presenting a variability in the attributes scores depending on the execution.</li>
+
+            <li>From the tests made with the normalized costs, it was seen that the silhouettes showed a lower result than the absolute data. The only model that maintained a good result for the silhouette was in the control group where the MST-KNN method was not used, only the division obtained by the Kmeans. An attempt was made to use the Euclidean distance in the MST-KNN method, but the application of this decreased the quality of the results.</li>
+          </ul>
+
+          <p class="tags">TAGS: <a href="#">tag 1</a>, <a href="#">tag 2</a>, <a href="#">tag 3</a>, <a href="#">tag 4</a>, <a href="#">tag 5</a></p>
+        </article>
+        <!-- / articles -->
+      </section>
+    </div>
+    <!-- / content body -->
+    <div class="clear"></div>
+  </div>
+</div>
+<!-- footer -->
+<div class="wrapper row3">
+  <footer id="footer">
+    <p class="fl_left">Copyright &copy; 2012 - All Rights Reserved - <a href="#">Domain Name</a></p>
+    <p class="fl_right">Template by <a href="http://www.os-templates.com/" title="Free Website Templates">OS Templates</a></p>
+    <div class="clear"></div>
+  </footer>
+</div>
+</body>
+</html>

@@ -1,22 +1,22 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
-<title>Corruption Profiler</title>
-<meta charset="iso-8859-1">
-<link rel="stylesheet" href="styles/layout.css" type="text/css">
-<!--[if lt IE 9]><script src="scripts/html5shiv.js"></script><![endif]-->
+  <title>Corruption Profiler</title>
+  <meta charset="utf-8"/>
+  <link rel="stylesheet" href="styles/layout.css" type="text/css">
+  <!--[if lt IE 9]><script src="scripts/html5shiv.js"></script><![endif]-->
 </head>
 <body>
 <div class="wrapper row1">
   <header id="header" class="clear">
     <div id="hgroup">
-      <h1><a href="#">Corruption Profiler</a></h1>
-      <h2>A tool for detecting incorrect expenses</h2>
+      <h1><a href="./index.html">Corruption Profiler</a></h1>
+      <h2>A tool for analysing public expenses</h2>
     </div>
     <nav>
       <ul>
         <li><span class="selected-header">Home</span></li>
-        <li><a href="#">Data</a></li>
+        <li><a href="./data/description.html">Data</a></li>
         <li><a href="#">Insights</a></li>
         <li><a href="#">Help</a></li>
       </ul>
@@ -33,8 +33,8 @@
       <nav>
         <ul>
           <li><span class="selected-link">Description</span></li>
-          <li><a href="#">Work progress</a></li>
-          <li><a href="#">Problems and issues</a></li>
+          <li><a href="./home/work-progress.html">Work progress</a></li>
+          <li><a href="./home/problems-and-issues.html">Problems and issues</a></li>
           <li><a href="#">Tools used</a></li>
           <li><a href="#">Misc</a></li>
         </ul>
@@ -50,16 +50,16 @@
           <address>
           Victor, vfp@cin.ufpe.br
           </address>
-          <time datetime="2018-04-06T08:15+00:00">Friday, 6<sup>th</sup> April 2018</time>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras orci sem, eleifend sed ultrices sit amet, porta a turpis. Vestibulum ultrices mauris arcu, quis fermentum augue laoreet quis. Aenean luctus ante at nisi scelerisque pharetra. Integer sed eros facilisis orci commodo luctus. Donec sit amet velit molestie, gravida erat quis, interdum dui. Suspendisse a sapien nec turpis luctus sodales. Phasellus vitae diam quis sapien vestibulum placerat. Morbi nisi felis, rhoncus eu consectetur vel, efficitur sit amet ligula. Vestibulum dictum arcu eget lectus convallis auctor. Fusce semper neque nibh, nec accumsan tellus elementum ut.</p>
+          <time datetime="2018-04-17T08:15+00:00">Friday, 17<sup>th</sup> April 2018</time>
+          <p>Public spending control and corruption of government members are problems encountered all over the world and this is an issue that machine learning has tried to help mitigate. Brazil is not exempt from these problems, <a href="https://exame.abril.com.br/mundo/os-20-paises-mais-corruptos-do-mundo-e-os-menos-desonestos/">taking 79th place in the ranking of the most corrupt countries in the world in 2017</a>. However, the open data available on the chamber portal is a strong tool for identifying potential cases of corruption and undue expenditure.</p>
 
-          <p>Maecenas a velit dictum, tristique mauris nec, hendrerit mi. Etiam vel cursus neque. Morbi placerat, turpis convallis tempus imperdiet, dolor leo porta massa, eu iaculis nibh metus a mi. Donec sed tortor efficitur, efficitur nisl at, aliquet dui. In rutrum eros sit amet dolor ultricies venenatis. Aliquam pretium, massa nec tincidunt finibus, nisi urna semper lorem, quis scelerisque metus leo quis turpis. Etiam eu ante id risus fringilla laoreet vel eu augue. Sed erat tortor, volutpat dapibus neque id, vestibulum convallis tellus. Integer tincidunt risus erat, nec bibendum quam rhoncus quis. Nullam quam ex, facilisis quis dignissim sit amet, luctus at nisl. Ut pellentesque, augue eget fermentum auctor, ligula justo mollis lectus, nec mollis massa ipsum ac quam. Suspendisse commodo, justo facilisis feugiat fringilla, augue erat pellentesque sem, et sagittis neque ante nec nunc.</p>
+          <p>Despite the efforts of multiple teams and public incentives for the development of systems capable of identifying corruption, the results found, such as <a href="https://serenata.ai/">Operação Serenata de Amor</a>, are highly practical and have little academic character.</p>
 
-          <p>Pellentesque convallis, tellus in mattis blandit, libero velit pulvinar neque, et imperdiet elit turpis a ante. Vestibulum eu sagittis odio, sed faucibus justo. Cras condimentum, leo quis pretium faucibus, odio nisl sollicitudin ante, sed pretium est libero et ligula. Fusce nisi erat, posuere eu pharetra nec, pretium sed augue. Maecenas consequat tincidunt elit. Integer sit amet fringilla lectus, ut luctus turpis. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam sit amet elementum ex. Quisque ante ex, feugiat vitae euismod eget, egestas quis mauris.</p>
+          <p>The objective of this research is to establish a model capable of extracting knowledge from a database of public spending, identifying patterns and finding in the mass of data potential cases of undue expenditure that point to situations of corruption.</p>
 
-          <p>Sed ut commodo quam. Vivamus nisl nibh, congue vitae mi sit amet, aliquam malesuada diam. Integer egestas laoreet est eget gravida. Nunc viverra purus eu ante rutrum tristique. Nullam finibus dui vitae congue venenatis. Nam quis pretium sem. Ut eu risus sodales erat tristique semper.</p>
+          <p>The information available on the website of the Chamber of Deputies provides data on the expenses of the deputies of Brazil, composing a set of time series containing information on the use of money. In this context, it is planned to use time series forecasting and clustering techniques to draw a profile of CEAP expenditures [1] of Brazil's politicians. From this model it is expected that it is possible to identify the symptoms of corruption at non-standard points.</p>
 
-          <p>Sed pretium egestas ligula vitae aliquam. Aliquam convallis laoreet sapien vel porttitor. Cras nec tellus id ipsum feugiat semper vitae et tellus. Quisque purus urna, bibendum a venenatis at, ultrices in purus. Pellentesque lobortis faucibus quam. Praesent sit amet auctor purus, ac porta purus. Aliquam varius mi vel blandit hendrerit. Morbi maximus, urna eu fringilla scelerisque, lacus est convallis tortor, vel laoreet sapien mi eget nulla. </p>
+          <p>At the end of this research, it is expected to find a tool capable of identifying suspicious situations from any input expenditure, allowing it to be used for different types of spending and in different countries. </p>
           <p class="tags">TAGS: <a href="#">tag 1</a>, <a href="#">tag 2</a>, <a href="#">tag 3</a>, <a href="#">tag 4</a>, <a href="#">tag 5</a></p>
         </article>
         <!-- / articles -->
