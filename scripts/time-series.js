@@ -9,7 +9,9 @@ function calculateAvg(dataset){
 }
 
 function getDate(index) {
-	
+	var month = index % 12 + 4
+	var year = 2009 + Math.trunc(index / 12)
+	return new Date(year, month, 1)
 }
 
 function main(){
@@ -38,9 +40,8 @@ function main(){
 	.call(xAxis).attr("transform","translate("+margin.left+","+height+")")
 
 	// Lines plotting
-	// Mean
 	canvas.selectAll("g").data(avgData).enter().append("line")
-	.attr("x1", (d,i)=>xScale(getDate(i))-1)
+	.attr("x1", (d,i)=>xScale(getDate(i)))
 	.attr("x2", function(d, i){
 	  if (avgData[i+1]){
 	    return xScale(getDate(i+1))
@@ -51,12 +52,50 @@ function main(){
 	.attr("y1", d=>yScale(d))
 	.attr("y2", function(d, i){
 	  if (avgData[i+1]){
-	    return yScale(temperature.DailyMean[i+1])
+	    return yScale(avgData[i+1])
 	  } else {
 	    return yScale(d)
 	  }
 	})
 	.attr("stroke","black").attr("stroke-width",2)
+
+	// Crosshair
+	var transpRect = canvas.append("rect")
+    .attr("x", 0)
+    .attr("y", 0)
+    .attr("width", width)
+    .attr("height", height)
+    .attr("fill", "white")
+    .attr("opacity", 0);
+
+    var verticalLine = canvas.append("line")
+    .attr("opacity", 0)
+    .attr("y1", 0)
+    .attr("y2", height)
+    .attr("stroke", "black")
+    .attr("stroke-width", 1)
+    .attr("pointer-events", "none")
+    .style("stroke-dasharray", ("3, 3"));
+
+	var horizontalLine = canvas.append("line")
+    .attr("opacity", 0)
+    .attr("x1", 0)
+    .attr("x2", width)
+    .attr("stroke", "black")
+    .attr("stroke-width", 1)
+    .attr("pointer-events", "none")
+    .style("stroke-dasharray", ("3, 3"));
+
+    transpRect.on("mousemove", function(){  
+	    mouse = d3.mouse(this);
+	    mousex = mouse[0];
+	    mousey = mouse[1];
+	    verticalLine.attr("x1", mousex).attr("x2", mousex).attr("opacity", 1);
+	    horizontalLine.attr("y1", mousey).attr("y2", mousey).attr("opacity", 1)
+	}).on("mouseout", function(){  
+	    verticalLine.attr("opacity", 0);
+	    horizontalLine.attr("opacity", 0);
+	});
 }
 
 window.onload = function() {
