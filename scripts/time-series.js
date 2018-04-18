@@ -1,11 +1,85 @@
-function calculateAvg(dataset){
-	var avgArray = []
+// ============================================================================
+// OPTIONS
+// ============================================================================
+
+function buildOptions(dataset){
+	var fieldset = document.getElementById('congressman-fieldset')
 
 	for (var i = 0; i < dataset.length; i++) {
-		avgArray.push(dataset[i].expenses)
+		var checkbox = createNewCheckbox('congressman-group', dataset[i].id, dataset[i].name)
+		addListener(checkbox, 'click', function(){
+			checked = getCheckedOptions()
+			updateSVG(checked)
+		})
+
+		var span = document.createElement('span')
+		span.innerHTML = dataset[i].name
+
+		fieldset.appendChild(checkbox)
+		fieldset.appendChild(span)
+		fieldset.appendChild(document.createElement('br'))
+	}
+}
+
+function createNewCheckbox(name, id){
+    var checkbox = document.createElement('input'); 
+    checkbox.type = 'checkbox';
+    checkbox.name = name;
+    checkbox.id = id;
+    return checkbox;
+}
+
+function addListener(element, eventName, handler) {
+  if (element.addEventListener) {
+    element.addEventListener(eventName, handler, false);
+  }
+  else if (element.attachEvent) {
+    element.attachEvent('on' + eventName, handler);
+  }
+  else {
+    element['on' + eventName] = handler;
+  }
+}
+
+function getCheckedOptions() {
+	var checked = []
+	var congressmanBoxes = document.getElementsByName('congressman-group')
+	for (var i = 0; i < congressmanBoxes.length; i++) {
+		if(congressmanBoxes[i].checked){
+			checked.push(congressmanBoxes[i].id)
+		}
 	}
 
-	return math.mean(avgArray, 0)
+	return checked
+}
+
+// ============================================================================
+// D3 MAIN
+// ============================================================================
+
+function filterIndexes(dataset, filter) {
+	filtered = []
+	for (var i = 0; i < dataset.length; i++) {
+		if(filter.includes(dataset[i].id)){
+			filtered.push(dataset[i])
+		}
+	}
+
+	return filtered
+}
+
+function verticalSum(dataset){
+	var expenseMatrix = []
+
+	for (var i = 0; i < dataset.length; i++) {
+		expenseMatrix.push(dataset[i].expenses)
+	}
+
+	return expenseMatrix.reduce(function(a, b){
+		return a.map(function(v,i){
+			return v+b[i];
+	    });
+	});
 }
 
 function getDate(index) {
@@ -14,8 +88,10 @@ function getDate(index) {
 	return new Date(year, month, 1)
 }
 
-function main(){
-	var margin = {top: 5, right: 5, bottom: 20, left: 55};
+function updateSVG(checkedIndexes=null){
+	d3.select("svg").selectAll("g").remove()
+
+	var margin = {top: 5, right: 5, bottom: 20, left: 65};
 	var width = d3.select("svg").attr("width") - margin.left - margin.right;
 	var height = d3.select("svg").attr("height") - margin.top - margin.bottom;
 
@@ -23,11 +99,16 @@ function main(){
 	canvas.attr("transform", "translate(" + margin.left + "," + margin.top + ")")
 
 	// Data parsing
-	var avgData = calculateAvg(congressman_ts)
+	if(checkedIndexes && checkedIndexes.length > 0){
+		var parsedData = verticalSum(filterIndexes(congressman_ts, checkedIndexes))
+		console.log(parsedData)
+	} else {
+		var parsedData = verticalSum(congressman_ts)
+	}
 
 	// Axes plotting
 	var yScale = d3.scaleLinear()
-	.domain(d3.extent(avgData)).range([height,0]);
+	.domain(d3.extent(parsedData)).range([height-5,0]);
 	var xScale = d3.scaleTime()
 	.domain([new Date(2009, 4, 1), new Date(2016, 8, 1)]).range([0, width])
 
@@ -36,14 +117,14 @@ function main(){
 
 	var groupY = d3.select("svg").append("g")
 	.call(yAxis).attr("transform","translate("+margin.left+","+margin.top+")")
-	var groupY = d3.select("svg").append("g")
+	var groupX = d3.select("svg").append("g")
 	.call(xAxis).attr("transform","translate("+margin.left+","+height+")")
 
 	// Lines plotting
-	canvas.selectAll("g").data(avgData).enter().append("line")
+	canvas.selectAll("g").data(parsedData).enter().append("line")
 	.attr("x1", (d,i)=>xScale(getDate(i)))
 	.attr("x2", function(d, i){
-	  if (avgData[i+1]){
+	  if (parsedData[i+1]){
 	    return xScale(getDate(i+1))
 	  } else {
 	    return xScale(getDate(i))
@@ -51,8 +132,8 @@ function main(){
 	})
 	.attr("y1", d=>yScale(d))
 	.attr("y2", function(d, i){
-	  if (avgData[i+1]){
-	    return yScale(avgData[i+1])
+	  if (parsedData[i+1]){
+	    return yScale(parsedData[i+1])
 	  } else {
 	    return yScale(d)
 	  }
@@ -99,5 +180,6 @@ function main(){
 }
 
 window.onload = function() {
-  main()
+	buildOptions(congressman_ts)
+	updateSVG()
 };
