@@ -2,15 +2,12 @@
 // OPTIONS
 // ============================================================================
 
-function buildOptions(dataset){
-	var fieldset = document.getElementById('congressman-fieldset')
+function buildOptions(dataset, parentFieldset, groupName, type, eventListener){
+	var fieldset = document.getElementById(parentFieldset)
 
 	for (var i = 0; i < dataset.length; i++) {
-		var checkbox = createNewCheckbox('congressman-group', dataset[i].id, dataset[i].name)
-		addListener(checkbox, 'click', function(){
-			checked = getCheckedOptions()
-			updateSVG(checked)
-		})
+		var checkbox = createNewBox(groupName, dataset[i].id, type)
+		addListener(checkbox, 'click', eventListener)
 
 		var span = document.createElement('span')
 		span.innerHTML = dataset[i].name
@@ -21,9 +18,9 @@ function buildOptions(dataset){
 	}
 }
 
-function createNewCheckbox(name, id){
+function createNewBox(name, id, type){
     var checkbox = document.createElement('input'); 
-    checkbox.type = 'checkbox';
+    checkbox.type = type;
     checkbox.name = name;
     checkbox.id = id;
     return checkbox;
@@ -41,9 +38,9 @@ function addListener(element, eventName, handler) {
   }
 }
 
-function getCheckedOptions() {
+function getCheckedOptions(groupName) {
 	var checked = []
-	var congressmanBoxes = document.getElementsByName('congressman-group')
+	var congressmanBoxes = document.getElementsByName(groupName)
 	for (var i = 0; i < congressmanBoxes.length; i++) {
 		if(congressmanBoxes[i].checked){
 			checked.push(congressmanBoxes[i].id)
@@ -100,9 +97,9 @@ function updateSVG(checkedIndexes=null){
 
 	// Data parsing
 	if(checkedIndexes && checkedIndexes.length > 0){
-		var parsedData = verticalSum(filterIndexes(congressman_ts, checkedIndexes))
+		var parsedData = verticalSum(filterIndexes(this.congressman_ts, checkedIndexes))
 	} else {
-		var parsedData = verticalSum(congressman_ts)
+		var parsedData = verticalSum(this.congressman_ts)
 	}
 
 	// Axes plotting
@@ -178,7 +175,49 @@ function updateSVG(checkedIndexes=null){
 	});
 }
 
+function parseJson(raw_data) {
+	var parsed = []
+	var ids = Object.keys(raw_data)
+	for (var i = 0; i < ids.length; i++) {
+		idx = ids[i]
+		parsed.push({
+			id: 			idx, 
+			name: 			raw_data[idx][0],
+			state: 			raw_data[idx][1],
+			party:			raw_data[idx][2],
+			legislatures:	raw_data[idx][3],
+			expenses:		raw_data[idx][4]
+		})
+	}
+	return parsed
+}
+
+function parseCsv(raw_data) {
+	var parsed = []
+	for (var i = 0; i < raw_data.length; i++) {
+		parsed.push({
+			id: 	Math.round(Math.random(i)*1000+1), 
+			name: 	raw_data[i].Subquota
+		})
+	}
+	return parsed
+}
+
 window.onload = function() {
-	buildOptions(congressman_ts)
-	updateSVG()
+	var jsonPromise = d3.json('../../data/congressman_ts.json')
+	jsonPromise.then(function(jresult){
+		this.congressman_ts = parseJson(jresult)
+
+		var csvPromisse = d3.csv('../../data/subquota.csv')
+		csvPromisse.then(function(cresult) {
+			this.subquota = parseCsv(cresult)
+
+			buildOptions(this.subquota, 'subquota-fieldset', 'subquota-group', 'radio')
+			buildOptions(this.congressman_ts, 'congressman-fieldset', 'congressman-group', 'checkbox', function(){
+				checked = getCheckedOptions('congressman-group')
+				updateSVG(checked)
+			})
+			updateSVG()	
+		})
+	})
 };
