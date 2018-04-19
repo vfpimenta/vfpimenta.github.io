@@ -101,7 +101,6 @@ function updateSVG(checkedIndexes=null){
 	// Data parsing
 	if(checkedIndexes && checkedIndexes.length > 0){
 		var parsedData = verticalSum(filterIndexes(congressman_ts, checkedIndexes))
-		console.log(parsedData)
 	} else {
 		var parsedData = verticalSum(congressman_ts)
 	}

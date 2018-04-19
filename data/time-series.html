@@ -8,6 +8,17 @@
   <script src="https://d3js.org/d3.v5.min.js"></script>
   <script type="text/javascript" src="../datasets/congressman_ts.js"></script>
   <script type="text/javascript" src="../scripts/time-series.js"></script>
+  <script type="text/javascript">
+    function selectAll(caller) {
+      var targetStatus = !caller.checked
+      var boxes = document.getElementsByName(caller.name);
+      boxes.forEach(function(entry){
+        if(entry.id != 0){
+          entry.checked = targetStatus
+        }
+      })
+    }
+  </script>
   <!--[if lt IE 9]><script src="scripts/html5shiv.js"></script><![endif]-->
 </head>
 <body>
@@ -65,13 +76,23 @@
 
           <svg id="time-series-svg" width="630" height="350"></svg>
 
-          <fieldset>
-            <legend>Congressman</legend>
+          <div>
+            <fieldset class="half-width">
+              <legend>Congressman</legend>
 
-            <div class="option-box" id="congressman-fieldset">
-              <input type="checkbox" name="congressman-group" id="0"/><span>Select all</span><br/>
-            </div>
-          </fieldset>
+              <div class="option-box" id="congressman-fieldset">
+                <input type="checkbox" name="congressman-group" id="0" onmousedown="selectAll(this);" /><span>Select all</span><br/>
+              </div>
+            </fieldset>
+
+            <fieldset class="half-width">
+              <legend>Congressman</legend>
+
+              <div class="option-box" id="congressman-fieldset">
+                <input type="checkbox" name="congressman-group" id="0" onmousedown="selectAll(this);" /><span>Select all</span><br/>
+              </div>
+            </fieldset>
+          </div>
 
           <p class="tags">TAGS: <a href="#">tag 1</a>, <a href="#">tag 2</a>, <a href="#">tag 3</a>, <a href="#">tag 4</a>, <a href="#">tag 5</a></p>
         </article>
