@@ -85,7 +85,7 @@ function getDate(index) {
 	return new Date(year, month, 1)
 }
 
-function updateSVG(checkedIndexes=null){
+function updateSVG(){
 	d3.select("svg").selectAll("g").remove()
 
 	var margin = {top: 5, right: 5, bottom: 20, left: 65};
@@ -96,11 +96,14 @@ function updateSVG(checkedIndexes=null){
 	canvas.attr("transform", "translate(" + margin.left + "," + margin.top + ")")
 
 	// Data parsing
-	if(checkedIndexes && checkedIndexes.length > 0){
-		var parsedData = verticalSum(filterIndexes(this.congressman_ts, checkedIndexes))
+	if(this.selectedCongressman && this.selectedCongressman.length > 0){
+		var parsedData = verticalSum(filterIndexes(this.congressman_ts, this.selectedCongressman))
 	} else {
 		var parsedData = verticalSum(this.congressman_ts)
 	}
+
+	console.log(this.congressman_ts)
+	console.log(this.selectedCongressman)
 
 	// Axes plotting
 	var yScale = d3.scaleLinear()
@@ -196,26 +199,44 @@ function parseCsv(raw_data) {
 	var parsed = []
 	for (var i = 0; i < raw_data.length; i++) {
 		parsed.push({
-			id: 	Math.round(Math.random(i)*1000+1), 
+			id: 	raw_data[i].Subquota.toLowerCase().replace(/ /g,'-')+'_', 
 			name: 	raw_data[i].Subquota
 		})
 	}
 	return parsed
 }
 
+function changeDataset() {
+	checkedRadio = getCheckedOptions('subquota-group')[0]
+	if (checkedRadio == 'NONE') {
+		checkedRadio = ''
+	}
+
+	console.log('Selecting: congressman_'+checkedRadio+'ts.json')
+	var jsonPromise = d3.json('../../data/congressman_'+checkedRadio+'ts.json')
+	jsonPromise.then(function(jresult) {
+		this.congressman_ts = parseJson(jresult)
+		console.log(this.congressman_ts)
+		updateSVG()
+	})
+}
+
 window.onload = function() {
 	var jsonPromise = d3.json('../../data/congressman_ts.json')
 	jsonPromise.then(function(jresult){
 		this.congressman_ts = parseJson(jresult)
+		this.selectedCongressman = null
 
 		var csvPromisse = d3.csv('../../data/subquota.csv')
 		csvPromisse.then(function(cresult) {
 			this.subquota = parseCsv(cresult)
 
-			buildOptions(this.subquota, 'subquota-fieldset', 'subquota-group', 'radio')
+			buildOptions(this.subquota, 'subquota-fieldset', 'subquota-group', 'radio', changeDataset)
+
 			buildOptions(this.congressman_ts, 'congressman-fieldset', 'congressman-group', 'checkbox', function(){
-				checked = getCheckedOptions('congressman-group')
-				updateSVG(checked)
+				this.selectedCongressman = getCheckedOptions('congressman-group')
+				console.log(this.selectedCongressman)
+				updateSVG()
 			})
 			updateSVG()	
 		})
