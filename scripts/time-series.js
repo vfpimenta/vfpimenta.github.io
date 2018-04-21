@@ -96,14 +96,11 @@ function updateSVG(){
 	canvas.attr("transform", "translate(" + margin.left + "," + margin.top + ")")
 
 	// Data parsing
-	if(this.selectedCongressman && this.selectedCongressman.length > 0){
-		var parsedData = verticalSum(filterIndexes(this.congressman_ts, this.selectedCongressman))
+	if(window.selectedCongressman && window.selectedCongressman.length > 0){
+		var parsedData = verticalSum(filterIndexes(this.congressman_ts, window.selectedCongressman))
 	} else {
 		var parsedData = verticalSum(this.congressman_ts)
 	}
-
-	console.log(this.congressman_ts)
-	console.log(this.selectedCongressman)
 
 	// Axes plotting
 	var yScale = d3.scaleLinear()
@@ -178,6 +175,10 @@ function updateSVG(){
 	});
 }
 
+// ============================================================================
+// INPUT & INTERACTIVITY
+// ============================================================================
+
 function parseJson(raw_data) {
 	var parsed = []
 	var ids = Object.keys(raw_data)
@@ -207,25 +208,60 @@ function parseCsv(raw_data) {
 }
 
 function changeDataset() {
-	checkedRadio = getCheckedOptions('subquota-group')[0]
+	var checkedRadio = getCheckedOptions('subquota-group')[0]
 	if (checkedRadio == 'NONE') {
 		checkedRadio = ''
 	}
 
+  if (window.normalize){
+    path = 'normalized-json'
+  }else{
+    path = 'standard-json'
+  }
+
 	console.log('Selecting: congressman_'+checkedRadio+'ts.json')
-	var jsonPromise = d3.json('../../data/congressman_'+checkedRadio+'ts.json')
+	var jsonPromise = d3.json('../../data/'+path+'/congressman_'+checkedRadio+'ts.json')
 	jsonPromise.then(function(jresult) {
 		this.congressman_ts = parseJson(jresult)
-		console.log(this.congressman_ts)
 		updateSVG()
 	})
 }
 
+function changeSelection() {
+  var selectedCongressman = getCheckedOptions('congressman-group')
+  selectedCongressman.forEach(function(entry, idx){if (entry == ""){selectedCongressman.splice(idx)}})
+
+  window.selectedCongressman = selectedCongressman
+  updateSVG()
+}
+
+function changeSection() {
+  var sections = getCheckedOptions('norm')
+}
+
+function normalizeSeries() {
+  var toNorm = getCheckedOptions('norm')
+  if (toNorm.length > 0){
+    console.log('normalize = true')
+    window.normalize = true
+    changeDataset()
+  }else{
+    window.normalize = false
+    console.log('normalize = false')
+    changeDataset()
+  }
+}
+
+// ============================================================================
+// ON LOAD
+// ============================================================================
+
 window.onload = function() {
-	var jsonPromise = d3.json('../../data/congressman_ts.json')
+  window.normalize = false
+
+	var jsonPromise = d3.json('../../data/standard-json/congressman_ts.json')
 	jsonPromise.then(function(jresult){
 		this.congressman_ts = parseJson(jresult)
-		this.selectedCongressman = null
 
 		var csvPromisse = d3.csv('../../data/subquota.csv')
 		csvPromisse.then(function(cresult) {
@@ -233,11 +269,8 @@ window.onload = function() {
 
 			buildOptions(this.subquota, 'subquota-fieldset', 'subquota-group', 'radio', changeDataset)
 
-			buildOptions(this.congressman_ts, 'congressman-fieldset', 'congressman-group', 'checkbox', function(){
-				this.selectedCongressman = getCheckedOptions('congressman-group')
-				console.log(this.selectedCongressman)
-				updateSVG()
-			})
+			buildOptions(this.congressman_ts, 'congressman-fieldset', 'congressman-group', 'checkbox', changeSelection)
+
 			updateSVG()	
 		})
 	})

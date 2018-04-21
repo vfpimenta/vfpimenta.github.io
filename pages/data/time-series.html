@@ -75,12 +75,26 @@
 
           <svg id="time-series-svg" width="630" height="350"></svg>
 
+          <div class="full-width">
+            <fieldset>
+              <legend>Options</legend>
+
+              <input type="checkbox" name="norm" onclick="normalizeSeries();" /><span>Normalized</span><br/>
+
+              <input type="checkbox" name="legislature" id="53" checked="checked" onclick="changeSection();" /><span>Legislature 53 (2007 - 2011)</span>
+
+              <input type="checkbox" name="legislature" id="54" checked="checked" onclick="changeSection();" /><span>Legislature 54 (2011 - 2015)</span>
+
+              <input type="checkbox" name="legislature" id="55" checked="checked" onclick="changeSection();" /><span>Legislature 55 (2015 - 2019)</span>              
+            </fieldset>
+          </div>
+
           <div class="half-width">
             <fieldset style="float: left;">
               <legend>Congressman</legend>
 
               <div class="option-box" id="congressman-fieldset">
-                <input type="checkbox" name="congressman-group" id="0" onmousedown="selectAll(this);" /><span>Select all</span><br/>
+                <input type="checkbox" name="congressman-group" onmousedown="selectAll(this); changeSelection();" /><span>Select all</span><br/>
               </div>
             </fieldset>
 
