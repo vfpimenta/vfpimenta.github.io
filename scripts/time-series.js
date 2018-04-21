@@ -65,11 +65,11 @@ function filterIndexes(dataset, filter) {
 	return filtered
 }
 
-function verticalSum(dataset){
+function verticalSum(dataset, sections){
 	var expenseMatrix = []
 
 	for (var i = 0; i < dataset.length; i++) {
-		expenseMatrix.push(dataset[i].expenses)
+		expenseMatrix.push(dataset[i].expenses.slice(sections.start, sections.end))
 	}
 
 	return expenseMatrix.reduce(function(a, b){
@@ -97,16 +97,16 @@ function updateSVG(){
 
 	// Data parsing
 	if(window.selectedCongressman && window.selectedCongressman.length > 0){
-		var parsedData = verticalSum(filterIndexes(this.congressman_ts, window.selectedCongressman))
+		var parsedData = verticalSum(filterIndexes(this.congressman_ts, window.selectedCongressman), window.sections)
 	} else {
-		var parsedData = verticalSum(this.congressman_ts)
+		var parsedData = verticalSum(this.congressman_ts, window.sections)
 	}
 
 	// Axes plotting
 	var yScale = d3.scaleLinear()
 	.domain(d3.extent(parsedData)).range([height-5,0]);
 	var xScale = d3.scaleTime()
-	.domain([new Date(2009, 4, 1), new Date(2016, 8, 1)]).range([0, width])
+	.domain([getDate(window.sections.start), getDate(window.sections.end)]).range([0, width])
 
 	var yAxis = d3.axisLeft(yScale);
 	var xAxis = d3.axisBottom(xScale)
@@ -118,12 +118,13 @@ function updateSVG(){
 
 	// Lines plotting
 	canvas.selectAll("g").data(parsedData).enter().append("line")
-	.attr("x1", (d,i)=>xScale(getDate(i)))
+	.attr("x1", (d,i)=>xScale(getDate(i+window.sections.start)))
 	.attr("x2", function(d, i){
+    index = i + window.sections.start
 	  if (parsedData[i+1]){
-	    return xScale(getDate(i+1))
+	    return xScale(getDate(index+1))
 	  } else {
-	    return xScale(getDate(i))
+	    return xScale(getDate(index))
 	  }
 	})
 	.attr("y1", d=>yScale(d))
@@ -235,19 +236,37 @@ function changeSelection() {
   updateSVG()
 }
 
+function bounds(legislature) {
+  switch(legislature){
+    case "53":
+      return [0,22]
+    case "54":
+      return [22,70]
+    case "55":
+      return [70,89]
+  }
+}
+
 function changeSection() {
-  var sections = getCheckedOptions('norm')
+  var sections = getCheckedOptions('legislature')
+
+  var first = sections[0]
+  var last = sections[sections.length-1]
+  window.sections = {
+    start: bounds(first)[0],
+    end: bounds(last)[1]
+  }
+
+  updateSVG()
 }
 
 function normalizeSeries() {
   var toNorm = getCheckedOptions('norm')
   if (toNorm.length > 0){
-    console.log('normalize = true')
     window.normalize = true
     changeDataset()
   }else{
     window.normalize = false
-    console.log('normalize = false')
     changeDataset()
   }
 }
@@ -258,6 +277,7 @@ function normalizeSeries() {
 
 window.onload = function() {
   window.normalize = false
+  window.sections = {start: 0, end: 89}
 
 	var jsonPromise = d3.json('../../data/standard-json/congressman_ts.json')
 	jsonPromise.then(function(jresult){
