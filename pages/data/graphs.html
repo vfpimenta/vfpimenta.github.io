@@ -6,7 +6,7 @@
   <link rel='shortcut icon' type='image/x-icon' href='../../images/favicon.ico' />
   <link rel="stylesheet" href="../../styles/layout.css" type="text/css">
   <script src="https://d3js.org/d3.v5.min.js"></script>
-  <script type="text/javascript" src="../../scripts/time-series.js"></script>
+  <script type="text/javascript" src="../../scripts/graphs.js"></script>
   <script type="text/javascript">
     function selectAll(caller) {
       var targetStatus = !caller.checked
@@ -54,8 +54,8 @@
       <nav>
         <ul>
           <li><a href="./description.html">Data description</a></li>
-          <li><span class="selected-link">Time series</span></li>
-          <li><a href="./graphs.html">Graphs</a></li>
+          <li><a href="./time-series.html">Time series</a></li>
+          <li><span class="selected-link">Graphs</span></li>
           <li><a href="./clusters.html">Clusters</a></li>
         </ul>
       </nav>
@@ -66,38 +66,54 @@
       <section>
         <!-- article 1 -->
         <article>
-          <h2><a href="#">Time series</a></h2>
+          <h2><a href="#">Graphs</a></h2>
           <address>
           Victor, vfp@cin.ufpe.br
           </address>
-          <time datetime="2018-04-21T08:15+00:00">Saturday, 21<sup>th</sup> April 2018</time>
+          <time datetime="2018-04-22T08:15+00:00">Sunday, 22<sup>th</sup> April 2018</time>
           <p></p>
 
-          <svg id="time-series-svg" width="630" height="350"></svg>
+          <svg id="graph-svg" width="630" height="350"></svg>
 
           <div class="full-width">
             <fieldset>
-              <legend>Options</legend>
+              <legend>Distance</legend>
 
-              <input type="checkbox" name="norm" onclick="normalizeSeries();" /><span>Normalized</span><br/>
+              <input type="radio" name="opt-distance" checked="checked" /><span>Jensen-Shanon</span>
 
-              <input type="checkbox" name="legislature" id="53" checked="checked" onclick="changeSection();" /><span>Legislature 53 (2007 - 2011)</span>
+              <input type="radio" name="opt-distance" /><span>Cosine</span>
 
-              <input type="checkbox" name="legislature" id="54" checked="checked" onclick="changeSection();" /><span>Legislature 54 (2011 - 2015)</span>
-
-              <input type="checkbox" name="legislature" id="55" checked="checked" onclick="changeSection();" /><span>Legislature 55 (2015 - 2019)</span>              
+              <input type="radio" name="opt-distance" /><span>Robust (Pearson + Spearman)</span>                            
             </fieldset>
           </div>
 
-          <div class="half-width">
-            <fieldset style="float: left;">
-              <legend>Congressman</legend>
+          <div class="full-width">
+            <fieldset>
+              <legend>K number of neighbors</legend>
 
-              <div class="option-box" id="congressman-fieldset">
-                <input type="checkbox" name="congressman-group" onmousedown="selectAll(this); changeSelection();" /><span>Select all</span><br/>
-              </div>
+              <input type="radio" name="opt-k" /><span>2</span>
+
+              <input type="radio" name="opt-k" /><span>3</span>
+
+              <input type="radio" name="opt-k" /><span>4</span>
+
+              <input type="radio" name="opt-k" checked="checked" /><span>5</span>                            
             </fieldset>
+          </div>
 
+          <div class="full-width">
+            <fieldset>
+              <legend>Legislature</legend>
+
+              <input type="radio" name="opt-legislature" /><span>53</span>
+
+              <input type="radio" name="opt-legislature" checked="checked" /><span>54</span>
+
+              <input type="radio" name="opt-legislature" /><span>55</span>                            
+            </fieldset>
+          </div>
+
+          <div class="full-width">
             <fieldset>
               <legend>Subquota</legend>
 

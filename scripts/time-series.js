@@ -215,9 +215,9 @@ function changeDataset() {
 	}
 
   if (window.normalize){
-    path = 'normalized-json'
+    path = 'expense-json-normalized'
   }else{
-    path = 'standard-json'
+    path = 'expense-json-standard'
   }
 
 	console.log('Selecting: congressman_'+checkedRadio+'ts.json')
@@ -279,7 +279,7 @@ window.onload = function() {
   window.normalize = false
   window.sections = {start: 0, end: 89}
 
-	var jsonPromise = d3.json('../../data/standard-json/congressman_ts.json')
+	var jsonPromise = d3.json('../../data/expense-json-standard/congressman_ts.json')
 	jsonPromise.then(function(jresult){
 		this.congressman_ts = parseJson(jresult)
 
