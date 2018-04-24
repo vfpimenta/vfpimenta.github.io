@@ -13,9 +13,12 @@ parser.add_option('-t', '--target', dest='target', type='str', help='Target file
 G=nx.read_graphml(options.source, str)
 data = json_graph.node_link_data(G)
 
-for node in data['nodes']:
-  str=node['id']
-  node['id']=[int(s) for s in str.split("n") if s.isdigit()][0]
+for i in range(len(data['nodes'])):
+	data['nodes'][i]['id'] = i
+
+# for node in data['nodes']:
+#   str=node['id']
+#   node['id']=[int(s) for s in str.split("n") if s.isdigit()][0]
 
 with open(options.target, 'w') as f:
   json.dump(data, f, indent=4)

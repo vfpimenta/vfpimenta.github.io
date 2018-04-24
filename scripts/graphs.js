@@ -8,7 +8,7 @@ window.onload = function() {
 
   var simulation = d3.forceSimulation()
     .force("link", d3.forceLink().id(function(d) { return d.id; }))
-    .force("charge", d3.forceManyBody().distanceMax(80))
+    .force("charge", d3.forceManyBody().distanceMax(70))
     .force("center", d3.forceCenter(width / 2, height / 2));
 
   var jsonPromise = d3.json('../../data/cibm-base.json')
@@ -35,6 +35,7 @@ window.onload = function() {
         })
         .attr("fill", function(d) { return color(d.group); })
         .attr("style", "stroke: #fff; stroke-width: 1.5px;")
+        .attr("name", d=>d.name)
         .call(d3.drag()
             .on("start", function(d) {
               if (!d3.event.active) simulation.alphaTarget(0.3).restart();
