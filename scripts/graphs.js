@@ -149,20 +149,71 @@ function scaleAngle(coordinate, nGroups, radius){
   }
 }
 
+// ============================================================================
+// INPUT & INTERACTIVITY
+// ============================================================================
+
+function parseCsv(raw_data) {
+  var parsed = []
+  for (var i = 0; i < raw_data.length; i++) {
+    parsed.push({
+      id:   raw_data[i].Subquota, 
+      name:   raw_data[i].Subquota
+    })
+  }
+  return parsed
+}
+
 function changeDataset() {
   var checkedRadio = getCheckedOptions('subquota-group')[0]
-  if (checkedRadio == 'NONE') {
-    checkedRadio = ''
+  console.log(checkedRadio)
+  switch(checkedRadio){
+    case 'Flight ticket issue':
+      window.seriesType = 'flight'
+      break;
+    case 'Publicity of parliamentary activity':
+      window.seriesType = 'publicity'
+      break;
+    case 'Telecommunication':
+      window.seriesType = 'telecom'
+      break;
+    case 'Fuels and lubricants':
+      window.seriesType = 'fuels'
+      break;
+    default:
+      window.seriesType = 'default'
+      break;
   }
 
-  if (window.normalize){
-    path = '../../data/graph-json/normalize/default/JS/k-5/cibm-legislature-54.json'
-  }else{
-    path = '../../data/graph-json/standard/default/JS/k-5/cibm-legislature-54.json'
-  }
+  loadOptions()
+}
 
-  console.log('Selecting: '+checkedRadio+'ts.json')
-  var jsonPromise = d3.json(path+'/'+checkedRadio)
+function changeK() {
+  var checkedRadio = getCheckedOptions('opt-k')[0]
+  window.k = checkedRadio
+
+  loadOptions()
+}
+
+function changeDistance() {
+  var checkedRadio = getCheckedOptions('opt-distance')[0]
+  window.distanceMethod = checkedRadio
+
+  loadOptions()
+}
+
+function changeLegislature() {
+  var checkedRadio = getCheckedOptions('opt-legislature')[0]
+  window.legislature = checkedRadio
+
+  loadOptions()
+}
+
+function loadOptions() {
+  var path = '../../data/graph-json/'+window.mode+'/'+window.seriesType+'/'+window.distanceMethod+'/k-'+window.k+'/cibm-legislature-'+window.legislature+'.json'
+
+  console.log('Selecting: '+path)
+  var jsonPromise = d3.json(path)
   jsonPromise.then(function(graph) {
     window.graph = graph;
     updateSVG();
@@ -174,12 +225,24 @@ function changeDataset() {
 // ===========================================================================
 
 window.onload = function() {
+  // Constant definition
+  window.mode = 'standard';
+  window.seriesType = 'default';
+  window.distanceMethod = 'JS';
+  window.k = 5;
+  window.legislature = 54;
+
   var jsonPromise = d3.json('../../data/graph-json/standard/default/JS/k-5/cibm-legislature-54.json')
   jsonPromise.then(function(graph){
     window.graph = graph;
 
-    buildOptions(this.subquota, 'subquota-fieldset', 'subquota-group', 'radio', changeDataset);
+    var csvPromisse = d3.csv('../../data/subquota.csv')
+    csvPromisse.then(function(csv) {
+      this.subquota = parseCsv(csv)
 
-    updateSVG();
+      buildOptions(this.subquota, 'subquota-fieldset', 'subquota-group', 'radio', changeDataset);
+
+      updateSVG();
+    })
   })
 }

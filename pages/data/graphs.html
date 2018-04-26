@@ -79,11 +79,11 @@
             <fieldset>
               <legend>Distance</legend>
 
-              <input type="radio" name="opt-distance" checked="checked" /><span>Jensen-Shanon</span>
+              <input type="radio" name="opt-distance" id="JS" onclick="changeDistance();" checked="checked" /><span>Jensen-Shanon</span>
 
-              <input type="radio" name="opt-distance" /><span>Cosine</span>
+              <input type="radio" name="opt-distance" id="cosine" onclick="changeDistance();" /><span>Cosine</span>
 
-              <input type="radio" name="opt-distance" /><span>Robust (Pearson + Spearman)</span>                            
+              <input type="radio" name="opt-distance" id="robust" onclick="changeDistance();" /><span>Robust (Pearson + Spearman)</span>                            
             </fieldset>
           </div>
 
@@ -91,13 +91,13 @@
             <fieldset>
               <legend>K number of neighbors</legend>
 
-              <input type="radio" name="opt-k" /><span>2</span>
+              <input type="radio" name="opt-k" id="2" onclick="changeK();" /><span>2</span>
 
-              <input type="radio" name="opt-k" /><span>3</span>
+              <input type="radio" name="opt-k" id="3" onclick="changeK();" /><span>3</span>
 
-              <input type="radio" name="opt-k" /><span>4</span>
+              <input type="radio" name="opt-k" id="4" onclick="changeK();" /><span>4</span>
 
-              <input type="radio" name="opt-k" checked="checked" /><span>5</span>                            
+              <input type="radio" name="opt-k" id="5" checked="checked" onclick="changeK();" /><span>5</span>                            
             </fieldset>
           </div>
 
@@ -105,11 +105,11 @@
             <fieldset>
               <legend>Legislature</legend>
 
-              <input type="radio" name="opt-legislature" /><span>53</span>
+              <input type="radio" name="opt-legislature" id="53" onclick="changeLegislature();" /><span>53</span>
 
-              <input type="radio" name="opt-legislature" checked="checked" /><span>54</span>
+              <input type="radio" name="opt-legislature" id="54" onclick="changeLegislature();" checked="checked" /><span>54</span>
 
-              <input type="radio" name="opt-legislature" /><span>55</span>                            
+              <input type="radio" name="opt-legislature" id="55" onclick="changeLegislature();" /><span>55</span>                            
             </fieldset>
           </div>
 
