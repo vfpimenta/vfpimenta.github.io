@@ -97,14 +97,16 @@ function updateSVG(){
 
 	// Data parsing
 	if(window.selectedCongressman && window.selectedCongressman.length > 0){
-		var parsedData = verticalSum(filterIndexes(this.congressman_ts, window.selectedCongressman), window.sections)
+		var parsedData = filterIndexes(this.congressman_ts, window.selectedCongressman).map(d=>d.expenses)
 	} else {
-		var parsedData = verticalSum(this.congressman_ts, window.sections)
+		var parsedData = this.congressman_ts
 	}
+
+  var expenseDomain = d3.extent([].concat.apply([], parsedData.map(d=>d.expenses)))
 
 	// Axes plotting
 	var yScale = d3.scaleLinear()
-	.domain(d3.extent(parsedData)).range([height-5,0]);
+	.domain(expenseDomain).range([height-margin.top,0]);
 	var xScale = d3.scaleTime()
 	.domain([getDate(window.sections.start), getDate(window.sections.end)]).range([0, width])
 
@@ -117,63 +119,87 @@ function updateSVG(){
 	.call(xAxis).attr("transform","translate("+margin.left+","+height+")")
 
 	// Lines plotting
-	canvas.selectAll("g").data(parsedData).enter().append("line")
-	.attr("x1", (d,i)=>xScale(getDate(i+window.sections.start)))
-	.attr("x2", function(d, i){
-    index = i + window.sections.start
-	  if (parsedData[i+1]){
-	    return xScale(getDate(index+1))
-	  } else {
-	    return xScale(getDate(index))
-	  }
-	})
-	.attr("y1", d=>yScale(d))
-	.attr("y2", function(d, i){
-	  if (parsedData[i+1]){
-	    return yScale(parsedData[i+1])
-	  } else {
-	    return yScale(d)
-	  }
-	})
-	.attr("stroke","black").attr("stroke-width",2)
+  canvas.selectAll("g").data(parsedData).enter().append("g")
+  .attr("id", d=>d.name.replace(/ /g,'-'))
+  .each(function(d, i) {
+    var localExpenses = d.expenses
+    d3.select(this).selectAll('line').data(d=>d.expenses)
+    .enter().append("line")
+    .attr("x1", (d, i)=>xScale(getDate(i+window.sections.start)))
+    .attr("x2", function(d, i){
+      index = i + window.sections.start
+      if (localExpenses[i+1]){
+        return xScale(getDate(index+1))
+      } else {
+        return xScale(getDate(index))
+      }
+    })
+    .attr("y1", d=>yScale(d))
+    .attr("y2", function(d, i){
+      if (localExpenses[i+1]){
+        return yScale(localExpenses[i+1])
+      } else {
+        return yScale(d)
+      }
+    })
+    .attr("stroke","blue")
+    .attr("stroke-width", 2)
+    .attr("stroke-opacity", 0.3)
+    .on("mouseover", function() {
+      d3.select("#"+d.name.replace(/ /g,'-')).selectAll("line")
+      .attr("stroke-opacity", 1)
+      .attr("stroke-width", 3)
+      .attr("stroke","black")
+      .moveToFront();
+    })
+    .on("mouseout", function() {
+      d3.select("#"+d.name.replace(/ /g,'-')).selectAll("line")
+      .attr("stroke-opacity", 0.3)
+      .attr("stroke-width", 2)
+      .attr("stroke","blue")
+      .moveToBack();
+    })
+    .append("title").text(d.name);
+  })
+	
 
-	// Crosshair
-	var transpRect = canvas.append("rect")
-    .attr("x", 0)
-    .attr("y", 0)
-    .attr("width", width)
-    .attr("height", height)
-    .attr("fill", "white")
-    .attr("opacity", 0);
+	// // Crosshair
+	// var transpRect = canvas.append("rect")
+ //    .attr("x", 0)
+ //    .attr("y", 0)
+ //    .attr("width", width)
+ //    .attr("height", height)
+ //    .attr("fill", "white")
+ //    .attr("opacity", 0);
 
-    var verticalLine = canvas.append("line")
-    .attr("opacity", 0)
-    .attr("y1", 0)
-    .attr("y2", height)
-    .attr("stroke", "black")
-    .attr("stroke-width", 1)
-    .attr("pointer-events", "none")
-    .style("stroke-dasharray", ("3, 3"));
+ //    var verticalLine = canvas.append("line")
+ //    .attr("opacity", 0)
+ //    .attr("y1", 0)
+ //    .attr("y2", height)
+ //    .attr("stroke", "black")
+ //    .attr("stroke-width", 1)
+ //    .attr("pointer-events", "none")
+ //    .style("stroke-dasharray", ("3, 3"));
 
-	var horizontalLine = canvas.append("line")
-    .attr("opacity", 0)
-    .attr("x1", 0)
-    .attr("x2", width)
-    .attr("stroke", "black")
-    .attr("stroke-width", 1)
-    .attr("pointer-events", "none")
-    .style("stroke-dasharray", ("3, 3"));
+	// var horizontalLine = canvas.append("line")
+ //    .attr("opacity", 0)
+ //    .attr("x1", 0)
+ //    .attr("x2", width)
+ //    .attr("stroke", "black")
+ //    .attr("stroke-width", 1)
+ //    .attr("pointer-events", "none")
+ //    .style("stroke-dasharray", ("3, 3"));
 
-    transpRect.on("mousemove", function(){  
-	    mouse = d3.mouse(this);
-	    mousex = mouse[0];
-	    mousey = mouse[1];
-	    verticalLine.attr("x1", mousex).attr("x2", mousex).attr("opacity", 1);
-	    horizontalLine.attr("y1", mousey).attr("y2", mousey).attr("opacity", 1)
-	}).on("mouseout", function(){  
-	    verticalLine.attr("opacity", 0);
-	    horizontalLine.attr("opacity", 0);
-	});
+ //    transpRect.on("mousemove", function(){  
+	//     mouse = d3.mouse(this);
+	//     mousex = mouse[0];
+	//     mousey = mouse[1];
+	//     verticalLine.attr("x1", mousex).attr("x2", mousex).attr("opacity", 1);
+	//     horizontalLine.attr("y1", mousey).attr("y2", mousey).attr("opacity", 1)
+	// }).on("mouseout", function(){  
+	//     verticalLine.attr("opacity", 0);
+	//     horizontalLine.attr("opacity", 0);
+	// });
 }
 
 // ============================================================================
@@ -186,12 +212,12 @@ function parseJson(raw_data) {
 	for (var i = 0; i < ids.length; i++) {
 		idx = ids[i]
 		parsed.push({
-			id: 			idx, 
-			name: 			raw_data[idx][0],
-			state: 			raw_data[idx][1],
-			party:			raw_data[idx][2],
+			id: 			    idx, 
+			name: 			  raw_data[idx][0],
+			state: 			  raw_data[idx][1],
+			party:			  raw_data[idx][2],
 			legislatures:	raw_data[idx][3],
-			expenses:		raw_data[idx][4]
+			expenses:		  raw_data[idx][4]
 		})
 	}
 	return parsed
@@ -274,6 +300,21 @@ function normalizeSeries() {
 // ============================================================================
 // ON LOAD
 // ============================================================================
+
+d3.selection.prototype.moveToFront = function() {
+  return this.each(function(){
+    this.parentNode.appendChild(this);
+  });
+};
+
+d3.selection.prototype.moveToBack = function() { 
+  return this.each(function() { 
+    var firstChild = this.parentNode.firstChild; 
+    if (firstChild) { 
+      this.parentNode.insertBefore(this, firstChild); 
+    } 
+  }); 
+}
 
 window.onload = function() {
   window.normalize = false
