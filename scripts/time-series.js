@@ -5,6 +5,16 @@
 function buildOptions(dataset, parentFieldset, groupName, type, eventListener){
 	var fieldset = document.getElementById(parentFieldset)
 
+  dataset = dataset.sort(function(argA, argB) {
+    if (argA.name > argB.name) {
+      return 1;
+    }else if (argA.name < argB.name) {
+      return -1;
+    }else{
+      return 0;
+    }
+  })
+
 	for (var i = 0; i < dataset.length; i++) {
 		var checkbox = createNewBox(groupName, dataset[i].id, type)
 		addListener(checkbox, 'click', eventListener)
@@ -54,17 +64,6 @@ function getCheckedOptions(groupName) {
 // D3 MAIN
 // ============================================================================
 
-function filterIndexes(dataset, filter) {
-	filtered = []
-	for (var i = 0; i < dataset.length; i++) {
-		if(filter.includes(dataset[i].id)){
-			filtered.push(dataset[i])
-		}
-	}
-
-	return filtered
-}
-
 function verticalSum(dataset, sections){
 	var expenseMatrix = []
 
@@ -88,7 +87,7 @@ function getDate(index) {
 function updateSVG(){
 	d3.select("svg").selectAll("g").remove()
 
-	var margin = {top: 5, right: 5, bottom: 20, left: 65};
+	var margin = {top: 5, right: 5, bottom: 20, left: 45};
 	var width = d3.select("svg").attr("width") - margin.left - margin.right;
 	var height = d3.select("svg").attr("height") - margin.top - margin.bottom;
 
@@ -97,7 +96,9 @@ function updateSVG(){
 
 	// Data parsing
 	if(window.selectedCongressman && window.selectedCongressman.length > 0){
-		var parsedData = filterIndexes(this.congressman_ts, window.selectedCongressman).map(d=>d.expenses)
+		var parsedData = this.congressman_ts.filter(function(entry) {
+      return window.selectedCongressman.includes(entry.id)
+    })
 	} else {
 		var parsedData = this.congressman_ts
 	}
@@ -119,8 +120,10 @@ function updateSVG(){
 	.call(xAxis).attr("transform","translate("+margin.left+","+height+")")
 
 	// Lines plotting
-  	canvas.selectAll("g").data(parsedData).enter().append("path")
-  	.attr("id", d=>d.name.replace(/ /g,'-'))
+  canvas.selectAll("g").data(parsedData).enter().append("path")
+  .attr("id", d=>d.name.replace(/ /g,'-'))
+  .attr("name", d=>d.name)
+  .attr("data-marked", "false")
 	.attr("d", function(d){
 		return d.expenses.map(function(entry, index){
 			return "L "+xScale(getDate(index))+" "+yScale(entry);
@@ -131,20 +134,35 @@ function updateSVG(){
 	.attr("stroke-opacity", 0.3)
 	.attr("fill", "none")
 	.on("mouseover", function() {
-		d3.select(this)
-		.attr("stroke-opacity", 1)
-		.attr("stroke-width", 2)
-		.attr("stroke","black")
-		.raise()
+    if(d3.select(this).attr("data-marked") == "false"){
+  		d3.select(this)
+  		.attr("stroke-opacity", 1)
+  		.attr("stroke-width", 2)
+  		.attr("stroke","black")
+  		.raise()
+    }
 	})
-    .on("mouseout", function() {
-		d3.select(this)
-		.attr("stroke-opacity", 0.3)
-		.attr("stroke-width", 1)
-		.attr("stroke","blue")
-    })
-    .append("title").text(d=>d.name);
+  .on("mouseout", function() {
+    if(d3.select(this).attr("data-marked") == "false"){
+      d3.select(this)
+      .attr("stroke-opacity", 0.3)
+      .attr("stroke-width", 1)
+      .attr("stroke","blue")
+    }
+  })
+  .on("click", function() {
+    d3.select(this)
+    .attr("stroke-opacity", 1)
+    .attr("stroke-width", 2)
+    .attr("stroke","red")
+    .attr("data-marked", "true")
+
+    console.log(d3.select(this).attr("name"))
+  })
+  .append("title").text(d=>d.name);
   
+  document.getElementById("loader").setAttribute("style", "display: none;")
+  document.getElementById("time-series-svg").setAttribute("style", "display: auto;")
 }
 
 // ============================================================================
