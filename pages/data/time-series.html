@@ -8,9 +8,9 @@
   <script src="https://d3js.org/d3.v5.min.js"></script>
   <script type="text/javascript" src="../../scripts/time-series.js"></script>
   <script type="text/javascript">
-    function selectAll(caller) {
+    function selectAll(caller, name) {
       var targetStatus = !caller.checked
-      var boxes = document.getElementsByName(caller.name);
+      var boxes = document.getElementsByName(name);
       boxes.forEach(function(entry){
         if(entry.id != 0){
           entry.checked = targetStatus
@@ -96,7 +96,7 @@
               <legend>Congressman</legend>
 
               <div class="option-box" id="congressman-fieldset">
-                <input type="checkbox" name="congressman-group" onmousedown="selectAll(this); changeSelection();" /><span>Select all</span><br/>
+                <input type="checkbox" name="congressman-select-all" onmousedown="selectAll(this, 'congressman-group'); changeSelection();" /><span>Select all</span><br/>
               </div>
             </fieldset>
 

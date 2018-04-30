@@ -125,8 +125,8 @@ function updateSVG(){
   .attr("name", d=>d.name)
   .attr("data-marked", "false")
 	.attr("d", function(d){
-		return d.expenses.map(function(entry, index){
-			return "L "+xScale(getDate(index))+" "+yScale(entry);
+		return d.expenses.slice(window.sections.start, window.sections.end).map(function(entry, index){
+			return "L "+xScale(getDate(index+window.sections.start))+" "+yScale(entry);
 		}).join(" ").replaceAt(0, "M");
 	})
 	.attr("stroke", "blue")
@@ -218,11 +218,9 @@ function changeDataset() {
 }
 
 function changeSelection() {
-  var selectedCongressman = getCheckedOptions('congressman-group')
-  selectedCongressman.forEach(function(entry, idx){if (entry == ""){selectedCongressman.splice(idx)}})
+  window.selectedCongressman = getCheckedOptions('congressman-group');
 
-  window.selectedCongressman = selectedCongressman
-  updateSVG()
+  updateSVG();
 }
 
 function bounds(legislature) {
