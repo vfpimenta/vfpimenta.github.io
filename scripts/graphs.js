@@ -60,13 +60,13 @@ function updateSVG(){
   var svg = d3.select("svg")
   var width = +d3.select("svg").attr("width")
   var height = +d3.select("svg").attr("height")
-  var radius = 5
+  var radius = 3
 
   var color = d3.scaleOrdinal(d3.schemeCategory10);
 
   var simulation = d3.forceSimulation()
-    .force("link", d3.forceLink().id(function(d) { return d.id; }))
-    .force("charge", d3.forceManyBody().distanceMax(60))
+    .force("link", d3.forceLink().id(d=>d.id).distance(10))
+    .force("charge", d3.forceManyBody().strength(-0.1))
     .force("center", d3.forceCenter(width / 2, height / 2));
 
   var link = svg.append("g")
@@ -87,10 +87,10 @@ function updateSVG(){
         .domain(d3.extent(window.graph.nodes.map(d=>d.size)))
         .range([0, 3]);
 
-        return 3+lScale(d.size);
+        return radius;
       })
       .attr("fill", function(d) { return color(d.group); })
-      .attr("style", "stroke: #fff; stroke-width: 1.5px;")
+      .attr("style", "stroke: #fff; stroke-width: 0.5px;")
       .attr("name", d=>d.name)
       .call(d3.drag()
           .on("start", function(d) {
@@ -111,42 +111,24 @@ function updateSVG(){
   node.append("title")
       .text(function(d) { return d.name; });
 
-  var nGroups = [...new Set(window.graph.nodes.map(n=>n.group))].length
-  var groupScaleX = scaleAngle('x', nGroups, 0.3)
-  var groupScaleY = scaleAngle('y', nGroups, 0.3)
-
   simulation
       .nodes(window.graph.nodes)
       .on("tick", function() {
         link
-          .attr("x1", function(d) { return groupScaleX(d.source.x, d.source.group); })
-          .attr("y1", function(d) { return groupScaleY(d.source.y, d.source.group); })
-          .attr("x2", function(d) { return groupScaleX(d.target.x, d.target.group); })
-          .attr("y2", function(d) { return groupScaleY(d.target.y, d.target.group); });
+          .attr("x1", function(d) { return d.source.x; })
+          .attr("y1", function(d) { return d.source.y; })
+          .attr("x2", function(d) { return d.target.x; })
+          .attr("y2", function(d) { return d.target.y; });
 
         node
-          .attr("cx", function(d) { return d.x = Math.max(radius, Math.min(width - radius, groupScaleX(d.x, d.group))); })
-          .attr("cy", function(d) { return d.y = Math.max(radius, Math.min(height - radius, groupScaleY(d.y, d.group))); });
+          .attr("cx", function(d) { return d.x = d.x; })
+          .attr("cy", function(d) { return d.y = d.y; });
       });
 
   simulation.force("link")
       .links(window.graph.links);
-}
 
-function scaleAngle(coordinate, nGroups, radius){
-  var degree = 360 / nGroups;
-  var radian = degree * Math.PI / 180;
-
-  switch(coordinate){
-    case 'x':
-      return function(value, group) {
-        return value + Math.cos(group*radian)*radius;
-      }
-    case 'y':
-      return function(value, group) {
-        return value + Math.sin(group*radian)*radius;
-      }
-  }
+  simulation.alphaDecay(1 - Math.pow(0.001, 1/3000));
 }
 
 // ============================================================================
