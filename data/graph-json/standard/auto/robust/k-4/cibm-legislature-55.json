@@ -1,0 +1,4052 @@
+{
+    "multigraph": false,
+    "links": [
+        {
+            "weight": 1.4142135623731,
+            "target": 45,
+            "source": 1
+        },
+        {
+            "weight": 1.4142135623731,
+            "target": 45,
+            "source": 38
+        },
+        {
+            "weight": 1.4142135623731,
+            "target": 259,
+            "source": 38
+        },
+        {
+            "weight": 1.4142135623731,
+            "target": 109,
+            "source": 63
+        }
+    ],
+    "graph": {
+        "node_default": {},
+        "edge_default": {}
+    },
+    "nodes": [
+        {
+            "state": "RN",
+            "region": "north-east",
+            "name": "SANDRA ROSADO",
+            "id": 0,
+            "size": 0.0,
+            "group": 367.0,
+            "term_color": "indigo",
+            "label": "SANDRA ROSADO"
+        },
+        {
+            "state": "RJ",
+            "region": "south-east",
+            "name": "MIRO TEIXEIRA",
+            "id": 1,
+            "size": 0.0,
+            "group": 2.0,
+            "term_color": "violet",
+            "label": "MIRO TEIXEIRA"
+        },
+        {
+            "state": "SP",
+            "region": "south-east",
+            "name": "LUIZA ERUNDINA",
+            "id": 2,
+            "size": 107124.88,
+            "group": 129.0,
+            "term_color": "violet",
+            "label": "LUIZA ERUNDINA"
+        },
+        {
+            "state": "MS",
+            "region": "center-west",
+            "name": "WALDEMIR MOKA",
+            "id": 3,
+            "size": 0.0,
+            "group": 305.0,
+            "term_color": "green",
+            "label": "WALDEMIR MOKA"
+        },
+        {
+            "state": "TO",
+            "region": "north",
+            "name": "LAUREZ MOREIRA",
+            "id": 4,
+            "size": 0.0,
+            "group": 89.0,
+            "term_color": "indigo",
+            "label": "LAUREZ MOREIRA"
+        },
+        {
+            "state": "ES",
+            "region": "south-east",
+            "name": "SUELI VIDIGAL",
+            "id": 5,
+            "size": 39000.0,
+            "group": 69.0,
+            "term_color": "indigo",
+            "label": "SUELI VIDIGAL"
+        },
+        {
+            "state": "CE",
+            "region": "north-east",
+            "name": "RAIMUNDO GOMES DE MATOS",
+            "id": 6,
+            "size": 66135.0,
+            "group": 205.0,
+            "term_color": "violet",
+            "label": "RAIMUNDO GOMES DE MATOS"
+        },
+        {
+            "state": "SP",
+            "region": "south-east",
+            "name": "ANTONIO BULH\u00d5ES",
+            "id": 7,
+            "size": 0.0,
+            "group": 163.0,
+            "term_color": "violet",
+            "label": "ANTONIO BULH\u00d5ES"
+        },
+        {
+            "state": "GO",
+            "region": "center-west",
+            "name": "LEONARDO VILELA",
+            "id": 8,
+            "size": 1855.0,
+            "group": 140.0,
+            "term_color": "indigo",
+            "label": "LEONARDO VILELA"
+        },
+        {
+            "state": "RS",
+            "region": "south",
+            "name": "LUIS CARLOS HEINZE",
+            "id": 9,
+            "size": 44500.0,
+            "group": 160.0,
+            "term_color": "violet",
+            "label": "LUIS CARLOS HEINZE"
+        },
+        {
+            "state": "RS",
+            "region": "south",
+            "name": "RENATO MOLLING",
+            "id": 10,
+            "size": 62054.0,
+            "group": 25.0,
+            "term_color": "violet",
+            "label": "RENATO MOLLING"
+        },
+        {
+            "state": "SP",
+            "region": "south-east",
+            "name": "MILTON MONTI",
+            "id": 11,
+            "size": 100104.9,
+            "group": 240.0,
+            "term_color": "violet",
+            "label": "MILTON MONTI"
+        },
+        {
+            "state": "CE",
+            "region": "north-east",
+            "name": "CIRO GOMES",
+            "id": 12,
+            "size": 0.0,
+            "group": 24.0,
+            "term_color": "green",
+            "label": "CIRO GOMES"
+        },
+        {
+            "state": "SC",
+            "region": "south",
+            "name": "NELSON GOETTEN",
+            "id": 13,
+            "size": 0.0,
+            "group": 131.0,
+            "term_color": "green",
+            "label": "NELSON GOETTEN"
+        },
+        {
+            "state": "PR",
+            "region": "south",
+            "name": "TAKAYAMA",
+            "id": 14,
+            "size": 117719.15,
+            "group": 119.0,
+            "term_color": "violet",
+            "label": "TAKAYAMA"
+        },
+        {
+            "state": "GO",
+            "region": "center-west",
+            "name": "RUBENS OTONI",
+            "id": 15,
+            "size": 86841.7,
+            "group": 50.0,
+            "term_color": "violet",
+            "label": "RUBENS OTONI"
+        },
+        {
+            "state": "PA",
+            "region": "north",
+            "name": "WANDENKOLK GON\u00c7ALVES",
+            "id": 16,
+            "size": 70382.1,
+            "group": 319.0,
+            "term_color": "indigo",
+            "label": "WANDENKOLK GON\u00c7ALVES"
+        },
+        {
+            "state": "SP",
+            "region": "south-east",
+            "name": "LOBBE NETO",
+            "id": 17,
+            "size": 57682.67,
+            "group": 150.0,
+            "term_color": "blue",
+            "label": "LOBBE NETO"
+        },
+        {
+            "state": "PB",
+            "region": "north-east",
+            "name": "WELLINGTON ROBERTO",
+            "id": 18,
+            "size": 104000.0,
+            "group": 348.0,
+            "term_color": "violet",
+            "label": "WELLINGTON ROBERTO"
+        },
+        {
+            "state": "PE",
+            "region": "north-east",
+            "name": "ROBERTO MAGALH\u00c3ES",
+            "id": 19,
+            "size": 0.0,
+            "group": 37.0,
+            "term_color": "green",
+            "label": "ROBERTO MAGALH\u00c3ES"
+        },
+        {
+            "state": "AC",
+            "region": "north",
+            "name": "S\u00c9RGIO PETEC\u00c3O",
+            "id": 20,
+            "size": 0.0,
+            "group": 63.0,
+            "term_color": "green",
+            "label": "S\u00c9RGIO PETEC\u00c3O"
+        },
+        {
+            "state": "RO",
+            "region": "north",
+            "name": "ERNANDES AMORIM",
+            "id": 21,
+            "size": 0.0,
+            "group": 141.0,
+            "term_color": "green",
+            "label": "ERNANDES AMORIM"
+        },
+        {
+            "state": "BA",
+            "region": "north-east",
+            "name": "MAUR\u00cdCIO TRINDADE",
+            "id": 22,
+            "size": 50742.5,
+            "group": 105.0,
+            "term_color": "indigo",
+            "label": "MAUR\u00cdCIO TRINDADE"
+        },
+        {
+            "state": "RJ",
+            "region": "south-east",
+            "name": "RODRIGO MAIA",
+            "id": 23,
+            "size": 103800.0,
+            "group": 147.0,
+            "term_color": "violet",
+            "label": "RODRIGO MAIA"
+        },
+        {
+            "state": "RS",
+            "region": "south",
+            "name": "IBSEN PINHEIRO",
+            "id": 24,
+            "size": 0.0,
+            "group": 99.0,
+            "term_color": "green",
+            "label": "IBSEN PINHEIRO"
+        },
+        {
+            "state": "SP",
+            "region": "south-east",
+            "name": "PAULO MALUF",
+            "id": 25,
+            "size": 57750.0,
+            "group": 297.0,
+            "term_color": "violet",
+            "label": "PAULO MALUF"
+        },
+        {
+            "state": "BA",
+            "region": "north-east",
+            "name": "TONHA MAGALH\u00c3ES",
+            "id": 26,
+            "size": 0.0,
+            "group": 96.0,
+            "term_color": "green",
+            "label": "TONHA MAGALH\u00c3ES"
+        },
+        {
+            "state": "MG",
+            "region": "south-east",
+            "name": "RODRIGO DE CASTRO",
+            "id": 27,
+            "size": 181219.66,
+            "group": 365.0,
+            "term_color": "violet",
+            "label": "RODRIGO DE CASTRO"
+        },
+        {
+            "state": "CE",
+            "region": "north-east",
+            "name": "EUDES XAVIER",
+            "id": 28,
+            "size": 38767.7,
+            "group": 346.0,
+            "term_color": "indigo",
+            "label": "EUDES XAVIER"
+        },
+        {
+            "state": "BA",
+            "region": "north-east",
+            "name": "JOS\u00c9 ROCHA",
+            "id": 29,
+            "size": 0.0,
+            "group": 158.0,
+            "term_color": "violet",
+            "label": "JOS\u00c9 ROCHA"
+        },
+        {
+            "state": "MA",
+            "region": "north-east",
+            "name": "DOMINGOS DUTRA",
+            "id": 30,
+            "size": 68554.47,
+            "group": 174.0,
+            "term_color": "indigo",
+            "label": "DOMINGOS DUTRA"
+        },
+        {
+            "state": "SP",
+            "region": "south-east",
+            "name": "MARCELO ORTIZ",
+            "id": 31,
+            "size": 0.0,
+            "group": 52.0,
+            "term_color": "green",
+            "label": "MARCELO ORTIZ"
+        },
+        {
+            "state": "PE",
+            "region": "north-east",
+            "name": "RAUL JUNGMANN",
+            "id": 32,
+            "size": 29300.0,
+            "group": 362.0,
+            "term_color": "blue",
+            "label": "RAUL JUNGMANN"
+        },
+        {
+            "state": "SP",
+            "region": "south-east",
+            "name": "JILMAR TATTO",
+            "id": 33,
+            "size": 0.0,
+            "group": 307.0,
+            "term_color": "indigo",
+            "label": "JILMAR TATTO"
+        },
+        {
+            "state": "PR",
+            "region": "south",
+            "name": "DR. ROSINHA",
+            "id": 34,
+            "size": 16227.0,
+            "group": 280.0,
+            "term_color": "indigo",
+            "label": "DR. ROSINHA"
+        },
+        {
+            "state": "PA",
+            "region": "north",
+            "name": "GIOVANNI QUEIROZ",
+            "id": 35,
+            "size": 8200.0,
+            "group": 120.0,
+            "term_color": "indigo",
+            "label": "GIOVANNI QUEIROZ"
+        },
+        {
+            "state": "RR",
+            "region": "north",
+            "name": "LUCIANO CASTRO",
+            "id": 36,
+            "size": 0.0,
+            "group": 10.0,
+            "term_color": "indigo",
+            "label": "LUCIANO CASTRO"
+        },
+        {
+            "state": "DF",
+            "region": "center-west",
+            "name": "RODRIGO ROLLEMBERG",
+            "id": 37,
+            "size": 0.0,
+            "group": 100.0,
+            "term_color": "green",
+            "label": "RODRIGO ROLLEMBERG"
+        },
+        {
+            "state": "RJ",
+            "region": "south-east",
+            "name": "ANDREIA ZITO",
+            "id": 38,
+            "size": 0.0,
+            "group": 2.0,
+            "term_color": "indigo",
+            "label": "ANDREIA ZITO"
+        },
+        {
+            "state": "SP",
+            "region": "south-east",
+            "name": "ROBERTO SANTIAGO",
+            "id": 39,
+            "size": 42000.0,
+            "group": 391.0,
+            "term_color": "indigo",
+            "label": "ROBERTO SANTIAGO"
+        },
+        {
+            "state": "PI",
+            "region": "north-east",
+            "name": "MARCELO CASTRO",
+            "id": 40,
+            "size": 182409.3,
+            "group": 324.0,
+            "term_color": "violet",
+            "label": "MARCELO CASTRO"
+        },
+        {
+            "state": "PE",
+            "region": "north-east",
+            "name": "JOS\u00c9 CHAVES",
+            "id": 41,
+            "size": 0.0,
+            "group": 46.0,
+            "term_color": "indigo",
+            "label": "JOS\u00c9 CHAVES"
+        },
+        {
+            "state": "SP",
+            "region": "south-east",
+            "name": "ARNALDO MADEIRA",
+            "id": 42,
+            "size": 0.0,
+            "group": 361.0,
+            "term_color": "green",
+            "label": "ARNALDO MADEIRA"
+        },
+        {
+            "state": "SP",
+            "region": "south-east",
+            "name": "ALINE CORR\u00caA",
+            "id": 43,
+            "size": 14070.0,
+            "group": 195.0,
+            "term_color": "indigo",
+            "label": "ALINE CORR\u00caA"
+        },
+        {
+            "state": "TO",
+            "region": "north",
+            "name": "NILMAR RUIZ",
+            "id": 44,
+            "size": 1476.66,
+            "group": 312.0,
+            "term_color": "indigo",
+            "label": "NILMAR RUIZ"
+        },
+        {
+            "state": "MG",
+            "region": "south-east",
+            "name": "GILMAR MACHADO",
+            "id": 45,
+            "size": 0.0,
+            "group": 2.0,
+            "term_color": "indigo",
+            "label": "GILMAR MACHADO"
+        },
+        {
+            "state": "MT",
+            "region": "center-west",
+            "name": "CARLOS ABICALIL",
+            "id": 46,
+            "size": 0.0,
+            "group": 180.0,
+            "term_color": "green",
+            "label": "CARLOS ABICALIL"
+        },
+        {
+            "state": "PR",
+            "region": "south",
+            "name": "AFFONSO CAMARGO",
+            "id": 47,
+            "size": 0.0,
+            "group": 230.0,
+            "term_color": "green",
+            "label": "AFFONSO CAMARGO"
+        },
+        {
+            "state": "AM",
+            "region": "north",
+            "name": "REBECCA GARCIA",
+            "id": 48,
+            "size": 0.0,
+            "group": 20.0,
+            "term_color": "indigo",
+            "label": "REBECCA GARCIA"
+        },
+        {
+            "state": "BA",
+            "region": "north-east",
+            "name": "JORGE KHOURY",
+            "id": 49,
+            "size": 0.0,
+            "group": 256.0,
+            "term_color": "green",
+            "label": "JORGE KHOURY"
+        },
+        {
+            "state": "MT",
+            "region": "center-west",
+            "name": "HOMERO PEREIRA",
+            "id": 50,
+            "size": 0.0,
+            "group": 263.0,
+            "term_color": "indigo",
+            "label": "HOMERO PEREIRA"
+        },
+        {
+            "state": "CE",
+            "region": "north-east",
+            "name": "ARIOSTO HOLANDA",
+            "id": 51,
+            "size": 134835.0,
+            "group": 133.0,
+            "term_color": "violet",
+            "label": "ARIOSTO HOLANDA"
+        },
+        {
+            "state": "SP",
+            "region": "south-east",
+            "name": "WILLIAM WOO",
+            "id": 52,
+            "size": 0.0,
+            "group": 81.0,
+            "term_color": "blue",
+            "label": "WILLIAM WOO"
+        },
+        {
+            "state": "RS",
+            "region": "south",
+            "name": "POMPEO DE MATTOS",
+            "id": 53,
+            "size": 123495.54,
+            "group": 241.0,
+            "term_color": "blue",
+            "label": "POMPEO DE MATTOS"
+        },
+        {
+            "state": "RJ",
+            "region": "south-east",
+            "name": "JAIR BOLSONARO",
+            "id": 54,
+            "size": 52733.33,
+            "group": 64.0,
+            "term_color": "violet",
+            "label": "JAIR BOLSONARO"
+        },
+        {
+            "state": "BA",
+            "region": "north-east",
+            "name": "COLBERT MARTINS",
+            "id": 55,
+            "size": 43818.5,
+            "group": 161.0,
+            "term_color": "indigo",
+            "label": "COLBERT MARTINS"
+        },
+        {
+            "state": "CE",
+            "region": "north-east",
+            "name": "CHICO LOPES",
+            "id": 56,
+            "size": 117194.8,
+            "group": 398.0,
+            "term_color": "violet",
+            "label": "CHICO LOPES"
+        },
+        {
+            "state": "PR",
+            "region": "south",
+            "name": "REINHOLD STEPHANES",
+            "id": 57,
+            "size": 1238.58,
+            "group": 76.0,
+            "term_color": "violet",
+            "label": "REINHOLD STEPHANES"
+        },
+        {
+            "state": "MS",
+            "region": "center-west",
+            "name": "NELSON TRAD",
+            "id": 58,
+            "size": 0.0,
+            "group": 211.0,
+            "term_color": "green",
+            "label": "NELSON TRAD"
+        },
+        {
+            "state": "CE",
+            "region": "north-east",
+            "name": "VICENTE ARRUDA",
+            "id": 59,
+            "size": 70000.0,
+            "group": 354.0,
+            "term_color": "violet",
+            "label": "VICENTE ARRUDA"
+        },
+        {
+            "state": "SP",
+            "region": "south-east",
+            "name": "VALDEMAR COSTA NETO",
+            "id": 60,
+            "size": 0.0,
+            "group": 95.0,
+            "term_color": "indigo",
+            "label": "VALDEMAR COSTA NETO"
+        },
+        {
+            "state": "MG",
+            "region": "south-east",
+            "name": "AELTON FREITAS",
+            "id": 61,
+            "size": 253341.5,
+            "group": 252.0,
+            "term_color": "violet",
+            "label": "AELTON FREITAS"
+        },
+        {
+            "state": "RJ",
+            "region": "south-east",
+            "name": "FELIPE BORNIER",
+            "id": 62,
+            "size": 0.0,
+            "group": 168.0,
+            "term_color": "violet",
+            "label": "FELIPE BORNIER"
+        },
+        {
+            "state": "PE",
+            "region": "north-east",
+            "name": "FERNANDO COELHO FILHO",
+            "id": 63,
+            "size": 247620.7,
+            "group": 1.0,
+            "term_color": "violet",
+            "label": "FERNANDO COELHO FILHO"
+        },
+        {
+            "state": "RJ",
+            "region": "south-east",
+            "name": "MARCELO ITAGIBA",
+            "id": 64,
+            "size": 0.0,
+            "group": 212.0,
+            "term_color": "green",
+            "label": "MARCELO ITAGIBA"
+        },
+        {
+            "state": "RJ",
+            "region": "south-east",
+            "name": "SOLANGE ALMEIDA",
+            "id": 65,
+            "size": 0.0,
+            "group": 70.0,
+            "term_color": "indigo",
+            "label": "SOLANGE ALMEIDA"
+        },
+        {
+            "state": "SE",
+            "region": "north-east",
+            "name": "ALBANO FRANCO",
+            "id": 66,
+            "size": 0.0,
+            "group": 373.0,
+            "term_color": "green",
+            "label": "ALBANO FRANCO"
+        },
+        {
+            "state": "ES",
+            "region": "south-east",
+            "name": "ROSE DE FREITAS",
+            "id": 67,
+            "size": 0.0,
+            "group": 11.0,
+            "term_color": "indigo",
+            "label": "ROSE DE FREITAS"
+        },
+        {
+            "state": "MG",
+            "region": "south-east",
+            "name": "LUIZ FERNANDO FARIA",
+            "id": 68,
+            "size": 311030.0,
+            "group": 35.0,
+            "term_color": "violet",
+            "label": "LUIZ FERNANDO FARIA"
+        },
+        {
+            "state": "RJ",
+            "region": "south-east",
+            "name": "HUGO LEAL",
+            "id": 69,
+            "size": 10373.8,
+            "group": 14.0,
+            "term_color": "violet",
+            "label": "HUGO LEAL"
+        },
+        {
+            "state": "AC",
+            "region": "north",
+            "name": "FLAVIANO MELO",
+            "id": 70,
+            "size": 22645.09,
+            "group": 353.0,
+            "term_color": "violet",
+            "label": "FLAVIANO MELO"
+        },
+        {
+            "state": "TO",
+            "region": "north",
+            "name": "MOISES AVELINO",
+            "id": 71,
+            "size": 0.0,
+            "group": 264.0,
+            "term_color": "green",
+            "label": "MOISES AVELINO"
+        },
+        {
+            "state": "BA",
+            "region": "north-east",
+            "name": "GERALDO SIM\u00d5ES",
+            "id": 72,
+            "size": 130000.0,
+            "group": 188.0,
+            "term_color": "indigo",
+            "label": "GERALDO SIM\u00d5ES"
+        },
+        {
+            "state": "MG",
+            "region": "south-east",
+            "name": "GERALDO THADEU",
+            "id": 73,
+            "size": 74057.05,
+            "group": 326.0,
+            "term_color": "indigo",
+            "label": "GERALDO THADEU"
+        },
+        {
+            "state": "SP",
+            "region": "south-east",
+            "name": "ALDO REBELO",
+            "id": 74,
+            "size": 0.0,
+            "group": 323.0,
+            "term_color": "indigo",
+            "label": "ALDO REBELO"
+        },
+        {
+            "state": "MG",
+            "region": "south-east",
+            "name": "ANT\u00d4NIO ROBERTO",
+            "id": 75,
+            "size": 23340.0,
+            "group": 235.0,
+            "term_color": "indigo",
+            "label": "ANT\u00d4NIO ROBERTO"
+        },
+        {
+            "state": "ES",
+            "region": "south-east",
+            "name": "LUIZ PAULO VELLOZO LUCAS",
+            "id": 76,
+            "size": 0.0,
+            "group": 75.0,
+            "term_color": "green",
+            "label": "LUIZ PAULO VELLOZO LUCAS"
+        },
+        {
+            "state": "PA",
+            "region": "north",
+            "name": "ZEQUINHA MARINHO",
+            "id": 77,
+            "size": 16935.8,
+            "group": 254.0,
+            "term_color": "indigo",
+            "label": "ZEQUINHA MARINHO"
+        },
+        {
+            "state": "DF",
+            "region": "center-west",
+            "name": "LAERTE BESSA",
+            "id": 78,
+            "size": 162900.0,
+            "group": 65.0,
+            "term_color": "blue",
+            "label": "LAERTE BESSA"
+        },
+        {
+            "state": "BA",
+            "region": "north-east",
+            "name": "GEDDEL VIEIRA LIMA",
+            "id": 79,
+            "size": 0.0,
+            "group": 272.0,
+            "term_color": "green",
+            "label": "GEDDEL VIEIRA LIMA"
+        },
+        {
+            "state": "AM",
+            "region": "north",
+            "name": "SABINO CASTELO BRANCO",
+            "id": 80,
+            "size": 0.0,
+            "group": 393.0,
+            "term_color": "violet",
+            "label": "SABINO CASTELO BRANCO"
+        },
+        {
+            "state": "GO",
+            "region": "center-west",
+            "name": "CARLOS ALBERTO LER\u00c9IA",
+            "id": 81,
+            "size": 0.0,
+            "group": 87.0,
+            "term_color": "indigo",
+            "label": "CARLOS ALBERTO LER\u00c9IA"
+        },
+        {
+            "state": "SP",
+            "region": "south-east",
+            "name": "RICARDO TRIPOLI",
+            "id": 82,
+            "size": 0.0,
+            "group": 19.0,
+            "term_color": "violet",
+            "label": "RICARDO TRIPOLI"
+        },
+        {
+            "state": "AM",
+            "region": "north",
+            "name": "FRANCISCO PRACIANO",
+            "id": 83,
+            "size": 45402.28,
+            "group": 72.0,
+            "term_color": "indigo",
+            "label": "FRANCISCO PRACIANO"
+        },
+        {
+            "state": "RJ",
+            "region": "south-east",
+            "name": "INDIO DA COSTA",
+            "id": 84,
+            "size": 0.0,
+            "group": 360.0,
+            "term_color": "blue",
+            "label": "INDIO DA COSTA"
+        },
+        {
+            "state": "CE",
+            "region": "north-east",
+            "name": "FL\u00c1VIO BEZERRA",
+            "id": 85,
+            "size": 0.0,
+            "group": 176.0,
+            "term_color": "green",
+            "label": "FL\u00c1VIO BEZERRA"
+        },
+        {
+            "state": "MA",
+            "region": "north-east",
+            "name": "CARLOS BRAND\u00c3O",
+            "id": 86,
+            "size": 0.0,
+            "group": 186.0,
+            "term_color": "indigo",
+            "label": "CARLOS BRAND\u00c3O"
+        },
+        {
+            "state": "BA",
+            "region": "north-east",
+            "name": "EDSON DUARTE",
+            "id": 87,
+            "size": 0.0,
+            "group": 134.0,
+            "term_color": "green",
+            "label": "EDSON DUARTE"
+        },
+        {
+            "state": "RJ",
+            "region": "south-east",
+            "name": "DR. ADILSON SOARES",
+            "id": 88,
+            "size": 128215.5,
+            "group": 114.0,
+            "term_color": "indigo",
+            "label": "DR. ADILSON SOARES"
+        },
+        {
+            "state": "SP",
+            "region": "south-east",
+            "name": "DEVANIR RIBEIRO",
+            "id": 89,
+            "size": 0.0,
+            "group": 5.0,
+            "term_color": "indigo",
+            "label": "DEVANIR RIBEIRO"
+        },
+        {
+            "state": "PE",
+            "region": "north-east",
+            "name": "BRUNO RODRIGUES",
+            "id": 90,
+            "size": 6500.0,
+            "group": 330.0,
+            "term_color": "indigo",
+            "label": "BRUNO RODRIGUES"
+        },
+        {
+            "state": "RO",
+            "region": "north",
+            "name": "EDUARDO VALVERDE",
+            "id": 91,
+            "size": 0.0,
+            "group": 243.0,
+            "term_color": "green",
+            "label": "EDUARDO VALVERDE"
+        },
+        {
+            "state": "AM",
+            "region": "north",
+            "name": "SILAS C\u00c2MARA",
+            "id": 92,
+            "size": 0.0,
+            "group": 4.0,
+            "term_color": "violet",
+            "label": "SILAS C\u00c2MARA"
+        },
+        {
+            "state": "BA",
+            "region": "north-east",
+            "name": "F\u00c1BIO SOUTO",
+            "id": 93,
+            "size": 150000.0,
+            "group": 255.0,
+            "term_color": "indigo",
+            "label": "F\u00c1BIO SOUTO"
+        },
+        {
+            "state": "SP",
+            "region": "south-east",
+            "name": "R\u00c9GIS DE OLIVEIRA",
+            "id": 94,
+            "size": 0.0,
+            "group": 112.0,
+            "term_color": "green",
+            "label": "R\u00c9GIS DE OLIVEIRA"
+        },
+        {
+            "state": "RS",
+            "region": "south",
+            "name": "PEPE VARGAS",
+            "id": 95,
+            "size": 95524.7,
+            "group": 125.0,
+            "term_color": "violet",
+            "label": "PEPE VARGAS"
+        },
+        {
+            "state": "RJ",
+            "region": "south-east",
+            "name": "EDSON SANTOS",
+            "id": 96,
+            "size": 45000.0,
+            "group": 67.0,
+            "term_color": "indigo",
+            "label": "EDSON SANTOS"
+        },
+        {
+            "state": "PA",
+            "region": "north",
+            "name": "ZENALDO COUTINHO",
+            "id": 97,
+            "size": 0.0,
+            "group": 126.0,
+            "term_color": "indigo",
+            "label": "ZENALDO COUTINHO"
+        },
+        {
+            "state": "PE",
+            "region": "north-east",
+            "name": "MARCOS ANTONIO",
+            "id": 98,
+            "size": 0.0,
+            "group": 26.0,
+            "term_color": "green",
+            "label": "MARCOS ANTONIO"
+        },
+        {
+            "state": "SP",
+            "region": "south-east",
+            "name": "DIMAS RAMALHO",
+            "id": 99,
+            "size": 0.0,
+            "group": 54.0,
+            "term_color": "indigo",
+            "label": "DIMAS RAMALHO"
+        },
+        {
+            "state": "SP",
+            "region": "south-east",
+            "name": "C\u00c2NDIDO VACCAREZZA",
+            "id": 100,
+            "size": 0.0,
+            "group": 62.0,
+            "term_color": "indigo",
+            "label": "C\u00c2NDIDO VACCAREZZA"
+        },
+        {
+            "state": "BA",
+            "region": "north-east",
+            "name": "F\u00c9LIX MENDON\u00c7A",
+            "id": 101,
+            "size": 0.0,
+            "group": 32.0,
+            "term_color": "green",
+            "label": "F\u00c9LIX MENDON\u00c7A"
+        },
+        {
+            "state": "RR",
+            "region": "north",
+            "name": "MARCIO JUNQUEIRA",
+            "id": 102,
+            "size": 3000.0,
+            "group": 116.0,
+            "term_color": "indigo",
+            "label": "MARCIO JUNQUEIRA"
+        },
+        {
+            "state": "PE",
+            "region": "north-east",
+            "name": "PEDRO EUG\u00caNIO",
+            "id": 103,
+            "size": 50119.5,
+            "group": 309.0,
+            "term_color": "indigo",
+            "label": "PEDRO EUG\u00caNIO"
+        },
+        {
+            "state": "RS",
+            "region": "south",
+            "name": "LUIZ CARLOS BUSATO",
+            "id": 104,
+            "size": 64517.0,
+            "group": 224.0,
+            "term_color": "violet",
+            "label": "LUIZ CARLOS BUSATO"
+        },
+        {
+            "state": "CE",
+            "region": "north-east",
+            "name": "EUNICIO OLIVEIRA",
+            "id": 105,
+            "size": 0.0,
+            "group": 332.0,
+            "term_color": "green",
+            "label": "EUNICIO OLIVEIRA"
+        },
+        {
+            "state": "RJ",
+            "region": "south-east",
+            "name": "SUELY",
+            "id": 106,
+            "size": 0.0,
+            "group": 98.0,
+            "term_color": "green",
+            "label": "SUELY"
+        },
+        {
+            "state": "MA",
+            "region": "north-east",
+            "name": "RIBAMAR ALVES",
+            "id": 107,
+            "size": 0.0,
+            "group": 18.0,
+            "term_color": "indigo",
+            "label": "RIBAMAR ALVES"
+        },
+        {
+            "state": "PR",
+            "region": "south",
+            "name": "ALCENI GUERRA",
+            "id": 108,
+            "size": 0.0,
+            "group": 159.0,
+            "term_color": "green",
+            "label": "ALCENI GUERRA"
+        },
+        {
+            "state": "RS",
+            "region": "south",
+            "name": "NELSON PROEN\u00c7A",
+            "id": 109,
+            "size": 0.0,
+            "group": 1.0,
+            "term_color": "green",
+            "label": "NELSON PROEN\u00c7A"
+        },
+        {
+            "state": "MG",
+            "region": "south-east",
+            "name": "MARCIO REINALDO MOREIRA",
+            "id": 110,
+            "size": 0.0,
+            "group": 245.0,
+            "term_color": "indigo",
+            "label": "MARCIO REINALDO MOREIRA"
+        },
+        {
+            "state": "PA",
+            "region": "north",
+            "name": "WLADIMIR COSTA",
+            "id": 111,
+            "size": 11600.0,
+            "group": 257.0,
+            "term_color": "violet",
+            "label": "WLADIMIR COSTA"
+        },
+        {
+            "state": "PR",
+            "region": "south",
+            "name": "GUSTAVO FRUET",
+            "id": 112,
+            "size": 0.0,
+            "group": 177.0,
+            "term_color": "green",
+            "label": "GUSTAVO FRUET"
+        },
+        {
+            "state": "CE",
+            "region": "north-east",
+            "name": "L\u00c9O ALC\u00c2NTARA",
+            "id": 113,
+            "size": 0.0,
+            "group": 340.0,
+            "term_color": "green",
+            "label": "L\u00c9O ALC\u00c2NTARA"
+        },
+        {
+            "state": "MG",
+            "region": "south-east",
+            "name": "JOS\u00c9 FERNANDO APARECIDO DE OLI",
+            "id": 114,
+            "size": 0.0,
+            "group": 132.0,
+            "term_color": "green",
+            "label": "JOS\u00c9 FERNANDO APARECIDO DE OLI"
+        },
+        {
+            "state": "SP",
+            "region": "south-east",
+            "name": "ARLINDO CHINAGLIA",
+            "id": 115,
+            "size": 46700.0,
+            "group": 31.0,
+            "term_color": "violet",
+            "label": "ARLINDO CHINAGLIA"
+        },
+        {
+            "state": "RJ",
+            "region": "south-east",
+            "name": "PASTOR MANOEL FERREIRA",
+            "id": 116,
+            "size": 0.0,
+            "group": 304.0,
+            "term_color": "green",
+            "label": "PASTOR MANOEL FERREIRA"
+        },
+        {
+            "state": "SP",
+            "region": "south-east",
+            "name": "NELSON MARQUEZELLI",
+            "id": 117,
+            "size": 0.0,
+            "group": 292.0,
+            "term_color": "violet",
+            "label": "NELSON MARQUEZELLI"
+        },
+        {
+            "state": "SP",
+            "region": "south-east",
+            "name": "DR.TALMIR",
+            "id": 118,
+            "size": 0.0,
+            "group": 244.0,
+            "term_color": "green",
+            "label": "DR.TALMIR"
+        },
+        {
+            "state": "RS",
+            "region": "south",
+            "name": "OSMAR TERRA",
+            "id": 119,
+            "size": 9696.04,
+            "group": 15.0,
+            "term_color": "violet",
+            "label": "OSMAR TERRA"
+        },
+        {
+            "state": "MA",
+            "region": "north-east",
+            "name": "SARNEY FILHO",
+            "id": 120,
+            "size": 143652.0,
+            "group": 153.0,
+            "term_color": "violet",
+            "label": "SARNEY FILHO"
+        },
+        {
+            "state": "RJ",
+            "region": "south-east",
+            "name": "SILVIO LOPES",
+            "id": 121,
+            "size": 0.0,
+            "group": 219.0,
+            "term_color": "green",
+            "label": "SILVIO LOPES"
+        },
+        {
+            "state": "AM",
+            "region": "north",
+            "name": "MARCELO SERAFIM",
+            "id": 122,
+            "size": 0.0,
+            "group": 249.0,
+            "term_color": "green",
+            "label": "MARCELO SERAFIM"
+        },
+        {
+            "state": "CE",
+            "region": "north-east",
+            "name": "MANOEL SALVIANO",
+            "id": 123,
+            "size": 115000.0,
+            "group": 73.0,
+            "term_color": "indigo",
+            "label": "MANOEL SALVIANO"
+        },
+        {
+            "state": "TO",
+            "region": "north",
+            "name": "L\u00c1ZARO BOTELHO",
+            "id": 124,
+            "size": 103521.9,
+            "group": 21.0,
+            "term_color": "violet",
+            "label": "L\u00c1ZARO BOTELHO"
+        },
+        {
+            "state": "MG",
+            "region": "south-east",
+            "name": "J\u00daLIO DELGADO",
+            "id": 125,
+            "size": 182764.0,
+            "group": 320.0,
+            "term_color": "violet",
+            "label": "J\u00daLIO DELGADO"
+        },
+        {
+            "state": "MG",
+            "region": "south-east",
+            "name": "EDMAR MOREIRA",
+            "id": 126,
+            "size": 0.0,
+            "group": 375.0,
+            "term_color": "indigo",
+            "label": "EDMAR MOREIRA"
+        },
+        {
+            "state": "BA",
+            "region": "north-east",
+            "name": "PAULO MAGALH\u00c3ES",
+            "id": 127,
+            "size": 0.0,
+            "group": 187.0,
+            "term_color": "violet",
+            "label": "PAULO MAGALH\u00c3ES"
+        },
+        {
+            "state": "MA",
+            "region": "north-east",
+            "name": "ROBERTO ROCHA",
+            "id": 128,
+            "size": 0.0,
+            "group": 383.0,
+            "term_color": "green",
+            "label": "ROBERTO ROCHA"
+        },
+        {
+            "state": "MG",
+            "region": "south-east",
+            "name": "JO\u00c3O BITTAR",
+            "id": 129,
+            "size": 0.0,
+            "group": 55.0,
+            "term_color": "indigo",
+            "label": "JO\u00c3O BITTAR"
+        },
+        {
+            "state": "BA",
+            "region": "north-east",
+            "name": "ANTONIO CARLOS MAGALH\u00c3ES NETO",
+            "id": 130,
+            "size": 0.0,
+            "group": 172.0,
+            "term_color": "indigo",
+            "label": "ANTONIO CARLOS MAGALH\u00c3ES NETO"
+        },
+        {
+            "state": "SP",
+            "region": "south-east",
+            "name": "DUARTE NOGUEIRA",
+            "id": 131,
+            "size": 0.0,
+            "group": 347.0,
+            "term_color": "violet",
+            "label": "DUARTE NOGUEIRA"
+        },
+        {
+            "state": "SC",
+            "region": "south",
+            "name": "JO\u00c3O PIZZOLATTI",
+            "id": 132,
+            "size": 0.0,
+            "group": 281.0,
+            "term_color": "indigo",
+            "label": "JO\u00c3O PIZZOLATTI"
+        },
+        {
+            "state": "PB",
+            "region": "north-east",
+            "name": "WILSON BRAGA",
+            "id": 133,
+            "size": 0.0,
+            "group": 30.0,
+            "term_color": "green",
+            "label": "WILSON BRAGA"
+        },
+        {
+            "state": "MG",
+            "region": "south-east",
+            "name": "LEONARDO QUINT\u00c3O",
+            "id": 134,
+            "size": 1000.0,
+            "group": 128.0,
+            "term_color": "violet",
+            "label": "LEONARDO QUINT\u00c3O"
+        },
+        {
+            "state": "PR",
+            "region": "south",
+            "name": "ALEX CANZIANI",
+            "id": 135,
+            "size": 4100.0,
+            "group": 94.0,
+            "term_color": "violet",
+            "label": "ALEX CANZIANI"
+        },
+        {
+            "state": "BA",
+            "region": "north-east",
+            "name": "JO\u00c3O LE\u00c3O",
+            "id": 136,
+            "size": 0.0,
+            "group": 79.0,
+            "term_color": "indigo",
+            "label": "JO\u00c3O LE\u00c3O"
+        },
+        {
+            "state": "MG",
+            "region": "south-east",
+            "name": "CARLOS MELLES",
+            "id": 137,
+            "size": 0.0,
+            "group": 190.0,
+            "term_color": "violet",
+            "label": "CARLOS MELLES"
+        },
+        {
+            "state": "BA",
+            "region": "north-east",
+            "name": "SEVERIANO ALVES",
+            "id": 138,
+            "size": 0.0,
+            "group": 314.0,
+            "term_color": "green",
+            "label": "SEVERIANO ALVES"
+        },
+        {
+            "state": "AP",
+            "region": "north",
+            "name": "F\u00c1TIMA PELAES",
+            "id": 139,
+            "size": 11649.8,
+            "group": 377.0,
+            "term_color": "indigo",
+            "label": "F\u00c1TIMA PELAES"
+        },
+        {
+            "state": "MT",
+            "region": "center-west",
+            "name": "WELLINGTON FAGUNDES",
+            "id": 140,
+            "size": 0.0,
+            "group": 390.0,
+            "term_color": "indigo",
+            "label": "WELLINGTON FAGUNDES"
+        },
+        {
+            "state": "RS",
+            "region": "south",
+            "name": "ELISEU PADILHA",
+            "id": 141,
+            "size": 0.0,
+            "group": 284.0,
+            "term_color": "indigo",
+            "label": "ELISEU PADILHA"
+        },
+        {
+            "state": "AL",
+            "region": "north-east",
+            "name": "CARLOS ALBERTO CANUTO",
+            "id": 142,
+            "size": 0.0,
+            "group": 394.0,
+            "term_color": "green",
+            "label": "CARLOS ALBERTO CANUTO"
+        },
+        {
+            "state": "BA",
+            "region": "north-east",
+            "name": "LUIZ ALBERTO",
+            "id": 143,
+            "size": 44858.75,
+            "group": 366.0,
+            "term_color": "indigo",
+            "label": "LUIZ ALBERTO"
+        },
+        {
+            "state": "PE",
+            "region": "north-east",
+            "name": "INOC\u00caNCIO OLIVEIRA",
+            "id": 144,
+            "size": 0.0,
+            "group": 293.0,
+            "term_color": "indigo",
+            "label": "INOC\u00caNCIO OLIVEIRA"
+        },
+        {
+            "state": "SP",
+            "region": "south-east",
+            "name": "PAULO TEIXEIRA",
+            "id": 145,
+            "size": 0.0,
+            "group": 74.0,
+            "term_color": "violet",
+            "label": "PAULO TEIXEIRA"
+        },
+        {
+            "state": "PR",
+            "region": "south",
+            "name": "ANDRE VARGAS",
+            "id": 146,
+            "size": 31500.0,
+            "group": 171.0,
+            "term_color": "indigo",
+            "label": "ANDRE VARGAS"
+        },
+        {
+            "state": "MS",
+            "region": "center-west",
+            "name": "DAGOBERTO",
+            "id": 147,
+            "size": 135291.57,
+            "group": 77.0,
+            "term_color": "blue",
+            "label": "DAGOBERTO"
+        },
+        {
+            "state": "PA",
+            "region": "north",
+            "name": "ELCIONE BARBALHO",
+            "id": 148,
+            "size": 1799.96,
+            "group": 273.0,
+            "term_color": "violet",
+            "label": "ELCIONE BARBALHO"
+        },
+        {
+            "state": "MS",
+            "region": "center-west",
+            "name": "BIFFI",
+            "id": 149,
+            "size": 12948.17,
+            "group": 321.0,
+            "term_color": "indigo",
+            "label": "BIFFI"
+        },
+        {
+            "state": "RO",
+            "region": "north",
+            "name": "MAURO NAZIF",
+            "id": 150,
+            "size": 0.0,
+            "group": 199.0,
+            "term_color": "indigo",
+            "label": "MAURO NAZIF"
+        },
+        {
+            "state": "PR",
+            "region": "south",
+            "name": "RATINHO JUNIOR",
+            "id": 151,
+            "size": 0.0,
+            "group": 388.0,
+            "term_color": "indigo",
+            "label": "RATINHO JUNIOR"
+        },
+        {
+            "state": "SC",
+            "region": "south",
+            "name": "FERNANDO CORUJA",
+            "id": 152,
+            "size": 0.0,
+            "group": 155.0,
+            "term_color": "green",
+            "label": "FERNANDO CORUJA"
+        },
+        {
+            "state": "SC",
+            "region": "south",
+            "name": "CELSO MALDANER",
+            "id": 153,
+            "size": 0.0,
+            "group": 291.0,
+            "term_color": "violet",
+            "label": "CELSO MALDANER"
+        },
+        {
+            "state": "MG",
+            "region": "south-east",
+            "name": "LEONARDO MONTEIRO",
+            "id": 154,
+            "size": 177168.7,
+            "group": 341.0,
+            "term_color": "violet",
+            "label": "LEONARDO MONTEIRO"
+        },
+        {
+            "state": "SP",
+            "region": "south-east",
+            "name": "ANTONIO CARLOS MENDES THAME",
+            "id": 155,
+            "size": 47025.5,
+            "group": 108.0,
+            "term_color": "violet",
+            "label": "ANTONIO CARLOS MENDES THAME"
+        },
+        {
+            "state": "BA",
+            "region": "north-east",
+            "name": "L\u00cdDICE DA MATA",
+            "id": 156,
+            "size": 0.0,
+            "group": 350.0,
+            "term_color": "green",
+            "label": "L\u00cdDICE DA MATA"
+        },
+        {
+            "state": "PA",
+            "region": "north",
+            "name": "Z\u00c9 GERALDO",
+            "id": 157,
+            "size": 6240.0,
+            "group": 355.0,
+            "term_color": "violet",
+            "label": "Z\u00c9 GERALDO"
+        },
+        {
+            "state": "RJ",
+            "region": "south-east",
+            "name": "LEANDRO SAMPAIO",
+            "id": 158,
+            "size": 0.0,
+            "group": 248.0,
+            "term_color": "green",
+            "label": "LEANDRO SAMPAIO"
+        },
+        {
+            "state": "RS",
+            "region": "south",
+            "name": "PROFESSOR RUY PAULETTI",
+            "id": 159,
+            "size": 0.0,
+            "group": 170.0,
+            "term_color": "green",
+            "label": "PROFESSOR RUY PAULETTI"
+        },
+        {
+            "state": "CE",
+            "region": "north-east",
+            "name": "Z\u00c9 GERARDO",
+            "id": 160,
+            "size": 0.0,
+            "group": 218.0,
+            "term_color": "green",
+            "label": "Z\u00c9 GERARDO"
+        },
+        {
+            "state": "MA",
+            "region": "north-east",
+            "name": "DAVI ALVES SILVA J\u00daNIOR",
+            "id": 161,
+            "size": 136474.0,
+            "group": 157.0,
+            "term_color": "indigo",
+            "label": "DAVI ALVES SILVA J\u00daNIOR"
+        },
+        {
+            "state": "GO",
+            "region": "center-west",
+            "name": "JOVAIR ARANTES",
+            "id": 162,
+            "size": 96775.0,
+            "group": 220.0,
+            "term_color": "violet",
+            "label": "JOVAIR ARANTES"
+        },
+        {
+            "state": "PE",
+            "region": "north-east",
+            "name": "FERNANDO FERRO",
+            "id": 163,
+            "size": 74540.0,
+            "group": 358.0,
+            "term_color": "indigo",
+            "label": "FERNANDO FERRO"
+        },
+        {
+            "state": "ES",
+            "region": "south-east",
+            "name": "CARLOS MANATO",
+            "id": 164,
+            "size": 147567.39,
+            "group": 327.0,
+            "term_color": "violet",
+            "label": "CARLOS MANATO"
+        },
+        {
+            "state": "SP",
+            "region": "south-east",
+            "name": "WALTER IHOSHI",
+            "id": 165,
+            "size": 35474.5,
+            "group": 258.0,
+            "term_color": "violet",
+            "label": "WALTER IHOSHI"
+        },
+        {
+            "state": "AP",
+            "region": "north",
+            "name": "LUCENIRA PIMENTEL",
+            "id": 166,
+            "size": 0.0,
+            "group": 380.0,
+            "term_color": "green",
+            "label": "LUCENIRA PIMENTEL"
+        },
+        {
+            "state": "RJ",
+            "region": "south-east",
+            "name": "CIDA DIOGO",
+            "id": 167,
+            "size": 0.0,
+            "group": 374.0,
+            "term_color": "green",
+            "label": "CIDA DIOGO"
+        },
+        {
+            "state": "PR",
+            "region": "south",
+            "name": "RODRIGO ROCHA LOURES",
+            "id": 168,
+            "size": 0.0,
+            "group": 144.0,
+            "term_color": "green",
+            "label": "RODRIGO ROCHA LOURES"
+        },
+        {
+            "state": "RJ",
+            "region": "south-east",
+            "name": "CHICO ALENCAR",
+            "id": 169,
+            "size": 6200.0,
+            "group": 173.0,
+            "term_color": "violet",
+            "label": "CHICO ALENCAR"
+        },
+        {
+            "state": "SP",
+            "region": "south-east",
+            "name": "RICARDO BERZOINI",
+            "id": 170,
+            "size": 9444.3,
+            "group": 238.0,
+            "term_color": "indigo",
+            "label": "RICARDO BERZOINI"
+        },
+        {
+            "state": "RS",
+            "region": "south",
+            "name": "HENRIQUE FONTANA",
+            "id": 171,
+            "size": 43334.51,
+            "group": 130.0,
+            "term_color": "violet",
+            "label": "HENRIQUE FONTANA"
+        },
+        {
+            "state": "RJ",
+            "region": "south-east",
+            "name": "ROGERIO LISBOA",
+            "id": 172,
+            "size": 0.0,
+            "group": 28.0,
+            "term_color": "green",
+            "label": "ROGERIO LISBOA"
+        },
+        {
+            "state": "GO",
+            "region": "center-west",
+            "name": "LUIZ BITTENCOURT",
+            "id": 173,
+            "size": 0.0,
+            "group": 196.0,
+            "term_color": "green",
+            "label": "LUIZ BITTENCOURT"
+        },
+        {
+            "state": "MA",
+            "region": "north-east",
+            "name": "NICE LOB\u00c3O",
+            "id": 174,
+            "size": 0.0,
+            "group": 217.0,
+            "term_color": "indigo",
+            "label": "NICE LOB\u00c3O"
+        },
+        {
+            "state": "MG",
+            "region": "south-east",
+            "name": "PAULO ABI-ACKEL",
+            "id": 175,
+            "size": 258373.67,
+            "group": 152.0,
+            "term_color": "violet",
+            "label": "PAULO ABI-ACKEL"
+        },
+        {
+            "state": "MG",
+            "region": "south-east",
+            "name": "F\u00c1BIO RAMALHO",
+            "id": 176,
+            "size": 112804.01,
+            "group": 36.0,
+            "term_color": "violet",
+            "label": "F\u00c1BIO RAMALHO"
+        },
+        {
+            "state": "ES",
+            "region": "south-east",
+            "name": "LELO COIMBRA",
+            "id": 177,
+            "size": 264400.0,
+            "group": 229.0,
+            "term_color": "violet",
+            "label": "LELO COIMBRA"
+        },
+        {
+            "state": "MT",
+            "region": "center-west",
+            "name": "VALTENIR PEREIRA",
+            "id": 178,
+            "size": 94757.6,
+            "group": 295.0,
+            "term_color": "violet",
+            "label": "VALTENIR PEREIRA"
+        },
+        {
+            "state": "PE",
+            "region": "north-east",
+            "name": "EDGAR MOURY",
+            "id": 179,
+            "size": 0.0,
+            "group": 102.0,
+            "term_color": "green",
+            "label": "EDGAR MOURY"
+        },
+        {
+            "state": "BA",
+            "region": "north-east",
+            "name": "S\u00c9RGIO BRITO",
+            "id": 180,
+            "size": 45456.9,
+            "group": 111.0,
+            "term_color": "violet",
+            "label": "S\u00c9RGIO BRITO"
+        },
+        {
+            "state": "SP",
+            "region": "south-east",
+            "name": "VANDERLEI MACRIS",
+            "id": 181,
+            "size": 61047.14,
+            "group": 339.0,
+            "term_color": "violet",
+            "label": "VANDERLEI MACRIS"
+        },
+        {
+            "state": "MA",
+            "region": "north-east",
+            "name": "GAST\u00c3O VIEIRA",
+            "id": 182,
+            "size": 0.0,
+            "group": 228.0,
+            "term_color": "indigo",
+            "label": "GAST\u00c3O VIEIRA"
+        },
+        {
+            "state": "PE",
+            "region": "north-east",
+            "name": "GONZAGA PATRIOTA",
+            "id": 183,
+            "size": 147200.0,
+            "group": 27.0,
+            "term_color": "violet",
+            "label": "GONZAGA PATRIOTA"
+        },
+        {
+            "state": "AP",
+            "region": "north",
+            "name": "SEBASTI\u00c3O BALA ROCHA",
+            "id": 184,
+            "size": 118878.96,
+            "group": 232.0,
+            "term_color": "indigo",
+            "label": "SEBASTI\u00c3O BALA ROCHA"
+        },
+        {
+            "state": "SP",
+            "region": "south-east",
+            "name": "VAD\u00c3O GOMES",
+            "id": 185,
+            "size": 0.0,
+            "group": 357.0,
+            "term_color": "green",
+            "label": "VAD\u00c3O GOMES"
+        },
+        {
+            "state": "PB",
+            "region": "north-east",
+            "name": "EFRAIM FILHO",
+            "id": 186,
+            "size": 14100.0,
+            "group": 8.0,
+            "term_color": "violet",
+            "label": "EFRAIM FILHO"
+        },
+        {
+            "state": "MG",
+            "region": "south-east",
+            "name": "J\u00d4 MORAES",
+            "id": 187,
+            "size": 126050.0,
+            "group": 342.0,
+            "term_color": "violet",
+            "label": "J\u00d4 MORAES"
+        },
+        {
+            "state": "MA",
+            "region": "north-east",
+            "name": "CL\u00d3VIS FECURY",
+            "id": 188,
+            "size": 0.0,
+            "group": 371.0,
+            "term_color": "green",
+            "label": "CL\u00d3VIS FECURY"
+        },
+        {
+            "state": "PA",
+            "region": "north",
+            "name": "BETO FARO",
+            "id": 189,
+            "size": 230620.66,
+            "group": 363.0,
+            "term_color": "violet",
+            "label": "BETO FARO"
+        },
+        {
+            "state": "PE",
+            "region": "north-east",
+            "name": "CARLOS EDUARDO CADOCA",
+            "id": 190,
+            "size": 333274.16,
+            "group": 266.0,
+            "term_color": "violet",
+            "label": "CARLOS EDUARDO CADOCA"
+        },
+        {
+            "state": "BA",
+            "region": "north-east",
+            "name": "ALICE PORTUGAL",
+            "id": 191,
+            "size": 97304.48,
+            "group": 45.0,
+            "term_color": "violet",
+            "label": "ALICE PORTUGAL"
+        },
+        {
+            "state": "MA",
+            "region": "north-east",
+            "name": "CLEBER VERDE",
+            "id": 192,
+            "size": 5600.0,
+            "group": 202.0,
+            "term_color": "violet",
+            "label": "CLEBER VERDE"
+        },
+        {
+            "state": "RJ",
+            "region": "south-east",
+            "name": "ARNALDO VIANNA",
+            "id": 193,
+            "size": 0.0,
+            "group": 143.0,
+            "term_color": "green",
+            "label": "ARNALDO VIANNA"
+        },
+        {
+            "state": "PR",
+            "region": "south",
+            "name": "EDUARDO SCIARRA",
+            "id": 194,
+            "size": 22529.5,
+            "group": 84.0,
+            "term_color": "indigo",
+            "label": "EDUARDO SCIARRA"
+        },
+        {
+            "state": "AL",
+            "region": "north-east",
+            "name": "FRANCISCO TEN\u00d3RIO",
+            "id": 195,
+            "size": 46000.0,
+            "group": 13.0,
+            "term_color": "indigo",
+            "label": "FRANCISCO TEN\u00d3RIO"
+        },
+        {
+            "state": "MG",
+            "region": "south-east",
+            "name": "PAULO PIAU",
+            "id": 196,
+            "size": 0.0,
+            "group": 51.0,
+            "term_color": "indigo",
+            "label": "PAULO PIAU"
+        },
+        {
+            "state": "MA",
+            "region": "north-east",
+            "name": "PROFESSOR SETIMO",
+            "id": 197,
+            "size": 15677.0,
+            "group": 56.0,
+            "term_color": "indigo",
+            "label": "PROFESSOR SETIMO"
+        },
+        {
+            "state": "RS",
+            "region": "south",
+            "name": "MARCO MAIA",
+            "id": 198,
+            "size": 174996.0,
+            "group": 23.0,
+            "term_color": "violet",
+            "label": "MARCO MAIA"
+        },
+        {
+            "state": "MT",
+            "region": "center-west",
+            "name": "CARLOS BEZERRA",
+            "id": 199,
+            "size": 302000.0,
+            "group": 271.0,
+            "term_color": "violet",
+            "label": "CARLOS BEZERRA"
+        },
+        {
+            "state": "SP",
+            "region": "south-east",
+            "name": "JORGE TADEU MUDALEN",
+            "id": 200,
+            "size": 0.0,
+            "group": 287.0,
+            "term_color": "violet",
+            "label": "JORGE TADEU MUDALEN"
+        },
+        {
+            "state": "AP",
+            "region": "north",
+            "name": "EVANDRO MILHOMEN",
+            "id": 201,
+            "size": 61185.16,
+            "group": 225.0,
+            "term_color": "indigo",
+            "label": "EVANDRO MILHOMEN"
+        },
+        {
+            "state": "SP",
+            "region": "south-east",
+            "name": "GUILHERME CAMPOS",
+            "id": 202,
+            "size": 102691.38,
+            "group": 247.0,
+            "term_color": "indigo",
+            "label": "GUILHERME CAMPOS"
+        },
+        {
+            "state": "PR",
+            "region": "south",
+            "name": "GIACOBO",
+            "id": 203,
+            "size": 1020.0,
+            "group": 6.0,
+            "term_color": "violet",
+            "label": "GIACOBO"
+        },
+        {
+            "state": "MT",
+            "region": "center-west",
+            "name": "THELMA DE OLIVEIRA",
+            "id": 204,
+            "size": 0.0,
+            "group": 343.0,
+            "term_color": "green",
+            "label": "THELMA DE OLIVEIRA"
+        },
+        {
+            "state": "SC",
+            "region": "south",
+            "name": "ANGELA AMIN",
+            "id": 205,
+            "size": 0.0,
+            "group": 302.0,
+            "term_color": "green",
+            "label": "ANGELA AMIN"
+        },
+        {
+            "state": "MG",
+            "region": "south-east",
+            "name": "CARLOS WILLIAN",
+            "id": 206,
+            "size": 0.0,
+            "group": 289.0,
+            "term_color": "green",
+            "label": "CARLOS WILLIAN"
+        },
+        {
+            "state": "BA",
+            "region": "north-east",
+            "name": "ZEZ\u00c9U RIBEIRO",
+            "id": 207,
+            "size": 14458.41,
+            "group": 104.0,
+            "term_color": "indigo",
+            "label": "ZEZ\u00c9U RIBEIRO"
+        },
+        {
+            "state": "PB",
+            "region": "north-east",
+            "name": "DAMI\u00c3O FELICIANO",
+            "id": 208,
+            "size": 11800.0,
+            "group": 145.0,
+            "term_color": "violet",
+            "label": "DAMI\u00c3O FELICIANO"
+        },
+        {
+            "state": "CE",
+            "region": "north-east",
+            "name": "MARCELO TEIXEIRA",
+            "id": 209,
+            "size": 0.0,
+            "group": 379.0,
+            "term_color": "green",
+            "label": "MARCELO TEIXEIRA"
+        },
+        {
+            "state": "DF",
+            "region": "center-west",
+            "name": "AUGUSTO CARVALHO",
+            "id": 210,
+            "size": 595.69,
+            "group": 233.0,
+            "term_color": "violet",
+            "label": "AUGUSTO CARVALHO"
+        },
+        {
+            "state": "RJ",
+            "region": "south-east",
+            "name": "MARINA MAGGESSI",
+            "id": 211,
+            "size": 0.0,
+            "group": 261.0,
+            "term_color": "green",
+            "label": "MARINA MAGGESSI"
+        },
+        {
+            "state": "RN",
+            "region": "north-east",
+            "name": "FELIPE MAIA",
+            "id": 212,
+            "size": 281193.34,
+            "group": 47.0,
+            "term_color": "violet",
+            "label": "FELIPE MAIA"
+        },
+        {
+            "state": "CE",
+            "region": "north-east",
+            "name": "GORETE PEREIRA",
+            "id": 213,
+            "size": 158415.6,
+            "group": 41.0,
+            "term_color": "violet",
+            "label": "GORETE PEREIRA"
+        },
+        {
+            "state": "PA",
+            "region": "north",
+            "name": "GERSON PERES",
+            "id": 214,
+            "size": 0.0,
+            "group": 106.0,
+            "term_color": "green",
+            "label": "GERSON PERES"
+        },
+        {
+            "state": "RN",
+            "region": "north-east",
+            "name": "JO\u00c3O MAIA",
+            "id": 215,
+            "size": 32309.1,
+            "group": 392.0,
+            "term_color": "indigo",
+            "label": "JO\u00c3O MAIA"
+        },
+        {
+            "state": "PB",
+            "region": "north-east",
+            "name": "ARMANDO AB\u00cdLIO",
+            "id": 216,
+            "size": 0.0,
+            "group": 191.0,
+            "term_color": "indigo",
+            "label": "ARMANDO AB\u00cdLIO"
+        },
+        {
+            "state": "PE",
+            "region": "north-east",
+            "name": "ANDR\u00c9 DE PAULA",
+            "id": 217,
+            "size": 46800.0,
+            "group": 185.0,
+            "term_color": "violet",
+            "label": "ANDR\u00c9 DE PAULA"
+        },
+        {
+            "state": "PR",
+            "region": "south",
+            "name": "ALFREDO KAEFER",
+            "id": 218,
+            "size": 79000.0,
+            "group": 179.0,
+            "term_color": "violet",
+            "label": "ALFREDO KAEFER"
+        },
+        {
+            "state": "SP",
+            "region": "south-east",
+            "name": "JOS\u00c9 GENO\u00cdNO",
+            "id": 219,
+            "size": 0.0,
+            "group": 34.0,
+            "term_color": "indigo",
+            "label": "JOS\u00c9 GENO\u00cdNO"
+        },
+        {
+            "state": "MG",
+            "region": "south-east",
+            "name": "MARCOS MONTES",
+            "id": 220,
+            "size": 0.0,
+            "group": 290.0,
+            "term_color": "violet",
+            "label": "MARCOS MONTES"
+        },
+        {
+            "state": "PE",
+            "region": "north-east",
+            "name": "ANA ARRAES",
+            "id": 221,
+            "size": 0.0,
+            "group": 344.0,
+            "term_color": "indigo",
+            "label": "ANA ARRAES"
+        },
+        {
+            "state": "AL",
+            "region": "north-east",
+            "name": "GIVALDO CARIMB\u00c3O",
+            "id": 222,
+            "size": 333300.0,
+            "group": 184.0,
+            "term_color": "violet",
+            "label": "GIVALDO CARIMB\u00c3O"
+        },
+        {
+            "state": "PB",
+            "region": "north-east",
+            "name": "MANOEL JUNIOR",
+            "id": 223,
+            "size": 29418.0,
+            "group": 352.0,
+            "term_color": "violet",
+            "label": "MANOEL JUNIOR"
+        },
+        {
+            "state": "RS",
+            "region": "south",
+            "name": "PAULO ROBERTO PEREIRA",
+            "id": 224,
+            "size": 0.0,
+            "group": 265.0,
+            "term_color": "green",
+            "label": "PAULO ROBERTO PEREIRA"
+        },
+        {
+            "state": "GO",
+            "region": "center-west",
+            "name": "PEDRO WILSON",
+            "id": 225,
+            "size": 0.0,
+            "group": 276.0,
+            "term_color": "green",
+            "label": "PEDRO WILSON"
+        },
+        {
+            "state": "AP",
+            "region": "north",
+            "name": "JURANDIL JUAREZ",
+            "id": 226,
+            "size": 0.0,
+            "group": 334.0,
+            "term_color": "green",
+            "label": "JURANDIL JUAREZ"
+        },
+        {
+            "state": "RR",
+            "region": "north",
+            "name": "MARIA HELENA",
+            "id": 227,
+            "size": 83800.0,
+            "group": 198.0,
+            "term_color": "blue",
+            "label": "MARIA HELENA"
+        },
+        {
+            "state": "BA",
+            "region": "north-east",
+            "name": "JOS\u00c9 CARLOS ARA\u00daJO",
+            "id": 228,
+            "size": 172550.0,
+            "group": 156.0,
+            "term_color": "violet",
+            "label": "JOS\u00c9 CARLOS ARA\u00daJO"
+        },
+        {
+            "state": "PB",
+            "region": "north-east",
+            "name": "WILSON SANTIAGO",
+            "id": 229,
+            "size": 0.0,
+            "group": 251.0,
+            "term_color": "green",
+            "label": "WILSON SANTIAGO"
+        },
+        {
+            "state": "PA",
+            "region": "north",
+            "name": "L\u00daCIO VALE",
+            "id": 230,
+            "size": 329360.0,
+            "group": 123.0,
+            "term_color": "violet",
+            "label": "L\u00daCIO VALE"
+        },
+        {
+            "state": "PR",
+            "region": "south",
+            "name": "OSMAR SERRAGLIO",
+            "id": 231,
+            "size": 308741.75,
+            "group": 83.0,
+            "term_color": "violet",
+            "label": "OSMAR SERRAGLIO"
+        },
+        {
+            "state": "RJ",
+            "region": "south-east",
+            "name": "SOLANGE AMARAL",
+            "id": 232,
+            "size": 0.0,
+            "group": 329.0,
+            "term_color": "green",
+            "label": "SOLANGE AMARAL"
+        },
+        {
+            "state": "RJ",
+            "region": "south-east",
+            "name": "EDMILSON VALENTIM",
+            "id": 233,
+            "size": 0.0,
+            "group": 201.0,
+            "term_color": "green",
+            "label": "EDMILSON VALENTIM"
+        },
+        {
+            "state": "RR",
+            "region": "north",
+            "name": "EDIO LOPES",
+            "id": 234,
+            "size": 216672.85,
+            "group": 239.0,
+            "term_color": "violet",
+            "label": "EDIO LOPES"
+        },
+        {
+            "state": "MG",
+            "region": "south-east",
+            "name": "JAIME MARTINS",
+            "id": 235,
+            "size": 102000.0,
+            "group": 110.0,
+            "term_color": "violet",
+            "label": "JAIME MARTINS"
+        },
+        {
+            "state": "RS",
+            "region": "south",
+            "name": "JOS\u00c9 OT\u00c1VIO GERMANO",
+            "id": 236,
+            "size": 194453.38,
+            "group": 60.0,
+            "term_color": "violet",
+            "label": "JOS\u00c9 OT\u00c1VIO GERMANO"
+        },
+        {
+            "state": "SP",
+            "region": "south-east",
+            "name": "FRANCISCO ROSSI",
+            "id": 237,
+            "size": 0.0,
+            "group": 208.0,
+            "term_color": "green",
+            "label": "FRANCISCO ROSSI"
+        },
+        {
+            "state": "RJ",
+            "region": "south-east",
+            "name": "GERALDO PUDIM",
+            "id": 238,
+            "size": 0.0,
+            "group": 48.0,
+            "term_color": "green",
+            "label": "GERALDO PUDIM"
+        },
+        {
+            "state": "SP",
+            "region": "south-east",
+            "name": "VICENTINHO",
+            "id": 239,
+            "size": 0.0,
+            "group": 151.0,
+            "term_color": "violet",
+            "label": "VICENTINHO"
+        },
+        {
+            "state": "SE",
+            "region": "north-east",
+            "name": "VALADARES FILHO",
+            "id": 240,
+            "size": 280050.0,
+            "group": 337.0,
+            "term_color": "violet",
+            "label": "VALADARES FILHO"
+        },
+        {
+            "state": "MA",
+            "region": "north-east",
+            "name": "WALDIR MARANH\u00c3O",
+            "id": 241,
+            "size": 0.0,
+            "group": 214.0,
+            "term_color": "violet",
+            "label": "WALDIR MARANH\u00c3O"
+        },
+        {
+            "state": "SP",
+            "region": "south-east",
+            "name": "JO\u00c3O DADO",
+            "id": 242,
+            "size": 0.0,
+            "group": 372.0,
+            "term_color": "indigo",
+            "label": "JO\u00c3O DADO"
+        },
+        {
+            "state": "ES",
+            "region": "south-east",
+            "name": "RITA CAMATA",
+            "id": 243,
+            "size": 0.0,
+            "group": 310.0,
+            "term_color": "green",
+            "label": "RITA CAMATA"
+        },
+        {
+            "state": "AP",
+            "region": "north",
+            "name": "JANETE CAPIBERIBE",
+            "id": 244,
+            "size": 211100.0,
+            "group": 17.0,
+            "term_color": "violet",
+            "label": "JANETE CAPIBERIBE"
+        },
+        {
+            "state": "RS",
+            "region": "south",
+            "name": "ENIO BACCI",
+            "id": 245,
+            "size": 38725.2,
+            "group": 301.0,
+            "term_color": "indigo",
+            "label": "ENIO BACCI"
+        },
+        {
+            "state": "BA",
+            "region": "north-east",
+            "name": "JO\u00c3O CARLOS BACELAR",
+            "id": 246,
+            "size": 140000.0,
+            "group": 82.0,
+            "term_color": "violet",
+            "label": "JO\u00c3O CARLOS BACELAR"
+        },
+        {
+            "state": "AC",
+            "region": "north",
+            "name": "HENRIQUE AFONSO",
+            "id": 247,
+            "size": 2004.37,
+            "group": 109.0,
+            "term_color": "indigo",
+            "label": "HENRIQUE AFONSO"
+        },
+        {
+            "state": "SC",
+            "region": "south",
+            "name": "VALDIR COLATTO",
+            "id": 248,
+            "size": 12353.57,
+            "group": 175.0,
+            "term_color": "violet",
+            "label": "VALDIR COLATTO"
+        },
+        {
+            "state": "PA",
+            "region": "north",
+            "name": "ASDRUBAL BENTES",
+            "id": 249,
+            "size": 22500.0,
+            "group": 322.0,
+            "term_color": "indigo",
+            "label": "ASDRUBAL BENTES"
+        },
+        {
+            "state": "SP",
+            "region": "south-east",
+            "name": "ABELARDO CAMARINHA",
+            "id": 250,
+            "size": 0.0,
+            "group": 338.0,
+            "term_color": "indigo",
+            "label": "ABELARDO CAMARINHA"
+        },
+        {
+            "state": "RS",
+            "region": "south",
+            "name": "VILSON COVATTI",
+            "id": 251,
+            "size": 68460.0,
+            "group": 262.0,
+            "term_color": "indigo",
+            "label": "VILSON COVATTI"
+        },
+        {
+            "state": "RS",
+            "region": "south",
+            "name": "DARC\u00cdSIO PERONDI",
+            "id": 252,
+            "size": 197489.3,
+            "group": 165.0,
+            "term_color": "violet",
+            "label": "DARC\u00cdSIO PERONDI"
+        },
+        {
+            "state": "MS",
+            "region": "center-west",
+            "name": "GERALDO RESENDE",
+            "id": 253,
+            "size": 0.0,
+            "group": 298.0,
+            "term_color": "violet",
+            "label": "GERALDO RESENDE"
+        },
+        {
+            "state": "PR",
+            "region": "south",
+            "name": "OD\u00cdLIO BALBINOTTI",
+            "id": 254,
+            "size": 140000.0,
+            "group": 253.0,
+            "term_color": "indigo",
+            "label": "OD\u00cdLIO BALBINOTTI"
+        },
+        {
+            "state": "CE",
+            "region": "north-east",
+            "name": "JOS\u00c9 GUIMAR\u00c3ES",
+            "id": 255,
+            "size": 51440.0,
+            "group": 246.0,
+            "term_color": "violet",
+            "label": "JOS\u00c9 GUIMAR\u00c3ES"
+        },
+        {
+            "state": "MG",
+            "region": "south-east",
+            "name": "GEORGE HILTON",
+            "id": 256,
+            "size": 50931.89,
+            "group": 209.0,
+            "term_color": "violet",
+            "label": "GEORGE HILTON"
+        },
+        {
+            "state": "AC",
+            "region": "north",
+            "name": "ILDERLEI CORDEIRO",
+            "id": 257,
+            "size": 0.0,
+            "group": 328.0,
+            "term_color": "green",
+            "label": "ILDERLEI CORDEIRO"
+        },
+        {
+            "state": "PA",
+            "region": "north",
+            "name": "PAULO ROCHA",
+            "id": 258,
+            "size": 0.0,
+            "group": 269.0,
+            "term_color": "green",
+            "label": "PAULO ROCHA"
+        },
+        {
+            "state": "MA",
+            "region": "north-east",
+            "name": "PEDRO FERNANDES",
+            "id": 259,
+            "size": 290222.7,
+            "group": 2.0,
+            "term_color": "violet",
+            "label": "PEDRO FERNANDES"
+        },
+        {
+            "state": "RJ",
+            "region": "south-east",
+            "name": "CHICO D'ANGELO",
+            "id": 260,
+            "size": 0.0,
+            "group": 227.0,
+            "term_color": "violet",
+            "label": "CHICO D'ANGELO"
+        },
+        {
+            "state": "MG",
+            "region": "south-east",
+            "name": "JOS\u00c9 SANTANA VASCONCELLOS",
+            "id": 261,
+            "size": 0.0,
+            "group": 345.0,
+            "term_color": "green",
+            "label": "JOS\u00c9 SANTANA VASCONCELLOS"
+        },
+        {
+            "state": "RS",
+            "region": "south",
+            "name": "MENDES RIBEIRO FILHO",
+            "id": 262,
+            "size": 0.0,
+            "group": 121.0,
+            "term_color": "indigo",
+            "label": "MENDES RIBEIRO FILHO"
+        },
+        {
+            "state": "BA",
+            "region": "north-east",
+            "name": "FERNANDO DE FABINHO",
+            "id": 263,
+            "size": 0.0,
+            "group": 268.0,
+            "term_color": "green",
+            "label": "FERNANDO DE FABINHO"
+        },
+        {
+            "state": "RJ",
+            "region": "south-east",
+            "name": "SIM\u00c3O SESSIM",
+            "id": 264,
+            "size": 170558.63,
+            "group": 387.0,
+            "term_color": "violet",
+            "label": "SIM\u00c3O SESSIM"
+        },
+        {
+            "state": "PI",
+            "region": "north-east",
+            "name": "PAES LANDIM",
+            "id": 265,
+            "size": 19269.96,
+            "group": 49.0,
+            "term_color": "violet",
+            "label": "PAES LANDIM"
+        },
+        {
+            "state": "MA",
+            "region": "north-east",
+            "name": "JULI\u00c3O AMIN",
+            "id": 266,
+            "size": 8000.0,
+            "group": 396.0,
+            "term_color": "blue",
+            "label": "JULI\u00c3O AMIN"
+        },
+        {
+            "state": "AL",
+            "region": "north-east",
+            "name": "OLAVO CALHEIROS",
+            "id": 267,
+            "size": 0.0,
+            "group": 318.0,
+            "term_color": "green",
+            "label": "OLAVO CALHEIROS"
+        },
+        {
+            "state": "AM",
+            "region": "north",
+            "name": "VANESSA GRAZZIOTIN",
+            "id": 268,
+            "size": 0.0,
+            "group": 351.0,
+            "term_color": "green",
+            "label": "VANESSA GRAZZIOTIN"
+        },
+        {
+            "state": "GO",
+            "region": "center-west",
+            "name": "LEANDRO VILELA",
+            "id": 269,
+            "size": 0.0,
+            "group": 222.0,
+            "term_color": "indigo",
+            "label": "LEANDRO VILELA"
+        },
+        {
+            "state": "AP",
+            "region": "north",
+            "name": "DAVI ALCOLUMBRE",
+            "id": 270,
+            "size": 83916.0,
+            "group": 395.0,
+            "term_color": "indigo",
+            "label": "DAVI ALCOLUMBRE"
+        },
+        {
+            "state": "ES",
+            "region": "south-east",
+            "name": "JURANDY LOUREIRO",
+            "id": 271,
+            "size": 0.0,
+            "group": 294.0,
+            "term_color": "green",
+            "label": "JURANDY LOUREIRO"
+        },
+        {
+            "state": "AC",
+            "region": "north",
+            "name": "NILSON MOURAO",
+            "id": 272,
+            "size": 0.0,
+            "group": 58.0,
+            "term_color": "green",
+            "label": "NILSON MOURAO"
+        },
+        {
+            "state": "SP",
+            "region": "south-east",
+            "name": "RENATO AMARY",
+            "id": 273,
+            "size": 0.0,
+            "group": 389.0,
+            "term_color": "green",
+            "label": "RENATO AMARY"
+        },
+        {
+            "state": "BA",
+            "region": "north-east",
+            "name": "LUIZ CARREIRA",
+            "id": 274,
+            "size": 0.0,
+            "group": 259.0,
+            "term_color": "green",
+            "label": "LUIZ CARREIRA"
+        },
+        {
+            "state": "PR",
+            "region": "south",
+            "name": "LUIZ CARLOS SETIM",
+            "id": 275,
+            "size": 0.0,
+            "group": 378.0,
+            "term_color": "indigo",
+            "label": "LUIZ CARLOS SETIM"
+        },
+        {
+            "state": "PA",
+            "region": "north",
+            "name": "VIC PIRES FRANCO",
+            "id": 276,
+            "size": 0.0,
+            "group": 242.0,
+            "term_color": "green",
+            "label": "VIC PIRES FRANCO"
+        },
+        {
+            "state": "MG",
+            "region": "south-east",
+            "name": "REGINALDO LOPES",
+            "id": 277,
+            "size": 72960.0,
+            "group": 12.0,
+            "term_color": "violet",
+            "label": "REGINALDO LOPES"
+        },
+        {
+            "state": "GO",
+            "region": "center-west",
+            "name": "TATICO",
+            "id": 278,
+            "size": 0.0,
+            "group": 296.0,
+            "term_color": "green",
+            "label": "TATICO"
+        },
+        {
+            "state": "AM",
+            "region": "north",
+            "name": "\u00c1TILA LINS",
+            "id": 279,
+            "size": 0.0,
+            "group": 135.0,
+            "term_color": "violet",
+            "label": "\u00c1TILA LINS"
+        },
+        {
+            "state": "BA",
+            "region": "north-east",
+            "name": "DANIEL ALMEIDA",
+            "id": 280,
+            "size": 217166.79,
+            "group": 162.0,
+            "term_color": "violet",
+            "label": "DANIEL ALMEIDA"
+        },
+        {
+            "state": "MS",
+            "region": "center-west",
+            "name": "VANDER LOUBET",
+            "id": 281,
+            "size": 117622.2,
+            "group": 356.0,
+            "term_color": "violet",
+            "label": "VANDER LOUBET"
+        },
+        {
+            "state": "SP",
+            "region": "south-east",
+            "name": "VINICIUS CARVALHO",
+            "id": 282,
+            "size": 13492.44,
+            "group": 38.0,
+            "term_color": "blue",
+            "label": "VINICIUS CARVALHO"
+        },
+        {
+            "state": "RS",
+            "region": "south",
+            "name": "ONYX LORENZONI",
+            "id": 283,
+            "size": 50060.0,
+            "group": 216.0,
+            "term_color": "violet",
+            "label": "ONYX LORENZONI"
+        },
+        {
+            "state": "BA",
+            "region": "north-east",
+            "name": "JOS\u00c9 CARLOS ALELUIA",
+            "id": 284,
+            "size": 173300.0,
+            "group": 90.0,
+            "term_color": "blue",
+            "label": "JOS\u00c9 CARLOS ALELUIA"
+        },
+        {
+            "state": "PR",
+            "region": "south",
+            "name": "NELSON MEURER",
+            "id": 285,
+            "size": 280000.0,
+            "group": 146.0,
+            "term_color": "violet",
+            "label": "NELSON MEURER"
+        },
+        {
+            "state": "CE",
+            "region": "north-east",
+            "name": "AN\u00cdBAL GOMES",
+            "id": 286,
+            "size": 228899.47,
+            "group": 107.0,
+            "term_color": "violet",
+            "label": "AN\u00cdBAL GOMES"
+        },
+        {
+            "state": "RO",
+            "region": "north",
+            "name": "MARINHA RAUPP",
+            "id": 287,
+            "size": 50390.0,
+            "group": 285.0,
+            "term_color": "violet",
+            "label": "MARINHA RAUPP"
+        },
+        {
+            "state": "MG",
+            "region": "south-east",
+            "name": "JO\u00c3O MAGALH\u00c3ES",
+            "id": 288,
+            "size": 0.0,
+            "group": 127.0,
+            "term_color": "indigo",
+            "label": "JO\u00c3O MAGALH\u00c3ES"
+        },
+        {
+            "state": "MG",
+            "region": "south-east",
+            "name": "ARACELY DE PAULA",
+            "id": 289,
+            "size": 46993.7,
+            "group": 193.0,
+            "term_color": "indigo",
+            "label": "ARACELY DE PAULA"
+        },
+        {
+            "state": "MG",
+            "region": "south-east",
+            "name": "M\u00c1RIO DE OLIVEIRA",
+            "id": 290,
+            "size": 0.0,
+            "group": 336.0,
+            "term_color": "indigo",
+            "label": "M\u00c1RIO DE OLIVEIRA"
+        },
+        {
+            "state": "RN",
+            "region": "north-east",
+            "name": "F\u00c1TIMA BEZERRA",
+            "id": 291,
+            "size": 0.0,
+            "group": 331.0,
+            "term_color": "indigo",
+            "label": "F\u00c1TIMA BEZERRA"
+        },
+        {
+            "state": "BA",
+            "region": "north-east",
+            "name": "NELSON PELLEGRINO",
+            "id": 292,
+            "size": 88013.1,
+            "group": 231.0,
+            "term_color": "violet",
+            "label": "NELSON PELLEGRINO"
+        },
+        {
+            "state": "MG",
+            "region": "south-east",
+            "name": "MIGUEL MARTINI",
+            "id": 293,
+            "size": 0.0,
+            "group": 206.0,
+            "term_color": "green",
+            "label": "MIGUEL MARTINI"
+        },
+        {
+            "state": "SP",
+            "region": "south-east",
+            "name": "ARNALDO FARIA DE S\u00c1",
+            "id": 294,
+            "size": 0.0,
+            "group": 315.0,
+            "term_color": "violet",
+            "label": "ARNALDO FARIA DE S\u00c1"
+        },
+        {
+            "state": "PI",
+            "region": "north-east",
+            "name": "J\u00daLIO CESAR",
+            "id": 295,
+            "size": 258000.0,
+            "group": 61.0,
+            "term_color": "violet",
+            "label": "J\u00daLIO CESAR"
+        },
+        {
+            "state": "SP",
+            "region": "south-east",
+            "name": "DR. NECHAR",
+            "id": 296,
+            "size": 0.0,
+            "group": 138.0,
+            "term_color": "green",
+            "label": "DR. NECHAR"
+        },
+        {
+            "state": "RO",
+            "region": "north",
+            "name": "MOREIRA MENDES",
+            "id": 297,
+            "size": 102273.44,
+            "group": 149.0,
+            "term_color": "indigo",
+            "label": "MOREIRA MENDES"
+        },
+        {
+            "state": "SP",
+            "region": "south-east",
+            "name": "IVAN VALENTE",
+            "id": 298,
+            "size": 34107.01,
+            "group": 57.0,
+            "term_color": "violet",
+            "label": "IVAN VALENTE"
+        },
+        {
+            "state": "PE",
+            "region": "north-east",
+            "name": "RAUL HENRY",
+            "id": 299,
+            "size": 38533.59,
+            "group": 282.0,
+            "term_color": "indigo",
+            "label": "RAUL HENRY"
+        },
+        {
+            "state": "PB",
+            "region": "north-east",
+            "name": "VITAL DO REGO FILHO",
+            "id": 300,
+            "size": 0.0,
+            "group": 283.0,
+            "term_color": "green",
+            "label": "VITAL DO REGO FILHO"
+        },
+        {
+            "state": "GO",
+            "region": "center-west",
+            "name": "JO\u00c3O CAMPOS",
+            "id": 301,
+            "size": 56542.38,
+            "group": 78.0,
+            "term_color": "violet",
+            "label": "JO\u00c3O CAMPOS"
+        },
+        {
+            "state": "MG",
+            "region": "south-east",
+            "name": "SARAIVA FELIPE",
+            "id": 302,
+            "size": 67017.97,
+            "group": 192.0,
+            "term_color": "violet",
+            "label": "SARAIVA FELIPE"
+        },
+        {
+            "state": "SP",
+            "region": "south-east",
+            "name": "ARNALDO JARDIM",
+            "id": 303,
+            "size": 0.0,
+            "group": 85.0,
+            "term_color": "violet",
+            "label": "ARNALDO JARDIM"
+        },
+        {
+            "state": "BA",
+            "region": "north-east",
+            "name": "VELOSO",
+            "id": 304,
+            "size": 0.0,
+            "group": 154.0,
+            "term_color": "green",
+            "label": "VELOSO"
+        },
+        {
+            "state": "GO",
+            "region": "center-west",
+            "name": "RONALDO CAIADO",
+            "id": 305,
+            "size": 75000.0,
+            "group": 221.0,
+            "term_color": "indigo",
+            "label": "RONALDO CAIADO"
+        },
+        {
+            "state": "SC",
+            "region": "south",
+            "name": "VIGNATTI",
+            "id": 306,
+            "size": 0.0,
+            "group": 92.0,
+            "term_color": "green",
+            "label": "VIGNATTI"
+        },
+        {
+            "state": "MG",
+            "region": "south-east",
+            "name": "VIRGILIO GUIMARAES",
+            "id": 307,
+            "size": 0.0,
+            "group": 316.0,
+            "term_color": "green",
+            "label": "VIRGILIO GUIMARAES"
+        },
+        {
+            "state": "RJ",
+            "region": "south-east",
+            "name": "FERNANDO GABEIRA",
+            "id": 308,
+            "size": 0.0,
+            "group": 103.0,
+            "term_color": "green",
+            "label": "FERNANDO GABEIRA"
+        },
+        {
+            "state": "MG",
+            "region": "south-east",
+            "name": "ADEMIR CAMILO",
+            "id": 309,
+            "size": 156973.82,
+            "group": 333.0,
+            "term_color": "violet",
+            "label": "ADEMIR CAMILO"
+        },
+        {
+            "state": "RS",
+            "region": "south",
+            "name": "GERMANO BONOW",
+            "id": 310,
+            "size": 0.0,
+            "group": 71.0,
+            "term_color": "green",
+            "label": "GERMANO BONOW"
+        },
+        {
+            "state": "PI",
+            "region": "north-east",
+            "name": "NAZARENO FONTELES",
+            "id": 311,
+            "size": 0.0,
+            "group": 368.0,
+            "term_color": "indigo",
+            "label": "NAZARENO FONTELES"
+        },
+        {
+            "state": "PR",
+            "region": "south",
+            "name": "ASSIS DO COUTO",
+            "id": 312,
+            "size": 312850.0,
+            "group": 335.0,
+            "term_color": "violet",
+            "label": "ASSIS DO COUTO"
+        },
+        {
+            "state": "AL",
+            "region": "north-east",
+            "name": "JOAQUIM BELTR\u00c3O",
+            "id": 313,
+            "size": 0.0,
+            "group": 118.0,
+            "term_color": "indigo",
+            "label": "JOAQUIM BELTR\u00c3O"
+        },
+        {
+            "state": "MG",
+            "region": "south-east",
+            "name": "MAURO LOPES",
+            "id": 314,
+            "size": 62190.0,
+            "group": 86.0,
+            "term_color": "violet",
+            "label": "MAURO LOPES"
+        },
+        {
+            "state": "MA",
+            "region": "north-east",
+            "name": "FL\u00c1VIO DINO",
+            "id": 315,
+            "size": 0.0,
+            "group": 16.0,
+            "term_color": "green",
+            "label": "FL\u00c1VIO DINO"
+        },
+        {
+            "state": "BA",
+            "region": "north-east",
+            "name": "LUIZ BASSUMA",
+            "id": 316,
+            "size": 0.0,
+            "group": 300.0,
+            "term_color": "green",
+            "label": "LUIZ BASSUMA"
+        },
+        {
+            "state": "MS",
+            "region": "center-west",
+            "name": "ANTONIO CRUZ",
+            "id": 317,
+            "size": 0.0,
+            "group": 183.0,
+            "term_color": "green",
+            "label": "ANTONIO CRUZ"
+        },
+        {
+            "state": "RO",
+            "region": "north",
+            "name": "LINDOMAR GAR\u00c7ON",
+            "id": 318,
+            "size": 158700.0,
+            "group": 97.0,
+            "term_color": "violet",
+            "label": "LINDOMAR GAR\u00c7ON"
+        },
+        {
+            "state": "PI",
+            "region": "north-east",
+            "name": "OSMAR J\u00daNIOR",
+            "id": 319,
+            "size": 44166.67,
+            "group": 197.0,
+            "term_color": "indigo",
+            "label": "OSMAR J\u00daNIOR"
+        },
+        {
+            "state": "PR",
+            "region": "south",
+            "name": "DILCEU SPERAFICO",
+            "id": 320,
+            "size": 0.0,
+            "group": 308.0,
+            "term_color": "violet",
+            "label": "DILCEU SPERAFICO"
+        },
+        {
+            "state": "GO",
+            "region": "center-west",
+            "name": "SANDRO MABEL",
+            "id": 321,
+            "size": 0.0,
+            "group": 43.0,
+            "term_color": "indigo",
+            "label": "SANDRO MABEL"
+        },
+        {
+            "state": "SC",
+            "region": "south",
+            "name": "GERV\u00c1SIO SILVA",
+            "id": 322,
+            "size": 0.0,
+            "group": 364.0,
+            "term_color": "green",
+            "label": "GERV\u00c1SIO SILVA"
+        },
+        {
+            "state": "RS",
+            "region": "south",
+            "name": "VIEIRA DA CUNHA",
+            "id": 323,
+            "size": 81306.0,
+            "group": 267.0,
+            "term_color": "indigo",
+            "label": "VIEIRA DA CUNHA"
+        },
+        {
+            "state": "SP",
+            "region": "south-east",
+            "name": "CELSO RUSSOMANNO",
+            "id": 324,
+            "size": 10291.05,
+            "group": 325.0,
+            "term_color": "blue",
+            "label": "CELSO RUSSOMANNO"
+        },
+        {
+            "state": "SP",
+            "region": "south-east",
+            "name": "ANTONIO CARLOS PANNUNZIO",
+            "id": 325,
+            "size": 0.0,
+            "group": 33.0,
+            "term_color": "green",
+            "label": "ANTONIO CARLOS PANNUNZIO"
+        },
+        {
+            "state": "MG",
+            "region": "south-east",
+            "name": "RAFAEL GUERRA",
+            "id": 326,
+            "size": 0.0,
+            "group": 213.0,
+            "term_color": "green",
+            "label": "RAFAEL GUERRA"
+        },
+        {
+            "state": "CE",
+            "region": "north-east",
+            "name": "EUG\u00caNIO RABELO",
+            "id": 327,
+            "size": 0.0,
+            "group": 117.0,
+            "term_color": "green",
+            "label": "EUG\u00caNIO RABELO"
+        },
+        {
+            "state": "MG",
+            "region": "south-east",
+            "name": "M\u00c1RIO HERINGER",
+            "id": 328,
+            "size": 59020.0,
+            "group": 22.0,
+            "term_color": "violet",
+            "label": "M\u00c1RIO HERINGER"
+        },
+        {
+            "state": "PI",
+            "region": "north-east",
+            "name": "ANTONIO JOS\u00c9 MEDEIROS",
+            "id": 329,
+            "size": 0.0,
+            "group": 182.0,
+            "term_color": "green",
+            "label": "ANTONIO JOS\u00c9 MEDEIROS"
+        },
+        {
+            "state": "GO",
+            "region": "center-west",
+            "name": "MARCELO MELO",
+            "id": 330,
+            "size": 0.0,
+            "group": 93.0,
+            "term_color": "green",
+            "label": "MARCELO MELO"
+        },
+        {
+            "state": "RS",
+            "region": "south",
+            "name": "MANUELA D'\u00c1VILA",
+            "id": 331,
+            "size": 22603.42,
+            "group": 169.0,
+            "term_color": "indigo",
+            "label": "MANUELA D'\u00c1VILA"
+        },
+        {
+            "state": "SC",
+            "region": "south",
+            "name": "JO\u00c3O MATOS",
+            "id": 332,
+            "size": 0.0,
+            "group": 317.0,
+            "term_color": "green",
+            "label": "JO\u00c3O MATOS"
+        },
+        {
+            "state": "RJ",
+            "region": "south-east",
+            "name": "AROLDE DE OLIVEIRA",
+            "id": 333,
+            "size": 0.0,
+            "group": 223.0,
+            "term_color": "violet",
+            "label": "AROLDE DE OLIVEIRA"
+        },
+        {
+            "state": "SC",
+            "region": "south",
+            "name": "MAURO MARIANI",
+            "id": 334,
+            "size": 107899.74,
+            "group": 9.0,
+            "term_color": "violet",
+            "label": "MAURO MARIANI"
+        },
+        {
+            "state": "PA",
+            "region": "north",
+            "name": "LIRA MAIA",
+            "id": 335,
+            "size": 83654.2,
+            "group": 194.0,
+            "term_color": "indigo",
+            "label": "LIRA MAIA"
+        },
+        {
+            "state": "AC",
+            "region": "north",
+            "name": "GLADSON CAMELI",
+            "id": 336,
+            "size": 4200.0,
+            "group": 386.0,
+            "term_color": "indigo",
+            "label": "GLADSON CAMELI"
+        },
+        {
+            "state": "GO",
+            "region": "center-west",
+            "name": "\u00cdRIS DE ARA\u00daJO",
+            "id": 337,
+            "size": 0.0,
+            "group": 299.0,
+            "term_color": "indigo",
+            "label": "\u00cdRIS DE ARA\u00daJO"
+        },
+        {
+            "state": "PE",
+            "region": "north-east",
+            "name": "MAUR\u00cdCIO RANDS",
+            "id": 338,
+            "size": 0.0,
+            "group": 275.0,
+            "term_color": "indigo",
+            "label": "MAUR\u00cdCIO RANDS"
+        },
+        {
+            "state": "MG",
+            "region": "south-east",
+            "name": "ELISMAR PRADO",
+            "id": 339,
+            "size": 0.0,
+            "group": 250.0,
+            "term_color": "green",
+            "label": "ELISMAR PRADO"
+        },
+        {
+            "state": "GO",
+            "region": "center-west",
+            "name": "PEDRO CHAVES",
+            "id": 340,
+            "size": 0.0,
+            "group": 311.0,
+            "term_color": "violet",
+            "label": "PEDRO CHAVES"
+        },
+        {
+            "state": "ES",
+            "region": "south-east",
+            "name": "CAMILO COLA",
+            "id": 341,
+            "size": 0.0,
+            "group": 136.0,
+            "term_color": "indigo",
+            "label": "CAMILO COLA"
+        },
+        {
+            "state": "SC",
+            "region": "south",
+            "name": "D\u00c9CIO LIMA",
+            "id": 342,
+            "size": 5132.0,
+            "group": 91.0,
+            "term_color": "violet",
+            "label": "D\u00c9CIO LIMA"
+        },
+        {
+            "state": "RJ",
+            "region": "south-east",
+            "name": "FILIPE PEREIRA",
+            "id": 343,
+            "size": 27989.63,
+            "group": 3.0,
+            "term_color": "indigo",
+            "label": "FILIPE PEREIRA"
+        },
+        {
+            "state": "PR",
+            "region": "south",
+            "name": "MOACIR MICHELETTO",
+            "id": 344,
+            "size": 0.0,
+            "group": 313.0,
+            "term_color": "indigo",
+            "label": "MOACIR MICHELETTO"
+        },
+        {
+            "state": "AC",
+            "region": "north",
+            "name": "FERNANDO MELO",
+            "id": 345,
+            "size": 0.0,
+            "group": 80.0,
+            "term_color": "green",
+            "label": "FERNANDO MELO"
+        },
+        {
+            "state": "MG",
+            "region": "south-east",
+            "name": "MIGUEL CORR\u00caA",
+            "id": 346,
+            "size": 0.0,
+            "group": 270.0,
+            "term_color": "violet",
+            "label": "MIGUEL CORR\u00caA"
+        },
+        {
+            "state": "CE",
+            "region": "north-east",
+            "name": "JOS\u00c9 PIMENTEL",
+            "id": 347,
+            "size": 0.0,
+            "group": 88.0,
+            "term_color": "green",
+            "label": "JOS\u00c9 PIMENTEL"
+        },
+        {
+            "state": "MG",
+            "region": "south-east",
+            "name": "LINCOLN PORTELA",
+            "id": 348,
+            "size": 176520.0,
+            "group": 279.0,
+            "term_color": "violet",
+            "label": "LINCOLN PORTELA"
+        },
+        {
+            "state": "PA",
+            "region": "north",
+            "name": "NILSON PINTO",
+            "id": 349,
+            "size": 27542.97,
+            "group": 166.0,
+            "term_color": "violet",
+            "label": "NILSON PINTO"
+        },
+        {
+            "state": "TO",
+            "region": "north",
+            "name": "EDUARDO GOMES",
+            "id": 350,
+            "size": 84009.99,
+            "group": 101.0,
+            "term_color": "indigo",
+            "label": "EDUARDO GOMES"
+        },
+        {
+            "state": "DF",
+            "region": "center-west",
+            "name": "ALBERTO FRAGA",
+            "id": 351,
+            "size": 67200.0,
+            "group": 137.0,
+            "term_color": "blue",
+            "label": "ALBERTO FRAGA"
+        },
+        {
+            "state": "PE",
+            "region": "north-east",
+            "name": "EDUARDO DA FONTE",
+            "id": 352,
+            "size": 28000.0,
+            "group": 44.0,
+            "term_color": "violet",
+            "label": "EDUARDO DA FONTE"
+        },
+        {
+            "state": "SP",
+            "region": "south-east",
+            "name": "PAULO RENATO SOUZA",
+            "id": 353,
+            "size": 0.0,
+            "group": 370.0,
+            "term_color": "green",
+            "label": "PAULO RENATO SOUZA"
+        },
+        {
+            "state": "RJ",
+            "region": "south-east",
+            "name": "ALEXANDRE SANTOS",
+            "id": 354,
+            "size": 0.0,
+            "group": 303.0,
+            "term_color": "indigo",
+            "label": "ALEXANDRE SANTOS"
+        },
+        {
+            "state": "RJ",
+            "region": "south-east",
+            "name": "NELSON BORNIER",
+            "id": 355,
+            "size": 0.0,
+            "group": 142.0,
+            "term_color": "indigo",
+            "label": "NELSON BORNIER"
+        },
+        {
+            "state": "BA",
+            "region": "north-east",
+            "name": "S\u00c9RGIO BARRADAS CARNEIRO",
+            "id": 356,
+            "size": 0.0,
+            "group": 274.0,
+            "term_color": "indigo",
+            "label": "S\u00c9RGIO BARRADAS CARNEIRO"
+        },
+        {
+            "state": "RJ",
+            "region": "south-east",
+            "name": "EDSON EZEQUIEL",
+            "id": 357,
+            "size": 68439.92,
+            "group": 203.0,
+            "term_color": "indigo",
+            "label": "EDSON EZEQUIEL"
+        },
+        {
+            "state": "SP",
+            "region": "south-east",
+            "name": "CARLOS ZARATTINI",
+            "id": 358,
+            "size": 23504.68,
+            "group": 215.0,
+            "term_color": "violet",
+            "label": "CARLOS ZARATTINI"
+        },
+        {
+            "state": "RS",
+            "region": "south",
+            "name": "S\u00c9RGIO MORAES",
+            "id": 359,
+            "size": 197208.4,
+            "group": 39.0,
+            "term_color": "violet",
+            "label": "S\u00c9RGIO MORAES"
+        },
+        {
+            "state": "PI",
+            "region": "north-east",
+            "name": "CIRO NOGUEIRA",
+            "id": 360,
+            "size": 0.0,
+            "group": 181.0,
+            "term_color": "green",
+            "label": "CIRO NOGUEIRA"
+        },
+        {
+            "state": "RR",
+            "region": "north",
+            "name": "URZENI ROCHA",
+            "id": 361,
+            "size": 90286.61,
+            "group": 7.0,
+            "term_color": "indigo",
+            "label": "URZENI ROCHA"
+        },
+        {
+            "state": "SP",
+            "region": "south-east",
+            "name": "CARLOS SAMPAIO",
+            "id": 362,
+            "size": 68904.2,
+            "group": 40.0,
+            "term_color": "violet",
+            "label": "CARLOS SAMPAIO"
+        },
+        {
+            "state": "SC",
+            "region": "south",
+            "name": "EDINHO BEZ",
+            "id": 363,
+            "size": 4000.0,
+            "group": 113.0,
+            "term_color": "violet",
+            "label": "EDINHO BEZ"
+        },
+        {
+            "state": "SP",
+            "region": "south-east",
+            "name": "JOS\u00c9 PAULO T\u00d3FFANO",
+            "id": 364,
+            "size": 0.0,
+            "group": 397.0,
+            "term_color": "green",
+            "label": "JOS\u00c9 PAULO T\u00d3FFANO"
+        },
+        {
+            "state": "MA",
+            "region": "north-east",
+            "name": "PINTO ITAMARATY",
+            "id": 365,
+            "size": 35000.0,
+            "group": 59.0,
+            "term_color": "indigo",
+            "label": "PINTO ITAMARATY"
+        },
+        {
+            "state": "AP",
+            "region": "north",
+            "name": "DALVA FIGUEIREDO",
+            "id": 366,
+            "size": 14000.0,
+            "group": 200.0,
+            "term_color": "indigo",
+            "label": "DALVA FIGUEIREDO"
+        },
+        {
+            "state": "SP",
+            "region": "south-east",
+            "name": "FERNANDO CHUCRE",
+            "id": 367,
+            "size": 0.0,
+            "group": 204.0,
+            "term_color": "green",
+            "label": "FERNANDO CHUCRE"
+        },
+        {
+            "state": "SP",
+            "region": "south-east",
+            "name": "PAULO PEREIRA DA SILVA",
+            "id": 368,
+            "size": 0.0,
+            "group": 189.0,
+            "term_color": "violet",
+            "label": "PAULO PEREIRA DA SILVA"
+        },
+        {
+            "state": "AC",
+            "region": "north",
+            "name": "PERP\u00c9TUA ALMEIDA",
+            "id": 369,
+            "size": 76009.45,
+            "group": 66.0,
+            "term_color": "indigo",
+            "label": "PERP\u00c9TUA ALMEIDA"
+        },
+        {
+            "state": "MG",
+            "region": "south-east",
+            "name": "VITOR PENIDO",
+            "id": 370,
+            "size": 137200.0,
+            "group": 234.0,
+            "term_color": "indigo",
+            "label": "VITOR PENIDO"
+        },
+        {
+            "state": "PR",
+            "region": "south",
+            "name": "HERMES PARCIANELLO",
+            "id": 371,
+            "size": 69639.71,
+            "group": 139.0,
+            "term_color": "violet",
+            "label": "HERMES PARCIANELLO"
+        },
+        {
+            "state": "RJ",
+            "region": "south-east",
+            "name": "FERNANDO LOPES",
+            "id": 372,
+            "size": 0.0,
+            "group": 236.0,
+            "term_color": "indigo",
+            "label": "FERNANDO LOPES"
+        },
+        {
+            "state": "CE",
+            "region": "north-east",
+            "name": "MAURO BENEVIDES",
+            "id": 373,
+            "size": 0.0,
+            "group": 349.0,
+            "term_color": "indigo",
+            "label": "MAURO BENEVIDES"
+        },
+        {
+            "state": "TO",
+            "region": "north",
+            "name": "OSVALDO REIS",
+            "id": 374,
+            "size": 0.0,
+            "group": 148.0,
+            "term_color": "indigo",
+            "label": "OSVALDO REIS"
+        },
+        {
+            "state": "MG",
+            "region": "south-east",
+            "name": "HUMBERTO SOUTO",
+            "id": 375,
+            "size": 0.0,
+            "group": 68.0,
+            "term_color": "indigo",
+            "label": "HUMBERTO SOUTO"
+        },
+        {
+            "state": "MG",
+            "region": "south-east",
+            "name": "CIRO PEDROSA",
+            "id": 376,
+            "size": 0.0,
+            "group": 277.0,
+            "term_color": "green",
+            "label": "CIRO PEDROSA"
+        },
+        {
+            "state": "CE",
+            "region": "north-east",
+            "name": "JOS\u00c9 AIRTON CIRILO",
+            "id": 377,
+            "size": 262914.6,
+            "group": 167.0,
+            "term_color": "violet",
+            "label": "JOS\u00c9 AIRTON CIRILO"
+        },
+        {
+            "state": "SC",
+            "region": "south",
+            "name": "PAULO BORNHAUSEN",
+            "id": 378,
+            "size": 78892.06,
+            "group": 369.0,
+            "term_color": "indigo",
+            "label": "PAULO BORNHAUSEN"
+        },
+        {
+            "state": "PR",
+            "region": "south",
+            "name": "ABELARDO LUPION",
+            "id": 379,
+            "size": 0.0,
+            "group": 382.0,
+            "term_color": "indigo",
+            "label": "ABELARDO LUPION"
+        },
+        {
+            "state": "RJ",
+            "region": "south-east",
+            "name": "BERNARDO ARISTON",
+            "id": 380,
+            "size": 0.0,
+            "group": 226.0,
+            "term_color": "green",
+            "label": "BERNARDO ARISTON"
+        },
+        {
+            "state": "RJ",
+            "region": "south-east",
+            "name": "CARLOS SANTANA",
+            "id": 381,
+            "size": 0.0,
+            "group": 260.0,
+            "term_color": "green",
+            "label": "CARLOS SANTANA"
+        },
+        {
+            "state": "RN",
+            "region": "north-east",
+            "name": "F\u00c1BIO FARIA",
+            "id": 382,
+            "size": 172644.86,
+            "group": 385.0,
+            "term_color": "violet",
+            "label": "F\u00c1BIO FARIA"
+        },
+        {
+            "state": "SP",
+            "region": "south-east",
+            "name": "JO\u00c3O PAULO CUNHA",
+            "id": 383,
+            "size": 0.0,
+            "group": 42.0,
+            "term_color": "indigo",
+            "label": "JO\u00c3O PAULO CUNHA"
+        },
+        {
+            "state": "PB",
+            "region": "north-east",
+            "name": "LUIZ COUTO",
+            "id": 384,
+            "size": 78570.0,
+            "group": 29.0,
+            "term_color": "violet",
+            "label": "LUIZ COUTO"
+        },
+        {
+            "state": "BA",
+            "region": "north-east",
+            "name": "JUTAHY JUNIOR",
+            "id": 385,
+            "size": 5727.01,
+            "group": 384.0,
+            "term_color": "violet",
+            "label": "JUTAHY JUNIOR"
+        },
+        {
+            "state": "RS",
+            "region": "south",
+            "name": "LUCIANA GENRO",
+            "id": 386,
+            "size": 0.0,
+            "group": 53.0,
+            "term_color": "green",
+            "label": "LUCIANA GENRO"
+        },
+        {
+            "state": "PE",
+            "region": "north-east",
+            "name": "BRUNO ARA\u00daJO",
+            "id": 387,
+            "size": 104586.73,
+            "group": 381.0,
+            "term_color": "violet",
+            "label": "BRUNO ARA\u00daJO"
+        },
+        {
+            "state": "SP",
+            "region": "south-east",
+            "name": "BETO MANSUR",
+            "id": 388,
+            "size": 0.0,
+            "group": 210.0,
+            "term_color": "violet",
+            "label": "BETO MANSUR"
+        },
+        {
+            "state": "AL",
+            "region": "north-east",
+            "name": "MAUR\u00cdCIO QUINTELLA LESSA",
+            "id": 389,
+            "size": 241273.1,
+            "group": 278.0,
+            "term_color": "violet",
+            "label": "MAUR\u00cdCIO QUINTELLA LESSA"
+        },
+        {
+            "state": "MG",
+            "region": "south-east",
+            "name": "LAEL VARELLA",
+            "id": 390,
+            "size": 60000.0,
+            "group": 306.0,
+            "term_color": "indigo",
+            "label": "LAEL VARELLA"
+        },
+        {
+            "state": "CE",
+            "region": "north-east",
+            "name": "JOS\u00c9 LINHARES",
+            "id": 391,
+            "size": 0.0,
+            "group": 124.0,
+            "term_color": "indigo",
+            "label": "JOS\u00c9 LINHARES"
+        },
+        {
+            "state": "BA",
+            "region": "north-east",
+            "name": "ROBERTO BRITTO",
+            "id": 392,
+            "size": 70400.0,
+            "group": 288.0,
+            "term_color": "violet",
+            "label": "ROBERTO BRITTO"
+        },
+        {
+            "state": "SE",
+            "region": "north-east",
+            "name": "EDUARDO AMORIM",
+            "id": 393,
+            "size": 0.0,
+            "group": 122.0,
+            "term_color": "green",
+            "label": "EDUARDO AMORIM"
+        },
+        {
+            "state": "BA",
+            "region": "north-east",
+            "name": "MARCOS MEDRADO",
+            "id": 394,
+            "size": 105000.0,
+            "group": 359.0,
+            "term_color": "violet",
+            "label": "MARCOS MEDRADO"
+        },
+        {
+            "state": "SP",
+            "region": "south-east",
+            "name": "JOS\u00c9 MENTOR",
+            "id": 395,
+            "size": 0.0,
+            "group": 237.0,
+            "term_color": "violet",
+            "label": "JOS\u00c9 MENTOR"
+        },
+        {
+            "state": "PR",
+            "region": "south",
+            "name": "CHICO DA PRINCESA",
+            "id": 396,
+            "size": 0.0,
+            "group": 178.0,
+            "term_color": "green",
+            "label": "CHICO DA PRINCESA"
+        },
+        {
+            "state": "RJ",
+            "region": "south-east",
+            "name": "DELEY",
+            "id": 397,
+            "size": 80600.0,
+            "group": 115.0,
+            "term_color": "violet",
+            "label": "DELEY"
+        },
+        {
+            "state": "PI",
+            "region": "north-east",
+            "name": "\u00c1TILA LIRA",
+            "id": 398,
+            "size": 225400.0,
+            "group": 286.0,
+            "term_color": "violet",
+            "label": "\u00c1TILA LIRA"
+        },
+        {
+            "state": "RN",
+            "region": "north-east",
+            "name": "ROG\u00c9RIO MARINHO",
+            "id": 399,
+            "size": 114000.0,
+            "group": 376.0,
+            "term_color": "violet",
+            "label": "ROG\u00c9RIO MARINHO"
+        },
+        {
+            "state": "PE",
+            "region": "north-east",
+            "name": "WOLNEY QUEIROZ",
+            "id": 400,
+            "size": 212797.6,
+            "group": 207.0,
+            "term_color": "violet",
+            "label": "WOLNEY QUEIROZ"
+        },
+        {
+            "state": "MG",
+            "region": "south-east",
+            "name": "EDUARDO BARBOSA",
+            "id": 401,
+            "size": 249873.25,
+            "group": 164.0,
+            "term_color": "violet",
+            "label": "EDUARDO BARBOSA"
+        }
+    ],
+    "directed": false
+}

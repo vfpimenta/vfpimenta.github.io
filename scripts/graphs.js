@@ -69,6 +69,25 @@ function updateSVG(){
     .force("charge", d3.forceManyBody().strength(-0.1))
     .force("center", d3.forceCenter(width / 2, height / 2));
 
+  simulation
+      .nodes(window.graph.nodes)
+      .on("tick", function() {
+        link
+          .attr("x1", function(d) { return d.source.x; })
+          .attr("y1", function(d) { return d.source.y; })
+          .attr("x2", function(d) { return d.target.x; })
+          .attr("y2", function(d) { return d.target.y; });
+
+        node
+          .attr("cx", function(d) { return d.x = d.x; })
+          .attr("cy", function(d) { return d.y = d.y; });
+      });
+
+  simulation.force("link")
+      .links(window.graph.links);
+
+  simulation.alphaDecay(1 - Math.pow(0.001, 1/3000));
+
   var link = svg.append("g")
     .attr("class", "links")
   .selectAll("line")
@@ -82,6 +101,7 @@ function updateSVG(){
     .selectAll("circle")
     .data(window.graph.nodes)
     .enter().append("circle")
+      .attr("class", d=>"group-"+d.group)
       .attr("r", function(d){
         var lScale = d3.scaleLog()
         .domain(d3.extent(window.graph.nodes.map(d=>d.size)))
@@ -90,7 +110,7 @@ function updateSVG(){
         return radius;
       })
       .attr("fill", function(d) { return color(d.group); })
-      .attr("style", "stroke: #fff; stroke-width: 0.5px;")
+      .attr("style", "stroke: white; stroke-width: 0.5px;")
       .attr("name", d=>d.name)
       .call(d3.drag()
           .on("start", function(d) {
@@ -111,24 +131,26 @@ function updateSVG(){
   node.append("title")
       .text(function(d) { return d.name; });
 
-  simulation
-      .nodes(window.graph.nodes)
-      .on("tick", function() {
-        link
-          .attr("x1", function(d) { return d.source.x; })
-          .attr("y1", function(d) { return d.source.y; })
-          .attr("x2", function(d) { return d.target.x; })
-          .attr("y2", function(d) { return d.target.y; });
+  node.on("click", function(d) {
+    if(d3.select(this).attr("class").includes("selected")){
+      d3.selectAll(".group-"+d.group)
+      .attr("class", "group-"+d.group)
+      .attr("r", radius)
+      .attr("style", "stroke: white; stroke-width: 0.5px;")
+    }else{
+      d3.selectAll("circle")
+      .attr("class", function() {
+        return d3.select(this).attr("class").replace("selected", "");
+      })
+      .attr("r", radius)
+      .attr("style", "stroke: white; stroke-width: 0.5px;")
 
-        node
-          .attr("cx", function(d) { return d.x = d.x; })
-          .attr("cy", function(d) { return d.y = d.y; });
-      });
-
-  simulation.force("link")
-      .links(window.graph.links);
-
-  simulation.alphaDecay(1 - Math.pow(0.001, 1/3000));
+      d3.selectAll(".group-"+d.group)
+      .attr("class", "group-"+d.group+" selected")
+      .attr("r", radius+1)
+      .attr("style", "stroke: black; stroke-width: 1.5px;")
+    }
+  })
 }
 
 // ============================================================================
