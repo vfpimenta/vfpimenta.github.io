@@ -1,67 +1,5 @@
 var Graph = {
   // ==========================================================================
-  // OPTIONS
-  // ==========================================================================
-
-  buildOptions: function(dataset, parentFieldset, groupName, type, eventListener){
-    var fieldset = document.getElementById(parentFieldset)
-
-    dataset = dataset.sort(function(argA, argB) {
-      if (argA.name > argB.name) {
-        return 1;
-      }else if (argA.name < argB.name) {
-        return -1;
-      }else{
-        return 0;
-      }
-    })
-
-    for (var i = 0; i < dataset.length; i++) {
-      var checkbox = Graph.createNewBox(groupName, dataset[i].id, type)
-      Graph.addListener(checkbox, 'click', eventListener)
-
-      var span = document.createElement('span')
-      span.innerHTML = dataset[i].name
-
-      fieldset.appendChild(checkbox)
-      fieldset.appendChild(span)
-      fieldset.appendChild(document.createElement('br'))
-    }
-  },
-
-  createNewBox: function(name, id, type){
-      var checkbox = document.createElement('input'); 
-      checkbox.type = type;
-      checkbox.name = name;
-      checkbox.id = id;
-      return checkbox;
-  },
-
-  addListener: function(element, eventName, handler) {
-    if (element.addEventListener) {
-      element.addEventListener(eventName, handler, false);
-    }
-    else if (element.attachEvent) {
-      element.attachEvent('on' + eventName, handler);
-    }
-    else {
-      element['on' + eventName] = handler;
-    }
-  },
-
-  getCheckedOptions: function(groupName) {
-    var checked = []
-    var congressmanBoxes = document.getElementsByName(groupName)
-    for (var i = 0; i < congressmanBoxes.length; i++) {
-      if(congressmanBoxes[i].checked){
-        checked.push(congressmanBoxes[i].id)
-      }
-    }
-
-    return checked
-  },
-
-  // ==========================================================================
   // D3 MAIN
   // ==========================================================================
 
@@ -122,6 +60,7 @@ var Graph = {
         })
         .attr("fill", function(d) { return color(d.group); })
         .attr("style", "stroke: white; stroke-width: 0.5px;")
+        .attr("id", d=>d.id)
         .attr("name", d=>d.name)
         .call(d3.drag()
             .on("start", function(d) {
@@ -159,7 +98,7 @@ var Graph = {
         d3.selectAll(".group-"+d.group)
         .attr("class", "group-"+d.group+" selected")
         .attr("r", radius+1)
-        .attr("style", "stroke: black; stroke-width: 1.5px;")
+        .attr("style", "stroke: black; stroke-width: 0.5px;")
       }
     })
   },
@@ -168,32 +107,75 @@ var Graph = {
   // INPUT & INTERACTIVITY
   // ==========================================================================
 
-  parseCsv: function(raw_data) {
-    var parsed = []
-    for (var i = 0; i < raw_data.length; i++) {
-      parsed.push({
-        id:   raw_data[i].Subquota, 
-        name:   raw_data[i].Subquota
-      })
-    }
-    return parsed
-  },
-
   changeDataset: function() {
-    var checkedRadio = Graph.Graph.getCheckedOptions('subquota-group')[0]
+    var checkedRadio = getCheckedOptions('subquota-group')[0]
     console.log(checkedRadio)
     switch(checkedRadio){
       case 'Flight ticket issue':
-        window.seriesType = 'flight'
+        window.seriesType = 'flight';
         break;
       case 'Publicity of parliamentary activity':
-        window.seriesType = 'publicity'
+        window.seriesType = 'publicity';
         break;
       case 'Telecommunication':
-        window.seriesType = 'telecom'
+        window.seriesType = 'telecom';
+        break;
+      case 'Maintenance of office supporting parliamentary activity':
+        window.seriesType = 'maintenance';
+        break;
+      case 'Consultancy, research and technical work':
+        window.seriesType = 'consultancy';
         break;
       case 'Fuels and lubricants':
-        window.seriesType = 'fuels'
+        window.seriesType = 'fuels';
+        break;
+      case 'Automotive vehicle renting or watercraft charter':
+        window.seriesType = 'auto-watercraft';
+        break;
+      case 'Automotive vehicle renting or charter':
+        window.seriesType = 'auto';
+        break;
+      case 'Postal services':
+        window.seriesType = 'postal';
+        break;
+      case 'Flight tickets':
+        window.seriesType = 'flight-ticket';
+        break;
+      case 'Lodging, except for congressperson from Distrito Federal':
+        window.seriesType = 'lodging';
+        break;
+      case 'Congressperson meal':
+        window.seriesType = 'meal';
+        break;
+      case 'Aircraft renting or charter of aircraft':
+        window.seriesType = 'aircraft';
+        break;
+      case 'Security service provided by specialized company':
+        window.seriesType = 'security';
+        break;
+      case 'Locomotion, meal and lodging':
+        window.seriesType = 'locomotion';
+        break;
+      case 'Taxi, toll and parking':
+        window.seriesType = 'taxi';
+        break;
+      case 'Publication subscriptions':
+        window.seriesType = 'publication';
+        break;
+      case 'Software purchase or renting; Postal services; Subscriptions':
+        window.seriesType = 'software';
+        break;
+      case 'Purchase of office supplies':
+        window.seriesType = 'office';
+        break;
+      case 'Watercraft renting or charter':
+        window.seriesType = 'watercraft';
+        break;
+      case 'Terrestrial, maritime and fluvial tickets':
+        window.seriesType = 'maritme';
+        break;
+      case 'Participation in course, talk or similar event':
+        window.seriesType = 'course';
         break;
       default:
         window.seriesType = 'default'
@@ -204,22 +186,21 @@ var Graph = {
   },
 
   changeK: function() {
-    var checkedRadio = Graph.getCheckedOptions('opt-k')[0]
+    var checkedRadio = getCheckedOptions('opt-k')[0]
     window.k = checkedRadio
 
     Graph.loadOptions()
   },
 
   changeDistance: function() {
-    var checkedRadio = Graph.getCheckedOptions('opt-distance')[0]
+    var checkedRadio = getCheckedOptions('opt-distance')[0]
     window.distanceMethod = checkedRadio
 
     Graph.loadOptions()
   },
 
-  changeLegislature: function() {
-    var checkedRadio = Graph.getCheckedOptions('opt-legislature')[0]
-    window.legislature = checkedRadio
+  changeLegislature: function(cod) {
+    window.legislature = cod;
 
     Graph.loadOptions()
   },
@@ -228,20 +209,17 @@ var Graph = {
     var path = '../../data/graph-json/'+window.mode+'/'+window.seriesType+'/'+window.distanceMethod+'/k-'+window.k+'/cibm-legislature-'+window.legislature+'.json'
 
     console.log('Selecting: '+path)
-    var jsonPromise = d3.json(path)
-    jsonPromise.then(function(graph) {
+    d3.json(path).then(function(graph) {
       window.graph = graph;
       Graph.updateSVG();
     })
   },
 
-  // ==========================================================================
-  // ON LOAD
-  // =========================================================================
+  highlightNodes: function() {
+    // TODO
+  },
 
-  main: function() {
-    console.log('started graph script')
-
+  init: function() {
     // Constant definition
     window.mode = 'standard';
     window.seriesType = 'default';
@@ -249,18 +227,10 @@ var Graph = {
     window.k = 5;
     window.legislature = 54;
 
-    var jsonPromise = d3.json('../../data/graph-json/standard/default/JS/k-5/cibm-legislature-54.json')
-    jsonPromise.then(function(graph){
-      window.graph = graph;
+    d3.json('../../data/graph-json/standard/default/JS/k-5/cibm-legislature-54.json').then(function(json){
+      window.graph = json;
 
-      var csvPromisse = d3.csv('../../data/subquota.csv')
-      csvPromisse.then(function(csv) {
-        this.subquota = Graph.parseCsv(csv)
-
-        Graph.buildOptions(this.subquota, 'subquota-fieldset', 'subquota-group', 'radio', Graph.changeDataset);
-
-        Graph.updateSVG();
-      })
+      Graph.updateSVG();
     })
   }
 };

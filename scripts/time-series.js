@@ -1,67 +1,5 @@
 var TimeSeries = {
   // ==========================================================================
-  // OPTIONS
-  // ==========================================================================
-
-  buildOptions: function(dataset, parentFieldset, groupName, type, eventListener){
-  	var fieldset = document.getElementById(parentFieldset)
-
-    dataset = dataset.sort(function(argA, argB) {
-      if (argA.name > argB.name) {
-        return 1;
-      }else if (argA.name < argB.name) {
-        return -1;
-      }else{
-        return 0;
-      }
-    })
-
-  	for (var i = 0; i < dataset.length; i++) {
-  		var checkbox = TimeSeries.createNewBox(groupName, dataset[i].id, type)
-  		TimeSeries.addListener(checkbox, 'click', eventListener)
-
-  		var span = document.createElement('span')
-  		span.innerHTML = dataset[i].name
-
-  		fieldset.appendChild(checkbox)
-  		fieldset.appendChild(span)
-  		fieldset.appendChild(document.createElement('br'))
-  	}
-  },
-
-  createNewBox: function(name, id, type){
-      var checkbox = document.createElement('input'); 
-      checkbox.type = type;
-      checkbox.name = name;
-      checkbox.id = id;
-      return checkbox;
-  },
-
-  addListener: function(element, eventName, handler) {
-    if (element.addEventListener) {
-      element.addEventListener(eventName, handler, false);
-    }
-    else if (element.attachEvent) {
-      element.attachEvent('on' + eventName, handler);
-    }
-    else {
-      element['on' + eventName] = handler;
-    }
-  },
-
-  getCheckedOptions: function(groupName) {
-  	var checked = []
-  	var congressmanBoxes = document.getElementsByName(groupName)
-  	for (var i = 0; i < congressmanBoxes.length; i++) {
-  		if(congressmanBoxes[i].checked){
-  			checked.push(congressmanBoxes[i].id)
-  		}
-  	}
-
-  	return checked
-  },
-
-  // ==========================================================================
   // D3 MAIN
   // ==========================================================================
 
@@ -147,7 +85,7 @@ var TimeSeries = {
       console.log(d3.select(this).attr("name"))
     })
     .append("title").text(d=>d.name);
-    
+
     document.getElementById("loader").setAttribute("style", "display: none;")
     document.getElementById("time-series-svg").setAttribute("style", "display: auto;")
   },
@@ -173,22 +111,13 @@ var TimeSeries = {
   	return parsed
   },
 
-  parseCsv: function(raw_data) {
-  	var parsed = []
-  	for (var i = 0; i < raw_data.length; i++) {
-  		parsed.push({
-  			id: 	raw_data[i].Subquota.toLowerCase().replace(/ /g,'-')+'_', 
-  			name: 	raw_data[i].Subquota
-  		})
-  	}
-  	return parsed
-  },
-
   changeDataset: function() {
-  	var checkedRadio = TimeSeries.getCheckedOptions('subquota-group')[0]
+  	var checkedRadio = getCheckedOptions('subquota-group')[0]
   	if (checkedRadio == 'NONE') {
   		checkedRadio = ''
-  	}
+  	} else {
+      checkedRadio = checkedRadio.toLowerCase().replace(/ /g,'-')+'_'
+    }
 
     if (window.normalize){
       path = 'time-series-json/normalized'
@@ -197,45 +126,40 @@ var TimeSeries = {
     }
 
   	console.log('Selecting: congressman_'+checkedRadio+'ts.json')
-  	var jsonPromise = d3.json('../../data/'+path+'/congressman_'+checkedRadio+'ts.json')
-  	jsonPromise.then(function(jresult) {
-  		window.congressman_ts = TimeSeries.parseJson(jresult)
+  	d3.json('../../data/'+path+'/congressman_'+checkedRadio+'ts.json').then(function(json) {
+  		window.congressman_ts = TimeSeries.parseJson(json)
   		TimeSeries.updateSVG()
   	})
   },
 
   changeSelection: function() {
-    window.selectedCongressman = TimeSeries.getCheckedOptions('congressman-group');
+    window.selectedCongressman = getCheckedOptions('congressman-group');
 
     TimeSeries.updateSVG();
   },
 
   bounds: function(legislature) {
     switch(legislature){
-      case "53":
+      case 53:
         return [0,22]
-      case "54":
+      case 54:
         return [22,70]
-      case "55":
+      case 55:
         return [70,89]
     }
   },
 
-  changeSection: function() {
-    var sections = TimeSeries.getCheckedOptions('legislature')
-
-    var first = sections[0]
-    var last = sections[sections.length-1]
+  changeSection: function(cod) {
     window.sections = {
-      start: TimeSeries.bounds(first)[0],
-      end: TimeSeries.bounds(last)[1]
+      start: TimeSeries.bounds(cod)[0],
+      end: TimeSeries.bounds(cod)[1]
     }
 
     TimeSeries.updateSVG()
   },
 
   normalizeSeries: function() {
-    var toNorm = TimeSeries.getCheckedOptions('norm')
+    var toNorm = getCheckedOptions('norm')
     if (toNorm.length > 0){
       window.normalize = true
       TimeSeries.changeDataset()
@@ -245,30 +169,15 @@ var TimeSeries = {
     }
   },
 
-  // ==========================================================================
-  // ON LOAD
-  // ==========================================================================
-
-  main: function() {
-    console.log('started ts script')
-
+  init: function() {
+    // Constant definition
     window.normalize = false
-    window.sections = {start: 0, end: 89}
+    window.sections = {start: 22, end: 70}
 
-  	var jsonPromise = d3.json('../../data/time-series-json/standard/congressman_ts.json')
-  	jsonPromise.then(function(jresult){
-  		window.congressman_ts = TimeSeries.parseJson(jresult)
+  	d3.json('../../data/time-series-json/standard/congressman_ts.json').then(function(json){
+  		window.congressman_ts = TimeSeries.parseJson(json)
 
-  		var csvPromisse = d3.csv('../../data/subquota.csv')
-  		csvPromisse.then(function(cresult) {
-  			this.subquota = TimeSeries.parseCsv(cresult)
-
-  			TimeSeries.buildOptions(this.subquota, 'subquota-fieldset', 'subquota-group', 'radio', TimeSeries.changeDataset)
-
-  			TimeSeries.buildOptions(window.congressman_ts, 'congressman-fieldset', 'congressman-group', 'checkbox', TimeSeries.changeSelection)
-
-  			TimeSeries.updateSVG()	
-  		})
+  		TimeSeries.updateSVG();
   	})
   }
 };

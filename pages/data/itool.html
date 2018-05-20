@@ -8,6 +8,7 @@
   <script src="https://d3js.org/d3.v5.min.js"></script>
   <script type="text/javascript" src="../../scripts/graphs.js"></script>
   <script type="text/javascript" src="../../scripts/time-series.js"></script>
+  <script type="text/javascript" src="../../scripts/itool.js"></script>
   <script type="text/javascript">
     function selectAll(caller, name) {
       var targetStatus = !caller.checked
@@ -17,11 +18,6 @@
           entry.checked = targetStatus
         }
       })
-    }
-
-    window.onload = function(argument) {
-      Graph.main();
-      TimeSeries.main();
     }
   </script>
   <!--[if lt IE 9]><script src="scripts/html5shiv.js"></script><![endif]-->
@@ -60,8 +56,7 @@
       <nav>
         <ul>
           <li><a href="./description.html">Data description</a></li>
-          <li><a href="./time-series.html">Time series</a></li>
-          <li><span class="selected-link">Graph</span></li>
+          <li><span class="selected-link">Interactive tool</span></li>
         </ul>
       </nav>
 
@@ -69,7 +64,7 @@
 
       <div class="full-width">
         <fieldset>
-          <legend>Distance</legend>
+          <legend>Distance (graph only)</legend>
 
           <input type="radio" name="opt-distance" id="JS" onclick="Graph.changeDistance();" checked="checked" /><span>Jensen-Shanon</span>
 
@@ -81,7 +76,7 @@
 
       <div class="full-width">
         <fieldset>
-          <legend>K number of neighbors</legend>
+          <legend>K number of neighbors (graph only)</legend>
 
           <input type="radio" name="opt-k" id="2" onclick="Graph.changeK();" /><span>2</span>
 
@@ -97,11 +92,11 @@
         <fieldset>
           <legend>Legislature</legend>
 
-          <input type="radio" name="opt-legislature" id="53" onclick="Graph.changeLegislature();" /><span>53</span>
+          <input type="radio" name="opt-legislature" id="53" onclick="Graph.changeLegislature(53); TimeSeries.changeSection(53);" /><span>53</span>
 
-          <input type="radio" name="opt-legislature" id="54" onclick="Graph.changeLegislature();" checked="checked" /><span>54</span>
+          <input type="radio" name="opt-legislature" id="54" onclick="Graph.changeLegislature(54); TimeSeries.changeSection(54);" checked="checked" /><span>54</span>
 
-          <input type="radio" name="opt-legislature" id="55" onclick="Graph.changeLegislature();" /><span>55</span>                            
+          <input type="radio" name="opt-legislature" id="55" onclick="Graph.changeLegislature(55); TimeSeries.changeSection(55);" /><span>55</span>                            
         </fieldset>
       </div>
 
@@ -120,7 +115,7 @@
           <legend>Subquota</legend>
 
           <div class="option-box" id="subquota-fieldset">
-            <input type="radio" name="subquota-group" checked="checked" id="NONE" onclick="TimeSeries.changeDataset();" /><span>All types</span><br/>
+            <input type="radio" name="subquota-group" checked="checked" id="NONE" onclick="Graph.changeDataset(); TimeSeries.changeDataset();" /><span>All types</span><br/>
           </div>
         </fieldset>
       </div>
