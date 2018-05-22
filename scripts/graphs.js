@@ -110,77 +110,84 @@ var Graph = {
   changeDataset: function() {
     var checkedRadio = getCheckedOptions('subquota-group')[0]
     console.log(checkedRadio)
-    switch(checkedRadio){
-      case 'Flight ticket issue':
-        window.seriesType = 'flight';
-        break;
-      case 'Publicity of parliamentary activity':
-        window.seriesType = 'publicity';
-        break;
-      case 'Telecommunication':
-        window.seriesType = 'telecom';
-        break;
-      case 'Maintenance of office supporting parliamentary activity':
-        window.seriesType = 'maintenance';
-        break;
-      case 'Consultancy, research and technical work':
-        window.seriesType = 'consultancy';
-        break;
-      case 'Fuels and lubricants':
-        window.seriesType = 'fuels';
-        break;
-      case 'Automotive vehicle renting or watercraft charter':
-        window.seriesType = 'auto-watercraft';
-        break;
-      case 'Automotive vehicle renting or charter':
-        window.seriesType = 'auto';
-        break;
-      case 'Postal services':
-        window.seriesType = 'postal';
-        break;
-      case 'Flight tickets':
-        window.seriesType = 'flight-ticket';
-        break;
-      case 'Lodging, except for congressperson from Distrito Federal':
-        window.seriesType = 'lodging';
-        break;
-      case 'Congressperson meal':
-        window.seriesType = 'meal';
-        break;
-      case 'Aircraft renting or charter of aircraft':
-        window.seriesType = 'aircraft';
-        break;
-      case 'Security service provided by specialized company':
-        window.seriesType = 'security';
-        break;
-      case 'Locomotion, meal and lodging':
-        window.seriesType = 'locomotion';
-        break;
-      case 'Taxi, toll and parking':
-        window.seriesType = 'taxi';
-        break;
-      case 'Publication subscriptions':
-        window.seriesType = 'publication';
-        break;
-      case 'Software purchase or renting; Postal services; Subscriptions':
-        window.seriesType = 'software';
-        break;
-      case 'Purchase of office supplies':
-        window.seriesType = 'office';
-        break;
-      case 'Watercraft renting or charter':
-        window.seriesType = 'watercraft';
-        break;
-      case 'Terrestrial, maritime and fluvial tickets':
-        window.seriesType = 'maritme';
-        break;
-      case 'Participation in course, talk or similar event':
-        window.seriesType = 'course';
-        break;
-      default:
-        window.seriesType = 'default'
-        break;
-    }
+    d3.csv('../../data/subquota.csv').then(function(csv) {
+      for (var i = 0; i < csv.length; i++) {
+        if(checkedRadio == csv[i].Subquota){
+          window.seriesType = csv[i].Shortname
+        }
+      }    
+    });
+    // switch(checkedRadio){
+    //   case 'Flight ticket issue':
+    //     window.seriesType = 'flight';
+    //     break;
+    //   case 'Publicity of parliamentary activity':
+    //     window.seriesType = 'publicity';
+    //     break;
+    //   case 'Telecommunication':
+    //     window.seriesType = 'telecom';
+    //     break;
+    //   case 'Maintenance of office supporting parliamentary activity':
+    //     window.seriesType = 'maintenance';
+    //     break;
+    //   case 'Consultancy, research and technical work':
+    //     window.seriesType = 'consultancy';
+    //     break;
+    //   case 'Fuels and lubricants':
+    //     window.seriesType = 'fuels';
+    //     break;
+    //   case 'Automotive vehicle renting or watercraft charter':
+    //     window.seriesType = 'auto-watercraft';
+    //     break;
+    //   case 'Automotive vehicle renting or charter':
+    //     window.seriesType = 'auto';
+    //     break;
+    //   case 'Postal services':
+    //     window.seriesType = 'postal';
+    //     break;
+    //   case 'Flight tickets':
+    //     window.seriesType = 'flight-ticket';
+    //     break;
+    //   case 'Lodging, except for congressperson from Distrito Federal':
+    //     window.seriesType = 'lodging';
+    //     break;
+    //   case 'Congressperson meal':
+    //     window.seriesType = 'meal';
+    //     break;
+    //   case 'Aircraft renting or charter of aircraft':
+    //     window.seriesType = 'aircraft';
+    //     break;
+    //   case 'Security service provided by specialized company':
+    //     window.seriesType = 'security';
+    //     break;
+    //   case 'Locomotion, meal and lodging':
+    //     window.seriesType = 'locomotion';
+    //     break;
+    //   case 'Taxi, toll and parking':
+    //     window.seriesType = 'taxi';
+    //     break;
+    //   case 'Publication subscriptions':
+    //     window.seriesType = 'publication';
+    //     break;
+    //   case 'Software purchase or renting; Postal services; Subscriptions':
+    //     window.seriesType = 'software';
+    //     break;
+    //   case 'Purchase of office supplies':
+    //     window.seriesType = 'office';
+    //     break;
+    //   case 'Watercraft renting or charter':
+    //     window.seriesType = 'watercraft';
+    //     break;
+    //   case 'Terrestrial, maritime and fluvial tickets':
+    //     window.seriesType = 'maritme';
+    //     break;
+    //   case 'Participation in course, talk or similar event':
+    //     window.seriesType = 'course';
+    //     break;
+    //   default:
+    //     window.seriesType = 'default'
+    //     break;
+    // }
 
     Graph.loadOptions()
   },
