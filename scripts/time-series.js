@@ -108,7 +108,13 @@ var TimeSeries = {
   			expenses:		  raw_data[idx][4]
   		})
   	}
-  	return parsed
+
+    var legislature = getCheckedOptions('opt-legislature')
+    return d3.json('../../data/congressman_'+legislature+'_outliers.json').then(function(json){
+      return parsed.filter(function(entry) {
+        return !json.includes(entry.id);
+      })
+    });
   },
 
   changeDataset: function() {
@@ -127,8 +133,11 @@ var TimeSeries = {
 
   	console.log('Selecting: congressman_'+checkedRadio+'ts.json')
   	d3.json('../../data/'+path+'/congressman_'+checkedRadio+'ts.json').then(function(json) {
-  		window.congressman_ts = TimeSeries.parseJson(json)
-  		TimeSeries.updateSVG()
+  		TimeSeries.parseJson(json).then(function(result) {
+        window.congressman_ts = result;
+
+        TimeSeries.updateSVG()
+      })
   	})
   },
 
@@ -175,9 +184,11 @@ var TimeSeries = {
     window.sections = {start: 22, end: 70}
 
   	d3.json('../../data/time-series-json/standard/congressman_ts.json').then(function(json){
-  		window.congressman_ts = TimeSeries.parseJson(json)
+  		TimeSeries.parseJson(json).then(function(result) {
+        window.congressman_ts = result;
 
-  		TimeSeries.updateSVG();
+        TimeSeries.updateSVG()
+      })
   	})
   }
 };

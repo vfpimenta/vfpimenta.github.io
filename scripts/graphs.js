@@ -60,7 +60,7 @@ var Graph = {
         })
         .attr("fill", function(d) { return color(d.group); })
         .attr("style", "stroke: white; stroke-width: 0.5px;")
-        .attr("id", d=>d.congressman_id)
+        .attr("id", d=>"c"+d.congressman_id)
         .attr("name", d=>d.name)
         .call(d3.drag()
             .on("start", function(d) {
@@ -162,8 +162,8 @@ var Graph = {
     window.selectedCongressman = getCheckedOptions('congressman-group');
 
     window.selectedCongressman.forEach(function(entry) {
-      d3.select('#'+entry)
-      .attr("style", "stroke: red; stroke-width: 0.5px;")
+      d3.select('#c'+entry)
+      .attr("style", "stroke: red; stroke-width: 0.75px;")
     })
   },
 

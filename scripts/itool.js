@@ -73,9 +73,11 @@ window.onload = function(argument) {
   TimeSeries.init();
 
   d3.json('../../data/time-series-json/standard/congressman_ts.json').then(function(json){
-    var congressmanData = TimeSeries.parseJson(json);
-  
-    buildOptions(congressmanData, 'congressman-fieldset', 'congressman-group', 'checkbox', function() {Graph.highlightNodes(); TimeSeries.changeSelection();});
+    TimeSeries.parseJson(json).then(function(result) {
+      var congressmanData = result;
+
+      buildOptions(congressmanData, 'congressman-fieldset', 'congressman-group', 'checkbox', function() {Graph.highlightNodes(); TimeSeries.changeSelection();});
+    });
   });
 
   d3.csv('../../data/subquota.csv').then(function(csv) {
