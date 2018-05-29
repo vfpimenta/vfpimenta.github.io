@@ -82,12 +82,27 @@ var Graph = {
         .text(function(d) { return d.name; });
 
     node.on("click", function(d) {
-      if(d3.select(this).attr("class").includes("selected")){
+      if (d3.select(this).attr("class").includes("selected")) {
+        window.selectedCongressman = [];
+        d3.selectAll(".group-"+d.group).each(function(_d, _i) {
+          document.getElementById(_d.congressman_id).checked = false;
+        })
+
         d3.selectAll(".group-"+d.group)
         .attr("class", "group-"+d.group)
         .attr("r", radius)
         .attr("style", "stroke: white; stroke-width: 0.5px;")
-      }else{
+
+        TimeSeries.updateSVG();        
+      } else {
+        window.selectedCongressman = [];
+        Array.from(document.getElementsByName("congressman-group")).forEach(function(entry) {
+          return entry.checked = false;
+        });
+        d3.selectAll(".group-"+d.group).each(function(_d, _i) {
+          document.getElementById(_d.congressman_id).checked = true;
+        })
+
         d3.selectAll("circle")
         .attr("class", function() {
           return d3.select(this).attr("class").replace("selected", "");
@@ -99,13 +114,13 @@ var Graph = {
         .attr("class", "group-"+d.group+" selected")
         .attr("r", radius+1)
         .attr("style", "stroke: black; stroke-width: 0.5px;")
-        .each(function(d, i) {
-          window.selectedCongressman.push(d.congressman_id)
+        .each(function(entry) {
+          window.selectedCongressman.push(entry.congressman_id)
         })
 
         TimeSeries.updateSVG();
       }
-    })
+    });
   },
 
   // ==========================================================================
@@ -114,16 +129,20 @@ var Graph = {
 
   changeDataset: function() {
     var checkedRadio = getCheckedOptions('subquota-group')[0]
-    console.log(checkedRadio)
-    d3.csv('../../data/subquota.csv').then(function(csv) {
-      for (var i = 0; i < csv.length; i++) {
-        if(checkedRadio == csv[i].Subquota){
-          window.seriesType = csv[i].Shortname
+    if (checkedRadio == 'NONE') {
+      window.seriesType = 'default'
+      Graph.loadOptions()
+    } else {
+      d3.csv('../../data/subquota.csv').then(function(csv) {
+        for (var i = 0; i < csv.length; i++) {
+          if(checkedRadio == csv[i].Subquota){
+            window.seriesType = csv[i].Shortname
+          }
         }
-      }    
-    });
 
-    Graph.loadOptions()
+        Graph.loadOptions()    
+      });
+    }
   },
 
   changeK: function() {
@@ -153,18 +172,33 @@ var Graph = {
     d3.json(path).then(function(graph) {
       window.graph = graph;
       Graph.updateSVG();
-    }).catch(function(error) {
-      console.log(error)
-    })
+    }).catch(Graph.errorHandler)
   },
 
   highlightNodes: function() {
     window.selectedCongressman = getCheckedOptions('congressman-group');
 
+    d3.selectAll("circle")
+    .attr("class", function() {
+      return d3.select(this).attr("class").replace("selected", "");
+    })
+    .attr("r", 3)
+    .attr("style", "stroke: white; stroke-width: 0.5px;")
+
     window.selectedCongressman.forEach(function(entry) {
       d3.select('#c'+entry)
-      .attr("style", "stroke: red; stroke-width: 0.75px;")
+      .attr("class", function() {
+        return d3.select(this).attr("class").concat(" selected");  
+      })
+      .attr("r", function() {
+        return parseInt(d3.select(this).attr("r"))+1;
+      })
+      .attr("style", "stroke: black; stroke-width: 0.5px;")
     })
+  },
+
+  errorHandler: function() {
+    alert('No graph data found for '+window.seriesType);
   },
 
   init: function() {
@@ -179,8 +213,6 @@ var Graph = {
       window.graph = json;
 
       Graph.updateSVG();
-    }).catch(function(error) {
-      console.log(error)
-    })
+    }).catch(Graph.errorHandler)
   }
 };

@@ -19,6 +19,8 @@ var TimeSeries = {
   	var canvas = d3.select("#time-series-svg").append("g");
   	canvas.attr("transform", "translate(" + margin.left + "," + margin.top + ")")
 
+    var color = d3.scaleOrdinal(d3.schemeCategory10);
+
   	// Data parsing
   	if(window.selectedCongressman && window.selectedCongressman.length > 0){
   		var parsedData = window.congressman_ts.filter(function(entry) {
@@ -54,7 +56,7 @@ var TimeSeries = {
   			return "L "+xScale(TimeSeries.getDate(index+window.sections.start))+" "+yScale(entry);
   		}).join(" ").replaceAt(0, "M");
   	})
-  	.attr("stroke", "blue")
+  	.attr("stroke", d=>color(d.node.group))
   	.attr("stroke-width", 1)
   	.attr("stroke-opacity", 0.3)
   	.attr("fill", "none")
@@ -72,18 +74,16 @@ var TimeSeries = {
         d3.select(this)
         .attr("stroke-opacity", 0.3)
         .attr("stroke-width", 1)
-        .attr("stroke","blue")
+        .attr("stroke", d=>color(d.node.group))
       }
     })
-    .on("click", function() {
-      d3.select(this)
-      .attr("stroke-opacity", 1)
-      .attr("stroke-width", 2)
-      .attr("stroke","red")
-      .attr("data-marked", "true")
-
-      console.log(d3.select(this).attr("name"))
-    })
+    // .on("click", function() {
+    //   d3.select(this)
+    //   .attr("stroke-opacity", 1)
+    //   .attr("stroke-width", 2)
+    //   .attr("stroke","red")
+    //   .attr("data-marked", "true")
+    // })
     .append("title").text(d=>d.name);
 
     document.getElementById("loader").setAttribute("style", "display: none;")
@@ -95,25 +95,29 @@ var TimeSeries = {
   // ==========================================================================
 
   parseJson: function(raw_data) {
-  	var parsed = []
-  	var ids = Object.keys(raw_data)
-  	for (var i = 0; i < ids.length; i++) {
-  		idx = ids[i]
-  		parsed.push({
-  			id: 			    idx, 
-  			name: 			  raw_data[idx][0],
-  			state: 			  raw_data[idx][1],
-  			party:			  raw_data[idx][2],
-  			legislatures:	raw_data[idx][3],
-  			expenses:		  raw_data[idx][4]
-  		})
-  	}
+    var path = '../../data/graph-json/'+window.mode+'/'+window.seriesType+'/'+window.distanceMethod+'/k-'+window.k+'/cibm-legislature-'+window.legislature+'.json'
+    return d3.json(path).then(function(graph) {
+      var parsed = []
+      var ids = Object.keys(raw_data)
+      for (var i = 0; i < ids.length; i++) {
+        idx = ids[i]
+        parsed.push({
+          id:           idx, 
+          name:         raw_data[idx][0],
+          state:        raw_data[idx][1],
+          party:        raw_data[idx][2],
+          legislatures: raw_data[idx][3],
+          expenses:     raw_data[idx][4],
+          node:        graph.nodes.filter(d=>d.congressman_id==idx)[0]
+        })
+      }
 
-    var legislature = getCheckedOptions('opt-legislature')
-    return d3.json('../../data/congressman_'+legislature+'_outliers.json').then(function(json){
-      return parsed.filter(function(entry) {
-        return !json.includes(entry.id);
-      })
+      var legislature = getCheckedOptions('opt-legislature')
+      return d3.json('../../data/congressman_'+legislature+'_outliers.json').then(function(json){
+        return parsed.filter(function(entry) {
+          return !json.includes(entry.id) && entry.legislatures[legislature-53];
+        });
+      });
     });
   },
 

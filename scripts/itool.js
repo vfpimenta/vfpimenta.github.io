@@ -68,6 +68,12 @@ function parseCsv(raw_data) {
   return parsed
 };
 
+function changeDataset(argument) {
+  window.selectedCongressman = [];
+  Graph.changeDataset(); 
+  TimeSeries.changeDataset();
+}
+
 window.onload = function(argument) {
   Graph.init();
   TimeSeries.init();
@@ -83,6 +89,6 @@ window.onload = function(argument) {
   d3.csv('../../data/subquota.csv').then(function(csv) {
     var subquota = parseCsv(csv);
 
-    buildOptions(subquota, 'subquota-fieldset', 'subquota-group', 'radio', function() {Graph.changeDataset(); TimeSeries.changeDataset();})
+    buildOptions(subquota, 'subquota-fieldset', 'subquota-group', 'radio', changeDataset);
   });
 }
