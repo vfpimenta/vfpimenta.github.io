@@ -5,6 +5,7 @@
   <meta charset="utf-8"/>
   <link rel='shortcut icon' type='image/x-icon' href='../../images/favicon.ico' />
   <link rel="stylesheet" href="../../styles/layout.css" type="text/css">
+  <link rel="stylesheet" href="../../styles/custom.css" type="text/css">
   <script src="https://d3js.org/d3.v5.min.js"></script>
   <script type="text/javascript" src="../../scripts/graphs.js"></script>
   <script type="text/javascript" src="../../scripts/time-series.js"></script>
@@ -64,27 +65,27 @@
 
       <div class="full-width">
         <fieldset>
-          <legend>Distance (graph only)</legend>
+          <legend>Distance</legend>
 
-          <input type="radio" name="opt-distance" id="JS" onclick="Graph.changeDistance();" checked="checked" /><span>Jensen-Shanon</span>
+          <input type="radio" name="opt-distance" id="JS" onclick="Graph.changeDistance(); TimeSeries.changeDataset();" checked="checked" /><span>Jensen-Shanon</span>
 
-          <input type="radio" name="opt-distance" id="cosine" onclick="Graph.changeDistance();" /><span>Cosine</span>
+          <input type="radio" name="opt-distance" id="cosine" onclick="Graph.changeDistance(); TimeSeries.changeDataset();" /><span>Cosine</span>
 
-          <input type="radio" name="opt-distance" id="robust" onclick="Graph.changeDistance();" /><span>Robust (Pearson + Spearman)</span>                            
+          <input type="radio" name="opt-distance" id="robust" onclick="Graph.changeDistance(); TimeSeries.changeDataset();" /><span>Robust (Pearson + Spearman)</span>                            
         </fieldset>
       </div>
 
       <div class="full-width">
         <fieldset>
-          <legend>K number of neighbors (graph only)</legend>
+          <legend>K number of neighbors</legend>
 
-          <input type="radio" name="opt-k" id="2" onclick="Graph.changeK();" /><span>2</span>
+          <input type="radio" name="opt-k" id="2" onclick="Graph.changeK(); TimeSeries.changeDataset();" /><span>2</span>
 
-          <input type="radio" name="opt-k" id="3" onclick="Graph.changeK();" /><span>3</span>
+          <input type="radio" name="opt-k" id="3" onclick="Graph.changeK(); TimeSeries.changeDataset();" /><span>3</span>
 
-          <input type="radio" name="opt-k" id="4" onclick="Graph.changeK();" /><span>4</span>
+          <input type="radio" name="opt-k" id="4" onclick="Graph.changeK(); TimeSeries.changeDataset();" /><span>4</span>
 
-          <input type="radio" name="opt-k" id="5" checked="checked" onclick="Graph.changeK();" /><span>5</span>                            
+          <input type="radio" name="opt-k" id="5" checked="checked" onclick="Graph.changeK(); TimeSeries.changeDataset();" /><span>5</span>                            
         </fieldset>
       </div>
 
@@ -101,6 +102,16 @@
       </div>
 
       <div class="full-width">
+        <fieldset>
+          <legend>Subquota</legend>
+
+          <div class="option-box" id="subquota-fieldset">
+            <input type="radio" name="subquota-group" checked="checked" id="NONE" onclick="changeDataset();" /><span>All types</span><br/>
+          </div>
+        </fieldset>
+      </div>
+
+      <div class="full-width">
         <fieldset style="float: left;">
           <legend>Congressman</legend>
 
@@ -110,12 +121,22 @@
         </fieldset>
       </div>
 
-      <div class="full-width">
-        <fieldset>
-          <legend>Subquota</legend>
+      <div class="half-width">
+        <fieldset style="float: left;">
+          <legend>State</legend>
 
-          <div class="option-box" id="subquota-fieldset">
-            <input type="radio" name="subquota-group" checked="checked" id="NONE" onclick="changeDataset();" /><span>All types</span><br/>
+          <div class="option-box" id="state-fieldset">
+            <input type="checkbox" name="state-group" id="NONE" /><span>Select all</span><br/>
+          </div>
+        </fieldset>
+      </div>
+
+      <div class="half-width">
+        <fieldset style="float: right;">
+          <legend>Party</legend>
+
+          <div class="option-box" id="party-fieldset">
+            <input type="checkbox" name="party-group" id="NONE" /><span>Select all</span><br/>
           </div>
         </fieldset>
       </div>

@@ -83,6 +83,10 @@ window.onload = function(argument) {
       var congressmanData = result;
 
       buildOptions(congressmanData, 'congressman-fieldset', 'congressman-group', 'checkbox', function() {Graph.highlightNodes(); TimeSeries.changeSelection();});
+
+      buildOptions(Array.from(new Set(congressmanData.map(d=>d.state))).map(function(state){return {id: state, name: state}}), 'state-fieldset', 'state-group', 'checkbox', function() {console.log(1)});
+
+      buildOptions(Array.from(new Set(congressmanData.map(d=>d.party))).map(function(party){return {id: party, name: party}}), 'party-fieldset', 'party-group', 'checkbox', function() {console.log(1)});
     });
   });
 

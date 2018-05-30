@@ -12,6 +12,9 @@ var Graph = {
     var radius = 3
 
     var color = d3.scaleOrdinal(d3.schemeCategory10);
+    Array.from(new Set(window.graph.nodes.map(d=>d.group))).sort((a,b)=>a-b).forEach(function(entry) {
+      color(entry)
+    })
 
     var simulation = d3.forceSimulation()
       .force("link", d3.forceLink().id(d=>d.id).distance(10))

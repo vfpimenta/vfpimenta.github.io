@@ -20,6 +20,9 @@ var TimeSeries = {
   	canvas.attr("transform", "translate(" + margin.left + "," + margin.top + ")")
 
     var color = d3.scaleOrdinal(d3.schemeCategory10);
+    Array.from(new Set(window.congressman_ts.map(d=>d.node.group))).sort((a,b)=>a-b).forEach(function(entry) {
+      color(entry)
+    })
 
   	// Data parsing
   	if(window.selectedCongressman && window.selectedCongressman.length > 0){
@@ -108,7 +111,7 @@ var TimeSeries = {
           party:        raw_data[idx][2],
           legislatures: raw_data[idx][3],
           expenses:     raw_data[idx][4],
-          node:        graph.nodes.filter(d=>d.congressman_id==idx)[0]
+          node:         graph.nodes.filter(d=>d.congressman_id==idx)[0]
         })
       }
 
@@ -141,8 +144,8 @@ var TimeSeries = {
         window.congressman_ts = result;
 
         TimeSeries.updateSVG()
-      })
-  	})
+      });
+  	});
   },
 
   changeSelection: function() {
@@ -192,8 +195,8 @@ var TimeSeries = {
         window.congressman_ts = result;
 
         TimeSeries.updateSVG()
-      })
-  	})
+      });
+  	});
   }
 };
 
