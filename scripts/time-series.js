@@ -25,9 +25,9 @@ var TimeSeries = {
     })
 
   	// Data parsing
-  	if(window.selectedCongressman && window.selectedCongressman.length > 0){
+  	if(window.selectedOptions && window.selectedOptions.length > 0){
   		var parsedData = window.congressman_ts.filter(function(entry) {
-        return window.selectedCongressman.includes(entry.id)
+        return window.selectedOptions.includes(entry[window.selectedAttribute])
       })
   	} else {
   		var parsedData = window.congressman_ts
@@ -148,8 +148,9 @@ var TimeSeries = {
   	});
   },
 
-  changeSelection: function() {
-    window.selectedCongressman = getCheckedOptions('congressman-group');
+  changeSelection: function(groupName, attribute) {
+    window.selectedOptions = getCheckedOptions(groupName);
+    window.selectedAttribute = attribute;
 
     TimeSeries.updateSVG();
   },

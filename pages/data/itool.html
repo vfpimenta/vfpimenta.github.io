@@ -116,7 +116,7 @@
           <legend>Congressman</legend>
 
           <div class="option-box" id="congressman-fieldset">
-            <input type="checkbox" name="congressman-select-all" onmousedown="selectAll(this, 'congressman-group'); TimeSeries.changeSelection();" /><span>Select all</span><br/>
+            <input type="checkbox" name="congressman-select-all" onmousedown="selectAll(this, 'congressman-group'); Graph.highlightNodes('congressman-group', 'congressman_id'); TimeSeries.changeSelection('congressman-group', 'id');" /><span>Select all</span><br/>
           </div>
         </fieldset>
       </div>
@@ -126,7 +126,7 @@
           <legend>State</legend>
 
           <div class="option-box" id="state-fieldset">
-            <input type="checkbox" name="state-group" id="NONE" /><span>Select all</span><br/>
+            <input type="checkbox" name="state-select-all" onmousedown="selectAll(this, 'state-group'); Graph.highlightNodes('state-group', 'state'); TimeSeries.changeSelection('state-group', 'state');" /><span>Select all</span><br/>
           </div>
         </fieldset>
       </div>
@@ -136,7 +136,7 @@
           <legend>Party</legend>
 
           <div class="option-box" id="party-fieldset">
-            <input type="checkbox" name="party-group" id="NONE" /><span>Select all</span><br/>
+            <input type="checkbox" name="party-select-all" onmousedown="selectAll(this, 'party-group'); Graph.highlightNodes('party-group', 'party'); TimeSeries.changeSelection('party-group', 'party');" /><span>Select all</span><br/>
           </div>
         </fieldset>
       </div>

@@ -86,7 +86,8 @@ var Graph = {
 
     node.on("click", function(d) {
       if (d3.select(this).attr("class").includes("selected")) {
-        window.selectedCongressman = [];
+        window.selectedOptions = [];
+        window.selectedAttribute = 'id';
         d3.selectAll(".group-"+d.group).each(function(_d, _i) {
           document.getElementById(_d.congressman_id).checked = false;
         })
@@ -98,7 +99,8 @@ var Graph = {
 
         TimeSeries.updateSVG();        
       } else {
-        window.selectedCongressman = [];
+        window.selectedOptions = [];
+        window.selectedAttribute = 'id';
         Array.from(document.getElementsByName("congressman-group")).forEach(function(entry) {
           return entry.checked = false;
         });
@@ -118,7 +120,7 @@ var Graph = {
         .attr("r", radius+1)
         .attr("style", "stroke: black; stroke-width: 0.5px;")
         .each(function(entry) {
-          window.selectedCongressman.push(entry.congressman_id)
+          window.selectedOptions.push(entry.congressman_id)
         })
 
         TimeSeries.updateSVG();
@@ -178,8 +180,8 @@ var Graph = {
     }).catch(Graph.errorHandler)
   },
 
-  highlightNodes: function() {
-    window.selectedCongressman = getCheckedOptions('congressman-group');
+  highlightNodes: function(groupName, attribute) {
+    selectedOptions = getCheckedOptions(groupName);
 
     d3.selectAll("circle")
     .attr("class", function() {
@@ -188,16 +190,30 @@ var Graph = {
     .attr("r", 3)
     .attr("style", "stroke: white; stroke-width: 0.5px;")
 
-    window.selectedCongressman.forEach(function(entry) {
-      d3.select('#c'+entry)
-      .attr("class", function() {
+    
+    d3.selectAll('circle')
+    .attr("class", function(d, i) {
+      if(selectedOptions.includes(d[attribute])){
         return d3.select(this).attr("class").concat(" selected");  
-      })
-      .attr("r", function() {
-        return parseInt(d3.select(this).attr("r"))+1;
-      })
-      .attr("style", "stroke: black; stroke-width: 0.5px;")
+      }else{
+        return d3.select(this).attr("class");  
+      }
     })
+    .attr("r", function(d, i) {
+      if(selectedOptions.includes(d[attribute])){
+        return parseInt(d3.select(this).attr("r"))+1;
+      }else{
+        return d3.select(this).attr("r");
+      }
+    })
+    .attr("style", function(d, i) {
+      if(selectedOptions.includes(d[attribute])){
+        return "stroke: black; stroke-width: 0.5px;"
+      }else{
+        return d3.select(this).attr("style"); 
+      }
+    })
+    
   },
 
   errorHandler: function() {

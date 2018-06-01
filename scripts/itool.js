@@ -82,11 +82,11 @@ window.onload = function(argument) {
     TimeSeries.parseJson(json).then(function(result) {
       var congressmanData = result;
 
-      buildOptions(congressmanData, 'congressman-fieldset', 'congressman-group', 'checkbox', function() {Graph.highlightNodes(); TimeSeries.changeSelection();});
+      buildOptions(congressmanData, 'congressman-fieldset', 'congressman-group', 'checkbox', function() {Graph.highlightNodes('congressman-group', 'congressman_id'); TimeSeries.changeSelection('congressman-group', 'id');});
 
-      buildOptions(Array.from(new Set(congressmanData.map(d=>d.state))).map(function(state){return {id: state, name: state}}), 'state-fieldset', 'state-group', 'checkbox', function() {console.log(1)});
+      buildOptions(Array.from(new Set(congressmanData.map(d=>d.state))).map(function(state){return {id: state, name: state}}), 'state-fieldset', 'state-group', 'checkbox', function() {Graph.highlightNodes('state-group', 'state'); TimeSeries.changeSelection('state-group', 'state');});
 
-      buildOptions(Array.from(new Set(congressmanData.map(d=>d.party))).map(function(party){return {id: party, name: party}}), 'party-fieldset', 'party-group', 'checkbox', function() {console.log(1)});
+      buildOptions(Array.from(new Set(congressmanData.map(d=>d.party))).map(function(party){return {id: party, name: party}}), 'party-fieldset', 'party-group', 'checkbox', function() {Graph.highlightNodes('party-group', 'party'); TimeSeries.changeSelection('party-group', 'party');});
     });
   });
 
