@@ -9,7 +9,7 @@
   <script src="https://d3js.org/d3.v5.min.js"></script>
   <script type="text/javascript" src="../../scripts/graphs.js"></script>
   <script type="text/javascript" src="../../scripts/time-series.js"></script>
-  <script type="text/javascript" src="../../scripts/itool.js"></script>
+  <script type="text/javascript" src="../../scripts/cluster.js"></script>
   <script type="text/javascript">
     function selectAll(caller, name) {
       var targetStatus = !caller.checked
@@ -57,7 +57,7 @@
       <nav>
         <ul>
           <li><a href="./description.html">Data description</a></li>
-          <li><span class="selected-link">Interactive tool</span></li>
+          <li><span class="selected-link">Clusters</span></li>
         </ul>
       </nav>
 
@@ -145,6 +145,12 @@
     <div id="content">
       <!-- section 1 -->
       <section>
+        <div id="summary" class="note">
+          <p><b>Cluster summary:</b></p>
+          <p id="summary-placeholder">Select one cluster to view its summary.</p>
+        </div>
+      </section>
+      <section>
         <!-- article 1 -->
         <article>
           <h2><a href="#">Graph</a></h2>
@@ -154,7 +160,7 @@
           <time datetime="2018-04-22T08:15+00:00">Sunday, 22<sup>th</sup> April 2018</time>
           <p></p>
 
-          <svg id="graph-svg" width="630" height="550"></svg>
+          <svg id="graph-svg" width="630" height="450"></svg>
 
           <p class="tags">TAGS: <a href="#">tag 1</a>, <a href="#">tag 2</a>, <a href="#">tag 3</a>, <a href="#">tag 4</a>, <a href="#">tag 5</a></p>
         </article>
@@ -169,7 +175,7 @@
 
           <div id="loader" class="loader" ></div>
 
-          <svg id="time-series-svg" width="630" height="350" style="display: none;"></svg>
+          <svg id="time-series-svg" width="630" height="250" style="display: none;"></svg>
 
           <p class="tags">TAGS: <a href="#">tag 1</a>, <a href="#">tag 2</a>, <a href="#">tag 3</a>, <a href="#">tag 4</a>, <a href="#">tag 5</a></p>
         </article>

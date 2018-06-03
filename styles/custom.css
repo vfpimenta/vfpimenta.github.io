@@ -16,6 +16,14 @@
     100% { transform: rotate(360deg); }
 }
 
+div .note{
+    background-color: #ffefd7;
+    border-left: solid 4px #f39824;
+    line-height: 18px;
+    overflow: hidden;
+    padding: 12px;
+}
+
 .option-box {
   height:200px; 
   overflow: auto;

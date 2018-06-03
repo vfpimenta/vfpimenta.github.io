@@ -88,8 +88,8 @@ var Graph = {
       if (d3.select(this).attr("class").includes("selected")) {
         window.selectedOptions = [];
         window.selectedAttribute = 'id';
-        d3.selectAll(".group-"+d.group).each(function(_d, _i) {
-          document.getElementById(_d.congressman_id).checked = false;
+        d3.selectAll(".group-"+d.group).each(function(entry) {
+          document.getElementById(entry.congressman_id).checked = false;
         })
 
         d3.selectAll(".group-"+d.group)
@@ -97,15 +97,15 @@ var Graph = {
         .attr("r", radius)
         .attr("style", "stroke: white; stroke-width: 0.5px;")
 
-        TimeSeries.updateSVG();        
+        fillSummary();      
       } else {
         window.selectedOptions = [];
         window.selectedAttribute = 'id';
         Array.from(document.getElementsByName("congressman-group")).forEach(function(entry) {
           return entry.checked = false;
         });
-        d3.selectAll(".group-"+d.group).each(function(_d, _i) {
-          document.getElementById(_d.congressman_id).checked = true;
+        d3.selectAll(".group-"+d.group).each(function(entry,) {
+          document.getElementById(entry.congressman_id).checked = true;
         })
 
         d3.selectAll("circle")
@@ -123,8 +123,14 @@ var Graph = {
           window.selectedOptions.push(entry.congressman_id)
         })
 
-        TimeSeries.updateSVG();
+        var nodes = [];
+        d3.selectAll(".group-"+d.group).each(function(entry) {
+          nodes.push(entry)
+        })
+
+        fillSummary(nodes);
       }
+      TimeSeries.updateSVG();
     });
   },
 
@@ -217,7 +223,7 @@ var Graph = {
   },
 
   errorHandler: function() {
-    alert('No graph data found for '+window.seriesType);
+    alert('No graph data found for expense \''+window.seriesType+'\', distance \''+window.distanceMethod+'\', k '+window.k+" and legislature "+window.legislature);
   },
 
   init: function() {
