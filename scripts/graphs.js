@@ -12,7 +12,7 @@ var Graph = {
     var radius = 3
 
     var color = d3.scaleOrdinal(d3.schemeCategory10);
-    Array.from(new Set(window.graph.nodes.map(d=>d.group))).sort((a,b)=>a-b).forEach(function(entry) {
+    Array.from(new Set(this.graph.nodes.map(d=>d.group))).sort((a,b)=>a-b).forEach(function(entry) {
       color(entry)
     })
 
@@ -22,7 +22,7 @@ var Graph = {
       .force("center", d3.forceCenter(width / 2, height / 2));
 
     simulation
-        .nodes(window.graph.nodes)
+        .nodes(this.graph.nodes)
         .on("tick", function() {
           link
             .attr("x1", function(d) { return d.source.x; })
@@ -36,14 +36,14 @@ var Graph = {
         });
 
     simulation.force("link")
-        .links(window.graph.links);
+        .links(this.graph.links);
 
     simulation.alphaDecay(1 - Math.pow(0.001, 1/3000));
 
     var link = svg.append("g")
       .attr("class", "links")
     .selectAll("line")
-    .data(window.graph.links)
+    .data(this.graph.links)
     .enter().append("line")
       .attr("stroke-width", function(d) { return Math.sqrt(d.value); })
       .attr("style", "stroke: #999; stroke-opacity: 0.6;");
@@ -51,12 +51,12 @@ var Graph = {
     var node = svg.append("g")
         .attr("class", "nodes")
       .selectAll("circle")
-      .data(window.graph.nodes)
+      .data(this.graph.nodes)
       .enter().append("circle")
         .attr("class", d=>"group-"+d.group)
         .attr("r", function(d){
           var lScale = d3.scaleLog()
-          .domain(d3.extent(window.graph.nodes.map(d=>d.size)))
+          .domain(d3.extent(Graph.graph.nodes.map(d=>d.size)))
           .range([0, 3]);
 
           return radius;
@@ -86,8 +86,8 @@ var Graph = {
 
     node.on("click", function(d) {
       if (d3.select(this).attr("class").includes("selected")) {
-        window.selectedOptions = [];
-        window.selectedAttribute = 'id';
+        TimeSeries.selectedOptions = [];
+        TimeSeries.selectedAttribute = 'id';
         d3.selectAll(".group-"+d.group).each(function(entry) {
           document.getElementById(entry.congressman_id).checked = false;
         })
@@ -99,8 +99,8 @@ var Graph = {
 
         fillSummary();      
       } else {
-        window.selectedOptions = [];
-        window.selectedAttribute = 'id';
+        TimeSeries.selectedOptions = [];
+        TimeSeries.selectedAttribute = 'id';
         Array.from(document.getElementsByName("congressman-group")).forEach(function(entry) {
           return entry.checked = false;
         });
@@ -120,7 +120,7 @@ var Graph = {
         .attr("r", radius+1)
         .attr("style", "stroke: black; stroke-width: 0.5px;")
         .each(function(entry) {
-          window.selectedOptions.push(entry.congressman_id)
+          TimeSeries.selectedOptions.push(entry.congressman_id)
         })
 
         var nodes = [];
@@ -141,13 +141,13 @@ var Graph = {
   changeDataset: function() {
     var checkedRadio = getCheckedOptions('subquota-group')[0]
     if (checkedRadio == 'NONE') {
-      window.seriesType = 'default'
+      this.seriesType = 'default'
       Graph.loadOptions()
     } else {
       d3.csv('../../data/subquota.csv').then(function(csv) {
         for (var i = 0; i < csv.length; i++) {
           if(checkedRadio == csv[i].Subquota){
-            window.seriesType = csv[i].Shortname
+            Graph.seriesType = csv[i].Shortname
           }
         }
 
@@ -158,30 +158,30 @@ var Graph = {
 
   changeK: function() {
     var checkedRadio = getCheckedOptions('opt-k')[0]
-    window.k = checkedRadio
+    this.k = checkedRadio
 
     Graph.loadOptions()
   },
 
   changeDistance: function() {
     var checkedRadio = getCheckedOptions('opt-distance')[0]
-    window.distanceMethod = checkedRadio
+    this.distanceMethod = checkedRadio
 
     Graph.loadOptions()
   },
 
   changeLegislature: function(cod) {
-    window.legislature = cod;
+    this.legislature = cod;
 
     Graph.loadOptions()
   },
 
   loadOptions: function() {
-    var path = '../../data/graph-json/'+window.mode+'/'+window.seriesType+'/'+window.distanceMethod+'/k-'+window.k+'/cibm-legislature-'+window.legislature+'.json'
+    var path = '../../data/graph-json/'+this.mode+'/'+this.seriesType+'/'+this.distanceMethod+'/k-'+this.k+'/cibm-legislature-'+this.legislature+'.json'
 
     console.log('Selecting: '+path)
     d3.json(path).then(function(graph) {
-      window.graph = graph;
+      Graph.graph = graph;
       Graph.updateSVG();
     }).catch(Graph.errorHandler)
   },
@@ -223,21 +223,21 @@ var Graph = {
   },
 
   errorHandler: function() {
-    alert('No graph data found for expense \''+window.seriesType+'\', distance \''+window.distanceMethod+'\', k '+window.k+" and legislature "+window.legislature);
+    alert('No graph data found for expense \''+this.seriesType+'\', distance \''+this.distanceMethod+'\', k '+this.k+" and legislature "+this.legislature);
   },
 
   init: function() {
     // Constant definition
-    window.mode = 'standard';
-    window.seriesType = 'default';
-    window.distanceMethod = 'JS';
-    window.k = 5;
-    window.legislature = 54;
+    this.mode = 'standard';
+    this.seriesType = 'default';
+    this.distanceMethod = 'JS';
+    this.k = 5;
+    this.legislature = 54;
 
     d3.json('../../data/graph-json/standard/default/JS/k-5/cibm-legislature-54.json').then(function(json){
-      window.graph = json;
+      Graph.graph = json;
 
       Graph.updateSVG();
-    }).catch(Graph.errorHandler)
+    }).catch(this.errorHandler)
   }
 };

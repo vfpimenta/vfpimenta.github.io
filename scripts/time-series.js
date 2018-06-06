@@ -20,17 +20,17 @@ var TimeSeries = {
   	canvas.attr("transform", "translate(" + margin.left + "," + margin.top + ")")
 
     var color = d3.scaleOrdinal(d3.schemeCategory10);
-    Array.from(new Set(window.congressman_ts.map(d=>d.node.group))).sort((a,b)=>a-b).forEach(function(entry) {
+    Array.from(new Set(this.congressman_ts.map(d=>d.node.group))).sort((a,b)=>a-b).forEach(function(entry) {
       color(entry)
     })
 
   	// Data parsing
-  	if(window.selectedOptions && window.selectedOptions.length > 0){
-  		var parsedData = window.congressman_ts.filter(function(entry) {
-        return window.selectedOptions.includes(entry[window.selectedAttribute])
+  	if(this.selectedOptions && this.selectedOptions.length > 0){
+  		var parsedData = this.congressman_ts.filter(function(entry) {
+        return TimeSeries.selectedOptions.includes(entry[TimeSeries.selectedAttribute])
       })
   	} else {
-  		var parsedData = window.congressman_ts
+  		var parsedData = this.congressman_ts
   	}
 
     var expenseDomain = d3.extent([].concat.apply([], parsedData.map(d=>d.expenses)))
@@ -39,7 +39,7 @@ var TimeSeries = {
   	var yScale = d3.scaleLinear()
   	.domain(expenseDomain).range([height-margin.top,0]);
   	var xScale = d3.scaleTime()
-  	.domain([TimeSeries.getDate(window.sections.start), TimeSeries.getDate(window.sections.end)]).range([0, width])
+  	.domain([TimeSeries.getDate(this.sections.start), TimeSeries.getDate(this.sections.end)]).range([0, width])
 
   	var yAxis = d3.axisLeft(yScale);
   	var xAxis = d3.axisBottom(xScale)
@@ -55,8 +55,8 @@ var TimeSeries = {
     .attr("name", d=>d.name)
     .attr("data-marked", "false")
   	.attr("d", function(d){
-  		return d.expenses.slice(window.sections.start, window.sections.end).map(function(entry, index){
-  			return "L "+xScale(TimeSeries.getDate(index+window.sections.start))+" "+yScale(entry);
+  		return d.expenses.slice(TimeSeries.sections.start, TimeSeries.sections.end).map(function(entry, index){
+  			return "L "+xScale(TimeSeries.getDate(index+TimeSeries.sections.start))+" "+yScale(entry);
   		}).join(" ").replaceAt(0, "M");
   	})
   	.attr("stroke", d=>color(d.node.group))
@@ -98,7 +98,7 @@ var TimeSeries = {
   // ==========================================================================
 
   parseJson: function(raw_data) {
-    var path = '../../data/graph-json/'+window.mode+'/'+window.seriesType+'/'+window.distanceMethod+'/k-'+window.k+'/cibm-legislature-'+window.legislature+'.json'
+    var path = '../../data/graph-json/'+Graph.mode+'/'+Graph.seriesType+'/'+Graph.distanceMethod+'/k-'+Graph.k+'/cibm-legislature-'+Graph.legislature+'.json'
     return d3.json(path).then(function(graph) {
       var parsed = []
       var ids = Object.keys(raw_data)
@@ -132,7 +132,7 @@ var TimeSeries = {
       checkedRadio = checkedRadio.toLowerCase().replace(/ /g,'-')+'_'
     }
 
-    if (window.normalize){
+    if (this.normalize){
       path = 'time-series-json/normalized'
     }else{
       path = 'time-series-json/standard'
@@ -141,7 +141,7 @@ var TimeSeries = {
   	console.log('Selecting: congressman_'+checkedRadio+'ts.json')
   	d3.json('../../data/'+path+'/congressman_'+checkedRadio+'ts.json').then(function(json) {
   		TimeSeries.parseJson(json).then(function(result) {
-        window.congressman_ts = result;
+        TimeSeries.congressman_ts = result;
 
         TimeSeries.updateSVG()
       });
@@ -149,8 +149,8 @@ var TimeSeries = {
   },
 
   changeSelection: function(groupName, attribute) {
-    window.selectedOptions = getCheckedOptions(groupName);
-    window.selectedAttribute = attribute;
+    this.selectedOptions = getCheckedOptions(groupName);
+    this.selectedAttribute = attribute;
 
     TimeSeries.updateSVG();
   },
@@ -167,7 +167,7 @@ var TimeSeries = {
   },
 
   changeSection: function(cod) {
-    window.sections = {
+    this.sections = {
       start: TimeSeries.bounds(cod)[0],
       end: TimeSeries.bounds(cod)[1]
     }
@@ -178,22 +178,22 @@ var TimeSeries = {
   normalizeSeries: function() {
     var toNorm = getCheckedOptions('norm')
     if (toNorm.length > 0){
-      window.normalize = true
+      this.normalize = true
       TimeSeries.changeDataset()
     }else{
-      window.normalize = false
+      this.normalize = false
       TimeSeries.changeDataset()
     }
   },
 
   init: function() {
     // Constant definition
-    window.normalize = false
-    window.sections = {start: 22, end: 70}
+    this.normalize = false
+    this.sections = {start: 22, end: 70}
 
   	d3.json('../../data/time-series-json/standard/congressman_ts.json').then(function(json){
   		TimeSeries.parseJson(json).then(function(result) {
-        window.congressman_ts = result;
+        TimeSeries.congressman_ts = result;
 
         TimeSeries.updateSVG()
       });
