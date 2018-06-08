@@ -89,7 +89,7 @@ function updateSVG(parsedData, sections){
   .attr("font-size", 10)
   .attr("text-anchor", "end")
   .selectAll("g")
-  .data(Object.keys(condensedData[sections.start].states).sort()).enter().append("g")
+  .data(Object.keys(condensedData[sections.start].states).sort().reverse()).enter().append("g")
   .attr("transform", function(d, i) {
     return "translate(0,"+i*11+")";
   })
