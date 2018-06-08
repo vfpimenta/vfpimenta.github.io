@@ -3,26 +3,43 @@
 // ==========================================================================
 
 function getDate(index) {
-  var month = index % 12 + 4
+  var month = index % 12 + 3
   var year = 2009 + Math.trunc(index / 12)
   return new Date(year, month, 1)
 };
 
 function updateSVG(parsedData, sections){
-  d3.select("#expense-svg").selectAll("g").remove()
-
   var svg = d3.select("#expense-svg")
-  var margin = {top: 5, right: 5, bottom: 20, left: 65};
-  var width = d3.select("#expense-svg").attr("width") - margin.left - margin.right;
-  var height = d3.select("#expense-svg").attr("height") - margin.top - margin.bottom;
-  var canvas = d3.select("#expense-svg").append("g");
+  svg.selectAll("g").remove()
+
+  var margin = {top: 5, right: 70, bottom: 20, left: 65};
+  var width = svg.attr("width") - margin.left - margin.right;
+  var height = svg.attr("height") - margin.top - margin.bottom;
+  var canvas = svg.append("g");
   canvas.attr("transform", "translate(" + margin.left + "," + margin.top + ")")
 
-  var color = d3.scaleOrdinal(d3.schemeCategory10);
+  // Custom color palette
+  var color = d3.scaleOrdinal().domain(["PE", "DF", "CE", "PI", "RJ", "SP", "PR", "SC", "RS", "ES", "MG", "MT", "GO", "BA", "PA", "AC", "RN", "PB", "AL", "SE", "AM", "MS", "MA", "RO", "RR", "AP", "TO"]).range(["#cdc0eb", "#00b205", "#9219c7", "#70de57", "#ff4beb", "#02be75", "#015af3", "#c2cf40", "#828aff", "#bbad00", "#016896", "#f26300", "#00c3db", "#d30026", "#a4d47d", "#ff77b9", "#507e00", "#ffa6c4", "#226a39", "#a8304a", "#a1cfcc", "#bb8300", "#ff9380", "#74591b", "#ffb548", "#e3c18b"]);
 
-  var condensedData = parsedData.map(d=>d.expenses).reduce(function(a, b){return a.map(function(v,i){return v+b[i];});});
+  var condensedData = parsedData.reduce(function(a, b){
+    return b.expenses.map(function(v, i){
+      var tmpState = {}
+      var tmpRaw = 0
+      if (a.length == 0) {
+        tmpState[b.state] = v
+      } else {
+        tmpState = a[i].states
+        tmpState[b.state] = (tmpState[b.state] || 0) + v
+        tmpRaw = a[i].raw 
+      }
+      return {
+        raw: tmpRaw + v,
+        states: tmpState
+      }
+    });
+  }, []);
 
-  var expenseDomain = d3.extent(condensedData)
+  var expenseDomain = [0, d3.extent(condensedData.map(d=>d.raw))[1]]
   var dateDomain = d3.range(sections.start, sections.end).map(d=>getDate(d))
 
   // Axes plotting
@@ -36,8 +53,6 @@ function updateSVG(parsedData, sections){
 
   var yAxis = d3.axisLeft(yScale);
   var xAxis = d3.axisBottom(xScaleAxis)
-  //.tickValues(xScale.domain().filter(function(d,i){ return !(i%5)}))
-  //.tickFormat(d3.timeFormat("%Y-%m-%d"));
 
   var groupY = d3.select("#expense-svg").append("g")
   .call(yAxis).attr("transform","translate("+margin.left+","+margin.top+")")
@@ -45,12 +60,51 @@ function updateSVG(parsedData, sections){
   .call(xAxis).attr("transform","translate("+margin.left+","+height+")")
 
   // Bar plotting
-  canvas
-  .selectAll("g").data(condensedData.slice(sections.start, sections.end)).enter().append("rect")
+  canvas.selectAll("g")
+  .data(condensedData.slice(sections.start, sections.end))
+  .enter().append("g")
   .attr("x",(d,i)=>xScaleData(getDate(i+sections.start)))
-  .attr("y", d=>yScale(d))
-  .attr("height",d=>height-yScale(d))
-  .attr("width",xScaleData.bandwidth())
+  .selectAll("rect").data(function(d){
+    return Object.keys(d.states).sort().map(function(v, i) {
+      if(i > 0){
+        return {current: d.states[v], sumPrevious: Object.keys(d.states).sort().map(u=>d.states[u]).slice(0,i).reduce((a,b)=>a+b), state: v}
+      } else {
+        return {current: d.states[v], sumPrevious: 0, state: v}
+      }
+    })
+  }).enter().append("rect")
+  .attr("y", function(d) {
+    return yScale(d.current+d.sumPrevious)-margin.top
+  })
+  .attr("height", function(d) {
+    return height-yScale(d.current)
+  })
+  .attr("width", xScaleData.bandwidth())
+  .attr("fill", d=>color(d.state))
+  .attr("x", function(d){return d3.select(this.parentNode).attr("x")})
+
+  // Legend plotting
+  var legend = svg.append("g")
+  .attr("font-family", "sans-serif")
+  .attr("font-size", 10)
+  .attr("text-anchor", "end")
+  .selectAll("g")
+  .data(Object.keys(condensedData[sections.start].states).sort()).enter().append("g")
+  .attr("transform", function(d, i) {
+    return "translate(0,"+i*11+")";
+  })
+
+  legend.append("rect")
+  .attr("x", +svg.attr("width")-11)
+  .attr("width", 10)
+  .attr("height", 10)
+  .attr("fill", d=>color(d))
+
+  legend.append("text")
+  .attr("x", +svg.attr("width")-21)
+  .attr("y", 4.5)
+  .attr("dy", "0.32em")
+  .text(d=>d)
 };
 
 function parseJson(raw_data) {

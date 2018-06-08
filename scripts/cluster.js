@@ -2,10 +2,10 @@ function buildOptions(dataset, parentFieldset, groupName, type, eventListener){
   var fieldset = document.getElementById(parentFieldset)
 
   // Sorting options alphabetically
-  dataset = dataset.sort(function(argA, argB) {
-    if (argA.name > argB.name) {
+  dataset = dataset.sort(function(a, b) {
+    if (a.name > b.name) {
       return 1;
-    }else if (argA.name < argB.name) {
+    }else if (a.name < b.name) {
       return -1;
     }else{
       return 0;

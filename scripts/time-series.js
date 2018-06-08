@@ -4,7 +4,7 @@ var TimeSeries = {
   // ==========================================================================
 
   getDate: function(index) {
-  	var month = index % 12 + 4
+  	var month = index % 12 + 3
   	var year = 2009 + Math.trunc(index / 12)
   	return new Date(year, month, 1)
   },
