@@ -56,11 +56,12 @@
         <fieldset>
           <legend>Type</legend>
 
-          <input type="radio" name="opt-type" id="type-expense" checked="checked" /><span>By expense</span><br/>
+          <input type="radio" name="opt-type" id="states" checked="checked" onclick="changeType(this.name)" /><span>By state</span><br/>
 
-          <input type="radio" name="opt-type" id="type-state" /><span>By state</span><br/>
+          <input type="radio" name="opt-type" id="parties" onclick="changeType(this.name)" /><span>By party</span><br/>
 
-          <input type="radio" name="opt-type" id="type-party" /><span>By party</span><br/>                            
+          <input type="radio" name="opt-type" id="expenses"  onclick="changeType(this.name)" /><span>By subquota</span><br/>
+                                      
         </fieldset>
       </div>
 
@@ -81,7 +82,7 @@
       <section>
         <!-- article 1 -->
         <article>
-          <h2><a href="#">Expenses breakdown</a></h2>
+          <h2><a href="#">Expenses over time</a></h2>
           <address>
           Victor, vfp@cin.ufpe.br
           </address>
