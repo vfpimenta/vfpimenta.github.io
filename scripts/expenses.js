@@ -50,8 +50,8 @@ function getColor(type) {
   }
 }
 
-function updateSVG(){
-  var svg = d3.select("#expense-svg")
+function updateHistogramSVG(){
+  var svg = d3.select("#expense-hist-svg")
   svg.selectAll("g").remove()
 
   var margin = {top: 5, right: 70, bottom: 20, left: 65};
@@ -77,9 +77,9 @@ function updateSVG(){
   var yAxis = d3.axisLeft(yScale);
   var xAxis = d3.axisBottom(xScaleAxis)
 
-  var groupY = d3.select("#expense-svg").append("g")
+  var groupY = d3.select("#expense-hist-svg").append("g")
   .call(yAxis).attr("transform","translate("+margin.left+","+margin.top+")")
-  var groupX = d3.select("#expense-svg").append("g")
+  var groupX = d3.select("#expense-hist-svg").append("g")
   .call(xAxis).attr("transform","translate("+margin.left+","+height+")")
 
   // Bar plotting
@@ -132,6 +132,45 @@ function updateSVG(){
   .text(d=>d)
 };
 
+function updateDonnutSVG() {
+  // Non-filtered version
+  var singleType = ''
+  if (window.resolutionType == 'states') singleType = 'state'
+  else if (window.resolutionType == 'parties') singleType = 'party'
+
+  var objectData = {}
+  switch(window.resolutionType){
+    case 'states':
+    case 'parties':
+      window.generalData.map(function(d, i) {
+        d[Object.keys(d)[0]].map(function(v, j) {
+          if (objectData[v[singleType]]) {
+            objectData[v[singleType]] += v.expense
+          } else {
+            objectData[v[singleType]] = v.expense
+          }
+        })
+      })
+      objectData = Object.keys(objectData).map(function(d, i) {
+        return {
+          key: d,
+          value: objectData[d]
+        }
+      })
+      break;
+    case 'expenses':
+      objectData = window.generalData.map(function(d, i) {
+        return {
+          key: Object.keys(d)[0],
+          value: d[Object.keys(d)[0]].map(v=>v.expense).reduce((a,b)=>a+b)
+        }
+      })
+      break;
+  }
+
+  console.log(objectData)
+}
+
 function parseJson(raw_data) {
   var parsed = []
   var ids = Object.keys(raw_data)
@@ -169,7 +208,8 @@ function getCheckedOptions(groupName) {
 
 function changeType(groupName) {
   window.resolutionType = getCheckedOptions(groupName)[0]
-  updateSVG();
+  updateHistogramSVG();
+  updateDonnutSVG();
 }
 
 window.onload = function() {
@@ -177,6 +217,9 @@ window.onload = function() {
   d3.json(filePath+'/congressman_ts.json').then(function(baseJson){
     parseJson(baseJson).then(function(baseResult) {
       window.resolutionType = 'states'
+      window.stateFilters = []
+      window.partyFilters = []
+      window.expenseFilters = []
       window.sections = {start: 22, end: 70}
       window.condensedData = baseResult.reduce(function(a, b){
         return b.expenses.map(function(v, i){
@@ -203,6 +246,7 @@ window.onload = function() {
       }, []);
 
       var seedCount = 0
+      window.generalData = []
       expenseFileSeeds.forEach(function(seed) {
         var fileName = "congressman_"+seed+"_ts.json";
         d3.json(filePath+'/'+fileName).then(function(seedJson){
@@ -226,10 +270,22 @@ window.onload = function() {
               }
             });
 
+            var tmpObj = {}
+            tmpObj[seed] = seedResult.map(function(v, i) {
+              return {
+                id: v.id,
+                state: v.state,
+                party: v.party,
+                expense: v.expenses.reduce((a,b)=>a+b)
+              }
+            })
+            window.generalData.push(tmpObj)
+
             seedCount++
             // Wait for all callbacks to finish
             if(seedCount == 22){
-              updateSVG();
+              updateHistogramSVG();
+              updateDonnutSVG();
             }
           });
         });
