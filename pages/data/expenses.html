@@ -9,6 +9,16 @@
   <script type="text/javascript" src="../../scripts/expenses.js"></script>
   <script src="https://d3js.org/d3.v5.min.js"></script>
   <!--[if lt IE 9]><script src="scripts/html5shiv.js"></script><![endif]-->
+  <script type="text/javascript">
+    function hideFilter(el) {
+      var divs = document.getElementsByName('filter');
+      divs.forEach(function(entry) {
+        entry.style.display = "inherit";
+      })
+
+      document.getElementById("filter-"+el.id).style.display = "none";
+    }
+  </script>
 </head>
 <body>
 <div class="wrapper row1">
@@ -56,11 +66,11 @@
         <fieldset>
           <legend>Type</legend>
 
-          <input type="radio" name="opt-type" id="states" checked="checked" onclick="changeType(this.name)" /><span>By state</span><br/>
+          <input type="radio" name="opt-type" id="states" checked="checked" onclick="changeType(this.name); hideFilter(this);" /><span>By state</span><br/>
 
-          <input type="radio" name="opt-type" id="parties" onclick="changeType(this.name)" /><span>By party</span><br/>
+          <input type="radio" name="opt-type" id="parties" onclick="changeType(this.name); hideFilter(this);" /><span>By party</span><br/>
 
-          <input type="radio" name="opt-type" id="expenses"  onclick="changeType(this.name)" /><span>By subquota</span><br/>
+          <input type="radio" name="opt-type" id="expenses"  onclick="changeType(this.name); hideFilter(this);" /><span>By subquota</span><br/>
                                       
         </fieldset>
       </div>
@@ -75,6 +85,40 @@
 
           <input type="radio" name="opt-legislature" id="55" onclick="changeSection(55);" /><span>55</span>                            
         </fieldset>
+      </div>
+
+      <br/><br/>
+      <h2 class="title">Filters</h2>
+
+      <div id="filter-states" name="filter" class="half-width" style="display: none;">
+        <fieldset style="float: left;">
+          <legend>State</legend>
+
+          <div class="option-box" id="state-fieldset">
+            <input type="checkbox" name="state-select-all" onmousedown="" /><span>Select all</span><br/>
+          </div>
+        </fieldset>
+      </div>
+
+      <div id="filter-parties" name="filter" class="half-width">
+        <fieldset style="float: left;">
+          <legend>Party</legend>
+
+          <div class="option-box" id="party-fieldset">
+            <input type="checkbox" name="party-select-all" onmousedown="" /><span>Select all</span><br/>
+          </div>
+        </fieldset>
+      </div>
+
+      <div id="filter-expenses" name="filter" class="half-width">
+        <fieldset style="float: left;">
+          <legend>Subquota</legend>
+
+          <div class="option-box" id="subquota-fieldset">
+            <input type="checkbox" name="subquota-group" id="NONE" onclick="" /><span>All types</span><br/>
+          </div>
+        </fieldset>
+      </div>
     </aside>
     <!-- main content -->
     <div id="content">
@@ -95,7 +139,7 @@
         </article>
 
         <article>
-          <h2><a href="#">Expense slice</a></h2>
+          <h2><a href="#">Expenses slice</a></h2>
           <address>
           Victor, vfp@cin.ufpe.br
           </address>

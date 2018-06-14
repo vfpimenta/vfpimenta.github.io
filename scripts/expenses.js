@@ -102,11 +102,25 @@ function updateHistogramSVG(){
   .attr("height", function(d) {
     return height-yScale(d.current)
   })
-  .attr("width", xScaleData.bandwidth())
+  .attr("class", d=>d.name.replace(/\,/g, ''))
   .attr("stroke-width", 1)
   .attr("stroke", "black")
   .attr("fill", d=>color(d.name))
+  .attr("fill-opacity", 0.8)
+  .attr("width", xScaleData.bandwidth())
   .attr("x", function(d){return d3.select(this.parentNode).attr("x")})
+  .on("mouseover", function() {
+    d3.selectAll("."+d3.select(this).attr("class"))
+    .attr("fill-opacity", 1)
+    .attr("stroke", "red")
+    .raise()
+  })
+  .on("mouseout", function() {
+    d3.selectAll("."+d3.select(this).attr("class"))
+    .attr("fill-opacity", 0.8)
+    .attr("stroke", "black")
+    .raise()
+  })
 
   // Legend plotting
   var legend = svg.append("g")
@@ -124,6 +138,23 @@ function updateHistogramSVG(){
   .attr("width", 10)
   .attr("height", 10)
   .attr("fill", d=>color(d))
+  .attr("fill-opacity", 0.8)
+  .on("mouseover", function(d) {
+    d3.selectAll("."+d.replace(/\,/g, ''))
+    .attr("fill-opacity", 1)
+    .attr("stroke", "red")
+    .raise()
+
+    d3.select(this).attr("fill-opacity", 1)
+  })
+  .on("mouseout", function(d) {
+    d3.selectAll("."+d.replace(/\,/g, ''))
+    .attr("fill-opacity", 0.8)
+    .attr("stroke", "black")
+    .raise()
+
+    d3.select(this).attr("fill-opacity", 0.8)
+  })
 
   legend.append("text")
   .attr("x", +svg.attr("width")-21)
@@ -133,7 +164,7 @@ function updateHistogramSVG(){
 };
 
 function updateDonnutSVG() {
-  // Non-filtered version
+  // Build data
   var singleType = ''
   if (window.resolutionType == 'states') singleType = 'state'
   else if (window.resolutionType == 'parties') singleType = 'party'
@@ -168,7 +199,94 @@ function updateDonnutSVG() {
       break;
   }
 
-  console.log(objectData)
+  // TODO: Filter data
+
+  // Plot data
+  var svg = d3.select("#expense-donnut-svg")
+  svg.selectAll("g").remove()
+
+  var margin = {top: 20, right: 20, bottom: 20, left: 20};
+  var width = svg.attr("width") - margin.left - margin.right;
+  var height = svg.attr("height") - margin.top - margin.bottom;
+  var canvas = svg.append("g");
+  canvas.attr("transform", "translate(" + (width/2) + "," + (height/2) + ")")
+
+  var donutWidth = 75;
+  var radius = Math.min(width, height)/2;
+  var color = getColor(window.resolutionType);
+
+  var arc = d3.arc()
+  .innerRadius(radius - donutWidth)
+  .outerRadius(radius);
+
+  var pie = d3.pie()
+  .value(function(d) { return d.value; })
+  .sort(null);
+
+  var path = canvas.selectAll('g').data(pie(objectData)).enter().append('path')
+  .attr('d', arc)
+  .attr("stroke-width", 1)
+  .attr("stroke", "black")
+  .attr("class", d=>"p"+d.data.key.replace(/\,/g, ''))
+  .attr('fill', function(d, i) { 
+    return color(d.data.key);
+  })
+  .attr("fill-opacity", 0.8)
+  .on("mouseover", function() {
+    d3.select(this)
+    .attr("fill-opacity", 1)
+    .attr("stroke-width", 2)
+    .attr("stroke", "red")
+    .raise()
+  })
+  .on("mouseout", function() {
+    d3.select(this)
+    .attr("fill-opacity", 0.8)
+    .attr("stroke-width", 1)
+    .attr("stroke", "black")
+  })
+
+  // Legend plotting
+  var legend = svg.append("g")
+  .attr("font-family", "sans-serif")
+  .attr("font-size", 10)
+  .attr("text-anchor", "end")
+  .selectAll("g")
+  .data(Object.keys(window.condensedData[window.sections.start][window.resolutionType]).sort().reverse()).enter().append("g")
+  .attr("transform", function(d, i) {
+    return "translate(0,"+i*11+")";
+  })
+
+  legend.append("rect")
+  .attr("x", +svg.attr("width")-11)
+  .attr("width", 10)
+  .attr("height", 10)
+  .attr("fill", d=>color(d))
+  .attr("fill-opacity", 0.8)
+  .on("mouseover", function(d) {
+    d3.selectAll(".p"+d.replace(/\,/g, ''))
+    .attr("fill-opacity", 1)
+    .attr("stroke", "red")
+    .attr("stroke-width", 2)
+    .raise()
+
+    d3.select(this).attr("fill-opacity", 1)
+  })
+  .on("mouseout", function(d) {
+    d3.selectAll(".p"+d.replace(/\,/g, ''))
+    .attr("fill-opacity", 0.8)
+    .attr("stroke", "black")
+    .attr("stroke-width", 1)
+    .raise()
+
+    d3.select(this).attr("fill-opacity", 0.8)
+  })
+
+  legend.append("text")
+  .attr("x", +svg.attr("width")-21)
+  .attr("y", 4.5)
+  .attr("dy", "0.32em")
+  .text(d=>d)
 }
 
 function parseJson(raw_data) {
@@ -194,6 +312,53 @@ function parseJson(raw_data) {
   });
 };
 
+function buildOptions(dataset, parentFieldset, groupName, type, eventListener){
+  var fieldset = document.getElementById(parentFieldset)
+
+  // Sorting options alphabetically
+  dataset = dataset.sort(function(a, b) {
+    if (a.name > b.name) {
+      return 1;
+    }else if (a.name < b.name) {
+      return -1;
+    }else{
+      return 0;
+    }
+  })
+
+  for (var i = 0; i < dataset.length; i++) {
+    var checkbox = createNewBox(groupName, dataset[i].id, type)
+    addListener(checkbox, 'click', eventListener)
+
+    var span = document.createElement('span')
+    span.innerHTML = dataset[i].name
+
+    fieldset.appendChild(checkbox)
+    fieldset.appendChild(span)
+    fieldset.appendChild(document.createElement('br'))
+  }
+};
+
+function createNewBox(name, id, type){
+    var checkbox = document.createElement('input'); 
+    checkbox.type = type;
+    checkbox.name = name;
+    checkbox.id = id;
+    return checkbox;
+};
+
+function addListener(element, eventName, handler) {
+  if (element.addEventListener) {
+    element.addEventListener(eventName, handler, false);
+  }
+  else if (element.attachEvent) {
+    element.attachEvent('on' + eventName, handler);
+  }
+  else {
+    element['on' + eventName] = handler;
+  }
+};
+
 function getCheckedOptions(groupName) {
   var checked = []
   var congressmanBoxes = document.getElementsByName(groupName)
@@ -212,16 +377,9 @@ function changeType(groupName) {
   updateDonnutSVG();
 }
 
-window.onload = function() {
-  var filePath = "../../data/time-series-json/standard";
-  d3.json(filePath+'/congressman_ts.json').then(function(baseJson){
-    parseJson(baseJson).then(function(baseResult) {
-      window.resolutionType = 'states'
-      window.stateFilters = []
-      window.partyFilters = []
-      window.expenseFilters = []
-      window.sections = {start: 22, end: 70}
-      window.condensedData = baseResult.reduce(function(a, b){
+function buildData(inputData, step, aux=undefined){
+  if (step == 1) {
+    return inputData.reduce(function(a, b){
         return b.expenses.map(function(v, i){
           var tmpState = {}
           var tmpParty = {}
@@ -244,6 +402,38 @@ window.onload = function() {
           }
         });
       }, []);
+  }else if (step == 2) {
+    return window.condensedData.map(function(v, i){
+      var isum = inputData.map(d=>d.expenses).reduce(function(a, b) {
+        return a+b[i];
+      }, 0)
+
+      var tmpExpenses = {}
+      if (v.expenses) {
+        tmpExpenses = v.expenses
+      }
+      tmpExpenses[aux] = isum
+
+      return {
+        raw: v.raw,
+        states: v.states,
+        parties: v.parties,
+        expenses: tmpExpenses
+      }
+    });
+  }
+}
+
+window.onload = function() {
+  var filePath = "../../data/time-series-json/standard";
+  d3.json(filePath+'/congressman_ts.json').then(function(baseJson){
+    parseJson(baseJson).then(function(baseResult) {
+      window.resolutionType = 'states'
+      window.stateFilters = []
+      window.partyFilters = []
+      window.expenseFilters = []
+      window.sections = {start: 22, end: 70}
+      window.condensedData = buildData(baseResult, 1);
 
       var seedCount = 0
       window.generalData = []
@@ -251,24 +441,7 @@ window.onload = function() {
         var fileName = "congressman_"+seed+"_ts.json";
         d3.json(filePath+'/'+fileName).then(function(seedJson){
           parseJson(seedJson).then(function(seedResult) {
-            window.condensedData = window.condensedData.map(function(v, i){
-              var isum = seedResult.map(d=>d.expenses).reduce(function(a, b) {
-                return a+b[i];
-              }, 0)
-
-              var tmpExpenses = {}
-              if (v.expenses) {
-                tmpExpenses = v.expenses
-              }
-              tmpExpenses[seed] = isum
-
-              return {
-                raw: v.raw,
-                states: v.states,
-                parties: v.parties,
-                expenses: tmpExpenses
-              }
-            });
+            window.condensedData = buildData(seedResult, 2, seed);
 
             var tmpObj = {}
             tmpObj[seed] = seedResult.map(function(v, i) {
@@ -284,6 +457,12 @@ window.onload = function() {
             seedCount++
             // Wait for all callbacks to finish
             if(seedCount == 22){
+              buildOptions(Object.keys(window.condensedData[window.sections.start].states).map(function(d){return {id: d, name: d}}), 'state-fieldset', 'state-group', 'checkbox', function(d){console.log(d)});
+
+              buildOptions(Object.keys(window.condensedData[window.sections.start].parties).map(function(d){return {id: d, name: d}}), 'party-fieldset', 'party-group', 'checkbox', function(d){console.log(d)});
+
+              buildOptions(Object.keys(window.condensedData[window.sections.start].expenses).map(function(d){return {id: d, name: d}}), 'subquota-fieldset', 'subquota-group', 'checkbox', function(d){console.log(d)});
+
               updateHistogramSVG();
               updateDonnutSVG();
             }
