@@ -121,6 +121,7 @@ function updateHistogramSVG(){
     .attr("stroke", "black")
     .raise()
   })
+  .append('title').text(d=>d.name)
 
   // Legend plotting
   var legend = svg.append("g")
@@ -199,8 +200,6 @@ function updateDonnutSVG() {
       break;
   }
 
-  // TODO: Filter data
-
   // Plot data
   var svg = d3.select("#expense-donnut-svg")
   svg.selectAll("g").remove()
@@ -244,6 +243,10 @@ function updateDonnutSVG() {
     .attr("fill-opacity", 0.8)
     .attr("stroke-width", 1)
     .attr("stroke", "black")
+  })
+  .append('title').text(function(d){
+    var pct = Math.round(d.data.value/objectData.map(v=>v.value).reduce((a,b)=>a+b)*100)
+    return d.data.key+"\n"+pct+"%"
   })
 
   // Legend plotting
@@ -373,102 +376,151 @@ function getCheckedOptions(groupName) {
 
 function changeType(groupName) {
   window.resolutionType = getCheckedOptions(groupName)[0]
+
+  window.stateFilters = []
+  window.partyFilters = []
+  window.expenseFilters = []
+  var names = ['party', 'state', 'subquota'];
+  for (var i = 0; i < names.length; i++) {
+    var name = names[i];document.getElementsByName(name+'-group').forEach(function(box) {box.checked = false;})
+  }
+
   updateHistogramSVG();
   updateDonnutSVG();
 }
 
-function buildData(inputData, step, aux=undefined){
-  if (step == 1) {
-    return inputData.reduce(function(a, b){
-        return b.expenses.map(function(v, i){
-          var tmpState = {}
-          var tmpParty = {}
-          var tmpRaw = 0
-          if (a.length == 0) {
-            tmpState[b.state] = v
-            tmpParty[b.party] = v
-          } else {
-            tmpState = a[i].states
-            tmpState[b.state] = (tmpState[b.state] || 0) + v
-            tmpParty = a[i].parties
-            tmpParty[b.party] = (tmpParty[b.party] || 0) + v
-
-            tmpRaw = a[i].raw 
-          }
-          return {
-            raw: tmpRaw + v,
-            states: tmpState,
-            parties: tmpParty
-          }
-        });
-      }, []);
-  }else if (step == 2) {
-    return window.condensedData.map(function(v, i){
-      var isum = inputData.map(d=>d.expenses).reduce(function(a, b) {
-        return a+b[i];
-      }, 0)
-
-      var tmpExpenses = {}
-      if (v.expenses) {
-        tmpExpenses = v.expenses
-      }
-      tmpExpenses[aux] = isum
-
-      return {
-        raw: v.raw,
-        states: v.states,
-        parties: v.parties,
-        expenses: tmpExpenses
-      }
-    });
+function filterData(name) {
+  var filterList = getCheckedOptions(name+'-group')
+  switch(name){
+    case 'party':
+      window.partyFilters = filterList;
+      break;
+    case 'state':
+      window.stateFilters = filterList;
+      break;
+    case 'subquota':
+      window.expenseFilters = filterList;
+      break;
   }
+
+  buildData()
 }
 
-window.onload = function() {
+function buildData(){
+  window.condensedData = []
+  window.generalData = []
   var filePath = "../../data/time-series-json/standard";
-  d3.json(filePath+'/congressman_ts.json').then(function(baseJson){
-    parseJson(baseJson).then(function(baseResult) {
-      window.resolutionType = 'states'
-      window.stateFilters = []
-      window.partyFilters = []
-      window.expenseFilters = []
-      window.sections = {start: 22, end: 70}
-      window.condensedData = buildData(baseResult, 1);
+  var seedCount = 0
+  expenseFileSeeds.forEach(function(seed) {
+    var fileName = "congressman_"+seed+"_ts.json";
+    d3.json(filePath+'/'+fileName).then(function(seedJson){
+      parseJson(seedJson).then(function(seedResult) {
+        if(window.expenseFilters.length == 0 || window.expenseFilters.includes(seed)){
+          var seedData = seedResult.reduce(function(a, b){
+            return b.expenses.map(function(v, i){
+              var inc = 0
+              if ((window.stateFilters.length == 0 || window.stateFilters.includes(b.state)) && (window.partyFilters.length == 0 || window.partyFilters.includes(b.party))){
+                inc = v
+              }
 
-      var seedCount = 0
-      window.generalData = []
-      expenseFileSeeds.forEach(function(seed) {
-        var fileName = "congressman_"+seed+"_ts.json";
-        d3.json(filePath+'/'+fileName).then(function(seedJson){
-          parseJson(seedJson).then(function(seedResult) {
-            window.condensedData = buildData(seedResult, 2, seed);
+              var tmpState = {}
+              var tmpParty = {}
+              var tmpExpenses = {}
+              var tmpRaw = 0
+              if (a.length == 0) {
+                tmpState[b.state] = inc
+                tmpParty[b.party] = inc
+                tmpExpenses[seed] = inc
+              } else {
+                tmpState = a[i].states
+                tmpState[b.state] = (tmpState[b.state] || 0) + inc
+                tmpParty = a[i].parties
+                tmpParty[b.party] = (tmpParty[b.party] || 0) + inc
+                tmpExpenses = a[i].expenses
+                tmpExpenses[seed] = (tmpExpenses[seed] || 0) + inc
 
-            var tmpObj = {}
-            tmpObj[seed] = seedResult.map(function(v, i) {
+                tmpRaw = a[i].raw 
+              }
+
               return {
-                id: v.id,
-                state: v.state,
-                party: v.party,
-                expense: v.expenses.reduce((a,b)=>a+b)
+                raw: tmpRaw + inc,
+                states: tmpState,
+                parties: tmpParty,
+                expenses: tmpExpenses
+              }
+            });
+          }, []);
+
+          if(window.condensedData && window.condensedData.length > 0){
+            window.condensedData = window.condensedData.map(function(d, i) {
+              return {
+                raw: d.raw + seedData[i].raw,
+                states: d.states.merge(seedData[i].states, (a,b)=>a+b),
+                parties: d.parties.merge(seedData[i].parties, (a,b)=>a+b),
+                expenses: d.expenses.merge(seedData[i].expenses, (a,b)=>a+b)
               }
             })
-            window.generalData.push(tmpObj)
+          }else{
+            window.condensedData = seedData
+          }
 
-            seedCount++
-            // Wait for all callbacks to finish
-            if(seedCount == 22){
-              buildOptions(Object.keys(window.condensedData[window.sections.start].states).map(function(d){return {id: d, name: d}}), 'state-fieldset', 'state-group', 'checkbox', function(d){console.log(d)});
-
-              buildOptions(Object.keys(window.condensedData[window.sections.start].parties).map(function(d){return {id: d, name: d}}), 'party-fieldset', 'party-group', 'checkbox', function(d){console.log(d)});
-
-              buildOptions(Object.keys(window.condensedData[window.sections.start].expenses).map(function(d){return {id: d, name: d}}), 'subquota-fieldset', 'subquota-group', 'checkbox', function(d){console.log(d)});
-
-              updateHistogramSVG();
-              updateDonnutSVG();
+          var tmpObj = {}
+          tmpObj[seed] = seedResult
+          .filter(function(v, i) {
+            return (window.stateFilters.length == 0 || window.stateFilters.includes(v.state)) && (window.partyFilters.length == 0 || window.partyFilters.includes(v.party));
+          })
+          .map(function(v, i) {
+            return {
+              id: v.id,
+              state: v.state,
+              party: v.party,
+              expense: v.expenses.reduce((a,b)=>a+b)
             }
-          });
-        });
+          })
+          window.generalData.push(tmpObj)
+        }
+
+        seedCount++
+        // Wait for all callbacks to finish
+        if(seedCount == 22){
+
+          if(!window.optionsState){
+            buildOptions(Object.keys(window.condensedData[window.sections.start].states).map(function(d){return {id: d, name: d}}), 'state-fieldset', 'state-group', 'checkbox', function(){filterData('state')});
+
+            buildOptions(Object.keys(window.condensedData[window.sections.start].parties).map(function(d){return {id: d, name: d}}), 'party-fieldset', 'party-group', 'checkbox', function(){filterData('party')});
+
+            buildOptions(Object.keys(window.condensedData[window.sections.start].expenses).map(function(d){return {id: d, name: d}}), 'subquota-fieldset', 'subquota-group', 'checkbox', function(){filterData('subquota')});
+
+            window.optionsState = true;
+          }
+
+          updateHistogramSVG();
+          updateDonnutSVG();
+        }
       });
     });
   });
+}
+
+window.onload = function() {
+  window.resolutionType = 'states'
+  window.stateFilters = []
+  window.partyFilters = []
+  window.expenseFilters = []
+  window.sections = {start: 22, end: 70}
+  window.generalData = []
+  window.optionsState = false
+
+  buildData();
+};
+
+Object.prototype.merge = function(other, op) {
+  aux = this; obj = {};
+  Object.keys(aux).forEach(function(key) {
+    obj[key] = op((aux[key]||0), (other[key]||0))
+  })
+  Object.keys(other).forEach(function(key) {
+    obj[key] = op((aux[key]||0), (other[key]||0))
+  })
+  return obj;
 };
