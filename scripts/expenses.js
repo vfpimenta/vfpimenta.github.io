@@ -380,6 +380,7 @@ function changeType(groupName) {
   window.stateFilters = []
   window.partyFilters = []
   window.expenseFilters = []
+  window.congressmanFilters = []
   var names = ['party', 'state', 'subquota'];
   for (var i = 0; i < names.length; i++) {
     var name = names[i];document.getElementsByName(name+'-group').forEach(function(box) {box.checked = false;})
@@ -401,9 +402,12 @@ function filterData(name) {
     case 'subquota':
       window.expenseFilters = filterList;
       break;
+    case 'congressman':
+      window.congressmanFilters = filterList;
+      break;
   }
 
-  buildData()
+  buildData();
 }
 
 function buildData(){
@@ -419,7 +423,7 @@ function buildData(){
           var seedData = seedResult.reduce(function(a, b){
             return b.expenses.map(function(v, i){
               var inc = 0
-              if ((window.stateFilters.length == 0 || window.stateFilters.includes(b.state)) && (window.partyFilters.length == 0 || window.partyFilters.includes(b.party))){
+              if ((window.stateFilters.length == 0 || window.stateFilters.includes(b.state)) && (window.partyFilters.length == 0 || window.partyFilters.includes(b.party)) && (window.congressmanFilters.length == 0 || window.congressmanFilters.includes(b.id))){
                 inc = v
               }
 
@@ -467,7 +471,7 @@ function buildData(){
           var tmpObj = {}
           tmpObj[seed] = seedResult
           .filter(function(v, i) {
-            return (window.stateFilters.length == 0 || window.stateFilters.includes(v.state)) && (window.partyFilters.length == 0 || window.partyFilters.includes(v.party));
+            return (window.stateFilters.length == 0 || window.stateFilters.includes(v.state)) && (window.partyFilters.length == 0 || window.partyFilters.includes(v.party)) && (window.congressmanFilters.length == 0 || window.congressmanFilters.includes(v.id));
           })
           .map(function(v, i) {
             return {
@@ -477,6 +481,7 @@ function buildData(){
               expense: v.expenses.reduce((a,b)=>a+b)
             }
           })
+
           window.generalData.push(tmpObj)
         }
 
@@ -500,6 +505,14 @@ function buildData(){
       });
     });
   });
+
+  d3.json('../../data/time-series-json/standard/congressman_ts.json').then(function(json){
+    parseJson(json).then(function(result) {
+      var congressmanData = result;
+
+      buildOptions(congressmanData, 'congressman-fieldset', 'congressman-group', 'checkbox', function() {filterData('congressman')});
+    });
+  });
 }
 
 window.onload = function() {
@@ -507,6 +520,7 @@ window.onload = function() {
   window.stateFilters = []
   window.partyFilters = []
   window.expenseFilters = []
+  window.congressmanFilters = []
   window.sections = {start: 22, end: 70}
   window.generalData = []
   window.optionsState = false
@@ -524,3 +538,14 @@ Object.prototype.merge = function(other, op) {
   })
   return obj;
 };
+
+// Cluster id helper function
+function checkCongressman(list) {
+  document.getElementsByName('congressman-group').forEach(function(entry) {
+    if(list.includes(entry.id)){
+      entry.checked = true
+    }
+  });
+
+  filterData('congressman');
+}

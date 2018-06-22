@@ -4,90 +4,141 @@ var TimeSeries = {
   // ==========================================================================
 
   getDate: function(index) {
-  	var month = index % 12 + 3
-  	var year = 2009 + Math.trunc(index / 12)
-  	return new Date(year, month, 1)
+    var month = index % 12 + 3
+    var year = 2009 + Math.trunc(index / 12)
+    return new Date(year, month, 1)
   },
 
   updateSVG: function(){
-  	d3.select("#time-series-svg").selectAll("g").remove()
+    var svg = d3.select("#time-series-svg")
+    svg.selectAll("g").remove()
+    var doAvg = false
 
-  	var margin = {top: 5, right: 5, bottom: 20, left: 45};
-  	var width = d3.select("#time-series-svg").attr("width") - margin.left - margin.right;
-  	var height = d3.select("#time-series-svg").attr("height") - margin.top - margin.bottom;
+    var margin = {top: 5, right: 5, bottom: 20, left: 45};
+    var width = svg.attr("width") - margin.left - margin.right;
+    var height = svg.attr("height") - margin.top - margin.bottom;
+    var strokeWidth = 1
+    var strokeOpacity = 0.3
+    var strokeWidthHighlight = 2
+    var strokeOpacityHighlight = 1.0
 
-  	var canvas = d3.select("#time-series-svg").append("g");
-  	canvas.attr("transform", "translate(" + margin.left + "," + margin.top + ")")
+    var canvas = svg.append("g");
+    canvas.attr("transform", "translate(" + margin.left + "," + margin.top + ")")
 
     var color = d3.scaleOrdinal(d3.schemeCategory10);
     Array.from(new Set(this.congressman_ts.map(d=>d.node.group))).sort((a,b)=>a-b).forEach(function(entry) {
       color(entry)
     })
 
-  	// Data parsing
-  	if(this.selectedOptions && this.selectedOptions.length > 0){
-  		var parsedData = this.congressman_ts.filter(function(entry) {
+    // Data parsing
+    if(this.selectedOptions && this.selectedOptions.length > 0){
+      var parsedData = this.congressman_ts.filter(function(entry) {
         return TimeSeries.selectedOptions.includes(entry[TimeSeries.selectedAttribute])
       })
-  	} else {
-  		var parsedData = this.congressman_ts
-  	}
+    } else {
+      var parsedData = this.congressman_ts
+    }
+
+    // Average groups
+    if (doAvg) {
+      var averagedData = []
+       Array.from(new Set(this.congressman_ts.map(d=>d.node.group))).forEach(function(entry) {
+        var obj = parsedData
+        .filter(v=>v.node.group==entry)
+        .reduce(function(a, b) {
+          var acc = (a.sum||new Array(89).fill(0));
+          return {
+            sum: acc.map((v,i)=>v+b.expenses[i]), 
+            len: (a.len||0)+1
+          }
+        }, {})
+
+        averagedData.push({
+          expenses: obj.sum.map(d=>d/obj.len),
+          node: {group: entry},
+          name: "avg-"+entry
+        })
+      })
+
+      parsedData = averagedData
+      strokeWidth = 3
+      strokeWidthHighlight = 4
+      strokeOpacity = 0.9
+      strokeOpacityHighlight = 1.0
+    }
 
     var expenseDomain = d3.extent([].concat.apply([], parsedData.map(d=>d.expenses)))
 
-  	// Axes plotting
-  	var yScale = d3.scaleLinear()
-  	.domain(expenseDomain).range([height-margin.top,0]);
-  	var xScale = d3.scaleTime()
-  	.domain([TimeSeries.getDate(this.sections.start), TimeSeries.getDate(this.sections.end)]).range([0, width])
+    // Axes plotting
+    var yScale = d3.scaleLinear()
+    .domain(expenseDomain).range([height-margin.top,0]);
+    var xScale = d3.scaleTime()
+    .domain([TimeSeries.getDate(this.sections.start), TimeSeries.getDate(this.sections.end)]).range([0, width])
 
-  	var yAxis = d3.axisLeft(yScale);
-  	var xAxis = d3.axisBottom(xScale)
+    var yAxis = d3.axisLeft(yScale);
+    var xAxis = d3.axisBottom(xScale)
 
-  	var groupY = d3.select("#time-series-svg").append("g")
-  	.call(yAxis).attr("transform","translate("+margin.left+","+margin.top+")")
-  	var groupX = d3.select("#time-series-svg").append("g")
-  	.call(xAxis).attr("transform","translate("+margin.left+","+height+")")
+    var groupY = svg.append("g")
+    .call(yAxis).attr("transform","translate("+margin.left+","+margin.top+")")
+    var groupX = svg.append("g")
+    .call(xAxis).attr("transform","translate("+margin.left+","+height+")")
 
-  	// Lines plotting
+    // Lines plotting
     canvas.selectAll("g").data(parsedData).enter().append("path")
     .attr("id", d=>d.name.replace(/ /g,'-'))
     .attr("name", d=>d.name)
     .attr("data-marked", "false")
-  	.attr("d", function(d){
-  		return d.expenses.slice(TimeSeries.sections.start, TimeSeries.sections.end).map(function(entry, index){
-  			return "L "+xScale(TimeSeries.getDate(index+TimeSeries.sections.start))+" "+yScale(entry);
-  		}).join(" ").replaceAt(0, "M");
-  	})
-  	.attr("stroke", d=>color(d.node.group))
-  	.attr("stroke-width", 1)
-  	.attr("stroke-opacity", 0.3)
-  	.attr("fill", "none")
-  	.on("mouseover", function() {
+    .attr("d", function(d){
+      return d.expenses.slice(TimeSeries.sections.start, TimeSeries.sections.end).map(function(entry, index){
+        return "L "+xScale(TimeSeries.getDate(index+TimeSeries.sections.start))+" "+yScale(entry);
+      }).join(" ").replaceAt(0, "M");
+    })
+    .attr("stroke", d=>color(d.node.group))
+    .attr("stroke-width", strokeWidth)
+    .attr("stroke-opacity", strokeOpacity)
+    .attr("fill", "none")
+    .on("mouseover", function() {
       if(d3.select(this).attr("data-marked") == "false"){
-    		d3.select(this)
-    		.attr("stroke-opacity", 1)
-    		.attr("stroke-width", 2)
-    		.attr("stroke","black")
-    		.raise()
+        d3.select(this)
+        .attr("stroke-opacity", strokeOpacityHighlight)
+        .attr("stroke-width", strokeWidthHighlight)
+        .attr("stroke","black")
+        .raise()
       }
-  	})
+    })
     .on("mouseout", function() {
       if(d3.select(this).attr("data-marked") == "false"){
         d3.select(this)
-        .attr("stroke-opacity", 0.3)
-        .attr("stroke-width", 1)
+        .attr("stroke-opacity",strokeOpacity)
+        .attr("stroke-width", strokeWidth)
         .attr("stroke", d=>color(d.node.group))
       }
     })
-    // .on("click", function() {
-    //   d3.select(this)
-    //   .attr("stroke-opacity", 1)
-    //   .attr("stroke-width", 2)
-    //   .attr("stroke","red")
-    //   .attr("data-marked", "true")
-    // })
+    /*.on("click", function() {
+      d3.select(this)
+      .attr("stroke-opacity", 1)
+      .attr("stroke-width", 2)
+      .attr("stroke","red")
+      .attr("data-marked", "true")
+    })*/
     .append("title").text(d=>d.name);
+
+    if(doAvg){
+      canvas.append("g").selectAll("g").data(parsedData).enter().append("g").each(function(d){
+        d3.select(this).selectAll("g").data(d=>d.expenses)
+        .enter().append("line")
+        .attr("x1",function(d, i){
+          return xScale(TimeSeries.getDate(i+TimeSeries.sections.start))
+        })
+        .attr("x2",function(d, i){
+          return xScale(TimeSeries.getDate(i+TimeSeries.sections.start))
+        })
+        .attr("y1",d=>yScale(d+1000))
+        .attr("y2",d=>yScale(d-1000))
+        .attr("stroke","black")
+        .attr("stroke-width", 1)
+      })
+    }
 
     document.getElementById("loader").setAttribute("style", "display: none;")
     document.getElementById("time-series-svg").setAttribute("style", "display: auto;")
@@ -125,10 +176,10 @@ var TimeSeries = {
   },
 
   changeDataset: function() {
-  	var checkedRadio = getCheckedOptions('subquota-group')[0]
-  	if (checkedRadio == 'NONE') {
-  		checkedRadio = ''
-  	} else {
+    var checkedRadio = getCheckedOptions('subquota-group')[0]
+    if (checkedRadio == 'NONE') {
+      checkedRadio = ''
+    } else {
       checkedRadio = checkedRadio.toLowerCase().replace(/ /g,'-')+'_'
     }
 
@@ -138,14 +189,14 @@ var TimeSeries = {
       path = 'time-series-json/standard'
     }
 
-  	console.log('Selecting: congressman_'+checkedRadio+'ts.json')
-  	d3.json('../../data/'+path+'/congressman_'+checkedRadio+'ts.json').then(function(json) {
-  		TimeSeries.parseJson(json).then(function(result) {
+    console.log('Selecting: congressman_'+checkedRadio+'ts.json')
+    d3.json('../../data/'+path+'/congressman_'+checkedRadio+'ts.json').then(function(json) {
+      TimeSeries.parseJson(json).then(function(result) {
         TimeSeries.congressman_ts = result;
 
         TimeSeries.updateSVG()
       });
-  	});
+    });
   },
 
   changeSelection: function(groupName, attribute) {
@@ -191,13 +242,13 @@ var TimeSeries = {
     this.normalize = false
     this.sections = {start: 22, end: 70}
 
-  	d3.json('../../data/time-series-json/standard/congressman_ts.json').then(function(json){
-  		TimeSeries.parseJson(json).then(function(result) {
+    d3.json('../../data/time-series-json/standard/congressman_ts.json').then(function(json){
+      TimeSeries.parseJson(json).then(function(result) {
         TimeSeries.congressman_ts = result;
 
         TimeSeries.updateSVG()
       });
-  	});
+    });
   }
 };
 

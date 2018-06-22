@@ -130,6 +130,7 @@ var Graph = {
 
         fillSummary(nodes);
       }
+      console.log(TimeSeries.selectedOptions)
       TimeSeries.updateSVG();
     });
   },
