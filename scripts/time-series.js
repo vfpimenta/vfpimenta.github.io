@@ -12,7 +12,6 @@ var TimeSeries = {
   updateSVG: function(){
     var svg = d3.select("#time-series-svg")
     svg.selectAll("g").remove()
-    var doAvg = false
 
     var margin = {top: 5, right: 5, bottom: 20, left: 45};
     var width = svg.attr("width") - margin.left - margin.right;
@@ -35,26 +34,33 @@ var TimeSeries = {
       var parsedData = this.congressman_ts.filter(function(entry) {
         return TimeSeries.selectedOptions.includes(entry[TimeSeries.selectedAttribute])
       })
+      var doAvg = false
     } else {
       var parsedData = this.congressman_ts
+      var doAvg = true
     }
 
     // Average groups
     if (doAvg) {
       var averagedData = []
        Array.from(new Set(this.congressman_ts.map(d=>d.node.group))).forEach(function(entry) {
-        var obj = parsedData
-        .filter(v=>v.node.group==entry)
-        .reduce(function(a, b) {
-          var acc = (a.sum||new Array(89).fill(0));
-          return {
-            sum: acc.map((v,i)=>v+b.expenses[i]), 
-            len: (a.len||0)+1
-          }
-        }, {})
+        var groupData = parsedData.filter(v=>v.node.group==entry)
+        var len = groupData.length
+        var sum = groupData.reduce(function(a, b) {
+          var acc = a.length > 0 ? a : new Array(89).fill(0);
+          return acc.map((v,i)=>v+b.expenses[i])
+        }, [])
+        var avgs = sum.map(d=>d/len)
+        var stds = groupData.reduce(function(a, b) {
+          var acc = a.length > 0 ? a : new Array(89).fill(0);
+          return acc.map(function (v, i){
+            return v + Math.pow(b.expenses[i]-avgs[i], 2)
+          })
+        }, []).map(d=>Math.sqrt(d/len))
 
         averagedData.push({
-          expenses: obj.sum.map(d=>d/obj.len),
+          expenses: avgs,
+          errors: stds,
           node: {group: entry},
           name: "avg-"+entry
         })
@@ -123,19 +129,27 @@ var TimeSeries = {
     })*/
     .append("title").text(d=>d.name);
 
+    // Error lines
     if(doAvg){
       canvas.append("g").selectAll("g").data(parsedData).enter().append("g").each(function(d){
-        d3.select(this).selectAll("g").data(d=>d.expenses)
-        .enter().append("line")
+        d3.select(this).selectAll("g").data(function(d){
+          return d.expenses.slice(TimeSeries.sections.start, TimeSeries.sections.end).map(function (v,i){
+            return {
+              val: v, 
+              err: d.errors[i], 
+              group: d.node.group
+            }
+          })
+        }).enter().append("line")
         .attr("x1",function(d, i){
           return xScale(TimeSeries.getDate(i+TimeSeries.sections.start))
         })
         .attr("x2",function(d, i){
           return xScale(TimeSeries.getDate(i+TimeSeries.sections.start))
         })
-        .attr("y1",d=>yScale(d+1000))
-        .attr("y2",d=>yScale(d-1000))
-        .attr("stroke","black")
+        .attr("y1",d=>yScale(d.val+d.err/2))
+        .attr("y2",d=>yScale(d.val-d.err/2))
+        .attr("stroke", d=>color(d.group))
         .attr("stroke-width", 1)
       })
     }
