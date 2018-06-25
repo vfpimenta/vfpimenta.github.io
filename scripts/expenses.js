@@ -162,6 +162,9 @@ function updateHistogramSVG(){
   .attr("y", 4.5)
   .attr("dy", "0.32em")
   .text(d=>d)
+
+  document.getElementById("loader1").setAttribute("style", "display: none;")
+  document.getElementById("expense-hist-svg").setAttribute("style", "display: auto;")
 };
 
 function updateDonnutSVG() {
@@ -290,6 +293,9 @@ function updateDonnutSVG() {
   .attr("y", 4.5)
   .attr("dy", "0.32em")
   .text(d=>d)
+
+  document.getElementById("loader2").setAttribute("style", "display: none;")
+  document.getElementById("expense-donnut-svg").setAttribute("style", "display: auto;")
 }
 
 function parseJson(raw_data) {
