@@ -57,12 +57,12 @@ function getCheckedOptions(groupName) {
   return checked
 };
 
-function parseCsv(raw_data) {
+function parseCsv(rawData) {
   var parsed = []
-  for (var i = 0; i < raw_data.length; i++) {
+  for (var i = 0; i < rawData.length; i++) {
     parsed.push({
-      id:   raw_data[i].Subquota, 
-      name:   raw_data[i].Subquota
+      id:   rawData[i].Subquota, 
+      name:   rawData[i].Subquota
     })
   }
   return parsed
@@ -95,12 +95,12 @@ function fillSummary(nodes) {
     // Constant definition
     var topStates = nodes.map(d=>d.state).top(3).map(o=>o.d+"("+o.n+")").join(",");
     var topParties = nodes.map(d=>d.party).top(3).map(o=>o.d+"("+o.n+")").join(",");
-    var expenseAbsolute = TimeSeries.congressman_ts.filter(function(congressman) {
+    var expenseAbsolute = TimeSeries.congressmanTimeSeries.filter(function(congressman) {
       return nodes.map(d=>d.congressman_id).includes(congressman.id)
     }).reduce(function(acc, el) {
       return acc + el.expenses.reduce((a,b)=>a+b);
     }, 0);
-    var expenseRate = expenseAbsolute / TimeSeries.congressman_ts.reduce(function(acc, el) {
+    var expenseRate = expenseAbsolute / TimeSeries.congressmanTimeSeries.reduce(function(acc, el) {
       return acc + el.expenses.reduce((a,b)=>a+b);
     }, 0);
 

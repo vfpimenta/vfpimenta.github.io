@@ -25,25 +25,25 @@ var TimeSeries = {
     canvas.attr("transform", "translate(" + margin.left + "," + margin.top + ")")
 
     var color = d3.scaleOrdinal(d3.schemeCategory10);
-    Array.from(new Set(this.congressman_ts.map(d=>d.node.group))).sort((a,b)=>a-b).forEach(function(entry) {
+    Array.from(new Set(this.congressmanTimeSeries.map(d=>d.node.group))).sort((a,b)=>a-b).forEach(function(entry) {
       color(entry)
     })
 
     // Data parsing
     if(this.selectedOptions && this.selectedOptions.length > 0){
-      var parsedData = this.congressman_ts.filter(function(entry) {
+      var parsedData = this.congressmanTimeSeries.filter(function(entry) {
         return TimeSeries.selectedOptions.includes(entry[TimeSeries.selectedAttribute])
       })
       var doAvg = false
     } else {
-      var parsedData = this.congressman_ts
+      var parsedData = this.congressmanTimeSeries
       var doAvg = true
     }
 
     // Average groups
     if (doAvg) {
       var averagedData = []
-       Array.from(new Set(this.congressman_ts.map(d=>d.node.group))).forEach(function(entry) {
+       Array.from(new Set(this.congressmanTimeSeries.map(d=>d.node.group))).forEach(function(entry) {
         var groupData = parsedData.filter(v=>v.node.group==entry)
         var len = groupData.length
         var sum = groupData.reduce(function(a, b) {
@@ -162,20 +162,20 @@ var TimeSeries = {
   // INPUT & INTERACTIVITY
   // ==========================================================================
 
-  parseJson: function(raw_data) {
+  parseJson: function(rawData) {
     var path = '../../data/graph-json/'+Graph.mode+'/'+Graph.seriesType+'/'+Graph.distanceMethod+'/k-'+Graph.k+'/cibm-legislature-'+Graph.legislature+'.json'
     return d3.json(path).then(function(graph) {
       var parsed = []
-      var ids = Object.keys(raw_data)
+      var ids = Object.keys(rawData)
       for (var i = 0; i < ids.length; i++) {
         idx = ids[i]
         parsed.push({
           id:           idx, 
-          name:         raw_data[idx][0],
-          state:        raw_data[idx][1],
-          party:        raw_data[idx][2],
-          legislatures: raw_data[idx][3],
-          expenses:     raw_data[idx][4],
+          name:         rawData[idx][0],
+          state:        rawData[idx][1],
+          party:        rawData[idx][2],
+          legislatures: rawData[idx][3],
+          expenses:     rawData[idx][4],
           node:         graph.nodes.filter(d=>d.congressman_id==idx)[0]
         })
       }
@@ -206,7 +206,7 @@ var TimeSeries = {
     console.log('Selecting: congressman_'+checkedRadio+'ts.json')
     d3.json('../../data/'+path+'/congressman_'+checkedRadio+'ts.json').then(function(json) {
       TimeSeries.parseJson(json).then(function(result) {
-        TimeSeries.congressman_ts = result;
+        TimeSeries.congressmanTimeSeries = result;
 
         TimeSeries.updateSVG()
       });
@@ -258,7 +258,7 @@ var TimeSeries = {
 
     d3.json('../../data/time-series-json/standard/congressman_ts.json').then(function(json){
       TimeSeries.parseJson(json).then(function(result) {
-        TimeSeries.congressman_ts = result;
+        TimeSeries.congressmanTimeSeries = result;
 
         TimeSeries.updateSVG()
       });

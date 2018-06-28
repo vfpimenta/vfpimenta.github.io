@@ -298,18 +298,18 @@ function updateDonnutSVG() {
   document.getElementById("expense-donnut-svg").setAttribute("style", "display: auto;")
 }
 
-function parseJson(raw_data) {
+function parseJson(rawData) {
   var parsed = []
-  var ids = Object.keys(raw_data)
+  var ids = Object.keys(rawData)
   for (var i = 0; i < ids.length; i++) {
     idx = ids[i]
     parsed.push({
       id:           idx, 
-      name:         raw_data[idx][0],
-      state:        raw_data[idx][1],
-      party:        raw_data[idx][2],
-      legislatures: raw_data[idx][3],
-      expenses:     raw_data[idx][4]
+      name:         rawData[idx][0],
+      state:        rawData[idx][1],
+      party:        rawData[idx][2],
+      legislatures: rawData[idx][3],
+      expenses:     rawData[idx][4]
     })
   }
 

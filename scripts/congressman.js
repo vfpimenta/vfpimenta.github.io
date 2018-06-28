@@ -2,18 +2,18 @@
 // D3 MAIN
 // ==========================================================================
 
-function parseJson(raw_data) {
+function parseJson(rawData) {
   var parsed = []
-  var ids = Object.keys(raw_data)
+  var ids = Object.keys(rawData)
   for (var i = 0; i < ids.length; i++) {
     idx = ids[i]
     parsed.push({
       id:           idx, 
-      name:         raw_data[idx][0],
-      state:        raw_data[idx][1],
-      party:        raw_data[idx][2],
-      legislatures: raw_data[idx][3],
-      expenses:     raw_data[idx][4]
+      name:         rawData[idx][0],
+      state:        rawData[idx][1],
+      party:        rawData[idx][2],
+      legislatures: rawData[idx][3],
+      expenses:     rawData[idx][4]
     })
   }
 
@@ -79,9 +79,54 @@ function getCheckedOptions(groupName) {
   return checked
 };
 
+function YQLQuery(query, callback) {
+    this.query = query;
+    this.callback = callback || function(){};
+    this.fetch = function() {
+
+        if (!this.query || !this.callback) {
+            throw new Error('YQLQuery.fetch(): Parameters may be undefined');
+        }
+
+        var scriptEl = document.createElement('script'),
+            uid = 'yql' + +new Date(),
+            encodedQuery = encodeURIComponent(this.query),
+            instance = this;
+
+        YQLQuery[uid] = function(json) {
+            instance.callback(json);
+            delete YQLQuery[uid];
+            document.body.removeChild(scriptEl);
+        };
+
+        scriptEl.src = 'http://query.yahooapis.com/v1/public/yql?q='
+                     + encodedQuery + '&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys&format=json&callback=YQLQuery.' + uid;
+        document.body.appendChild(scriptEl);
+
+    };
+}
+
+function fillBasicData(rawString) {
+  //$NAME - $PARTY/$STATE
+  var name = rawString
+  console.log(rawString)
+}
+
 function presentData() {
+  fetchAndDeliver('//div[@class="bioNomParlamentrPartido"]/text()', fillBasicData)
+}
+
+function fetchAndDeliver(xpath, action) {
   var congressmanId = getCheckedOptions('congressman-group')[0];
-  console.log(congressmanId)
+  //var xpath = '//div[@class="bioNomParlamentrPartido"]/text()'
+  
+  var query = 'select * from htmlstring where url="http://www2.camara.leg.br/deputados/pesquisa/layouts_deputados_biografia?pk=' + congressmanId + '" and xpath=\'' + xpath + '\'';
+
+  var callback = function(data) {
+    action(data.query.results.result)
+  };
+
+  new YQLQuery(query, callback).fetch();
 }
 
 window.onload = function() {
