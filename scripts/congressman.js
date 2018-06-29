@@ -108,19 +108,38 @@ function YQLQuery(query, callback) {
 
 function fillBasicData(rawString) {
   //$NAME - $PARTY/$STATE
-  var name = rawString
-  console.log(rawString)
+  var name = rawString.match(/.* -/)[0].replace(/-/g, "");
+  var party = rawString.match(/-.*\//)[0].replace(/(-|\/| )/g, "");
+  var state = rawString.match(/\/.*/)[0].replace(/\//g, "");
+
+  document.getElementById('field-name').innerHTML = name;
+  document.getElementById('field-party').innerHTML = party;
+  document.getElementById('field-state').innerHTML = state;
+  document.getElementById('info').style.display = "inherit";
+
+  var photo = document.createElement('img');
+  photo.src = "http://www.camara.gov.br/internet/deputado/bandep/" + window.congressmanId + ".jpg";
+
+  var photoNode = document.getElementById('image-container');
+  if(photoNode.firstChild) photoNode.removeChild(photoNode.firstChild);
+  photoNode.appendChild(photo);
+}
+
+function fillLegislature(rawString) {
+  document.getElementById('info-rest').style.display = "inherit";
+  document.getElementById('text').innerHTML = rawString;
 }
 
 function presentData() {
-  fetchAndDeliver('//div[@class="bioNomParlamentrPartido"]/text()', fillBasicData)
+  window.congressmanId = getCheckedOptions('congressman-group')[0];
+  fetchAndDeliver('//div[@class="bioNomParlamentrPartido"]/text()', fillBasicData);
+  fetchAndDeliver('//div[@class="bioOutrosTexto"]/text()', fillLegislature);
 }
 
 function fetchAndDeliver(xpath, action) {
-  var congressmanId = getCheckedOptions('congressman-group')[0];
   //var xpath = '//div[@class="bioNomParlamentrPartido"]/text()'
   
-  var query = 'select * from htmlstring where url="http://www2.camara.leg.br/deputados/pesquisa/layouts_deputados_biografia?pk=' + congressmanId + '" and xpath=\'' + xpath + '\'';
+  var query = 'select * from htmlstring where url="http://www2.camara.leg.br/deputados/pesquisa/layouts_deputados_biografia?pk=' + window.congressmanId + '" and xpath=\'' + xpath + '\'';
 
   var callback = function(data) {
     action(data.query.results.result)
