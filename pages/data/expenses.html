@@ -68,7 +68,11 @@
 
           <input type="radio" name="opt-type" id="states" checked="checked" onclick="changeType(this.name); hideFilter(this);" /><span>By state</span><br/>
 
+          <input type="radio" name="opt-type" id="regions" onclick="changeType(this.name); hideFilter(this);" /><span>By region</span><br/>
+
           <input type="radio" name="opt-type" id="parties" onclick="changeType(this.name); hideFilter(this);" /><span>By party</span><br/>
+
+          <input type="radio" name="opt-type" id="spectrums" onclick="changeType(this.name); hideFilter(this);" /><span>By spectrum</span><br/>
 
           <input type="radio" name="opt-type" id="expenses"  onclick="changeType(this.name); hideFilter(this);" /><span>By subquota</span><br/>
                                       
@@ -79,11 +83,11 @@
         <fieldset>
           <legend>Legislature</legend>
 
-          <input type="radio" name="opt-legislature" id="53" onclick="changeSection(53);" /><span>53</span>
+          <input type="radio" name="opt-legislature" id="53" onclick="changeSection(53);" disabled="disabled" /><span>53</span>
 
           <input type="radio" name="opt-legislature" id="54" onclick="changeSection(54);" checked="checked" /><span>54</span>
 
-          <input type="radio" name="opt-legislature" id="55" onclick="changeSection(55);" /><span>55</span>                            
+          <input type="radio" name="opt-legislature" id="55" onclick="changeSection(55);" disabled="disabled" /><span>55</span>                            
         </fieldset>
       </div>
 
@@ -110,12 +114,32 @@
         </fieldset>
       </div>
 
+      <div id="filter-regions" name="filter" class="half-width">
+        <fieldset style="float: left;">
+          <legend>Regions</legend>
+
+          <div class="option-box" id="region-fieldset">
+            <input type="checkbox" name="region-select-all" onmousedown="" /><span>Select all</span><br/>
+          </div>
+        </fieldset>
+      </div>
+
       <div id="filter-parties" name="filter" class="half-width">
         <fieldset style="float: left;">
           <legend>Party</legend>
 
           <div class="option-box" id="party-fieldset">
             <input type="checkbox" name="party-select-all" onmousedown="" /><span>Select all</span><br/>
+          </div>
+        </fieldset>
+      </div>
+
+      <div id="filter-spectrums" name="filter" class="half-width" >
+        <fieldset style="float: left;">
+          <legend>Spectrums</legend>
+
+          <div class="option-box" id="spectrum-fieldset">
+            <input type="checkbox" name="spectrum-select-all" onmousedown="" /><span>Select all</span><br/>
           </div>
         </fieldset>
       </div>

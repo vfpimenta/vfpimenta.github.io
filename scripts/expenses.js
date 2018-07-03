@@ -1,27 +1,8 @@
-const expenseFileSeeds = [
-  "aircraft-renting-or-charter-of-aircraft",
-  "automotive-vehicle-renting-or-charter",
-  "automotive-vehicle-renting-or-watercraft-charter",
-  "congressperson-meal",
-  "consultancy,-research-and-technical-work",
-  "flight-ticket-issue",
-  "flight-tickets",
-  "fuels-and-lubricants",
-  "locomotion,-meal-and-lodging",
-  "lodging,-except-for-congressperson-from-distrito-federal",
-  "maintenance-of-office-supporting-parliamentary-activity",
-  "participation-in-course,-talk-or-similar-event",
-  "postal-services",
-  "publication-subscriptions",
-  "publicity-of-parliamentary-activity",
-  "purchase-of-office-supplies",
-  "security-service-provided-by-specialized-company",
-  "software-purchase-or-renting;-postal-services;-subscriptions",
-  "taxi,-toll-and-parking",
-  "telecommunication",
-  "terrestrial,-maritime-and-fluvial-tickets",
-  "watercraft-renting-or-charter",
-]
+const expenseFileSeeds = ["aircraft-renting-or-charter-of-aircraft",  "automotive-vehicle-renting-or-charter",  "automotive-vehicle-renting-or-watercraft-charter",  "congressperson-meal",  "consultancy,-research-and-technical-work",  "flight-ticket-issue",  "flight-tickets",  "fuels-and-lubricants",  "locomotion,-meal-and-lodging",  "lodging,-except-for-congressperson-from-distrito-federal",  "maintenance-of-office-supporting-parliamentary-activity",  "participation-in-course,-talk-or-similar-event",  "postal-services",  "publication-subscriptions",  "publicity-of-parliamentary-activity",  "purchase-of-office-supplies",  "security-service-provided-by-specialized-company",  "software-purchase-or-renting;-postal-services;-subscriptions",  "taxi,-toll-and-parking",  "telecommunication",  "terrestrial,-maritime-and-fluvial-tickets",  "watercraft-renting-or-charter"]
+
+const mapStateRegion = {AC: "North",  AL: "Northeast",  AM: "North",  AP: "North",  BA: "Northeast",  CE: "Northeast",  DF: "Central-West",  ES: "Southeast",  GO: "Central-West",  MA: "Northeast",  MG: "Southeast",  MS: "Central-West",  MT: "Central-West",  PA: "North",  PB: "Northeast",  PE: "Northeast",  PI: "Northeast",  PR: "South",  RJ: "Southeast",  RN: "Northeast",  RO: "North",  RR: "North",  RS: "South",  SC: "South",  SE: "Northeast",  SP: "Southeast",  TO: "North"}
+
+const mapPartySpectrum = {AVANTE: "Centre", DC: "Right", DEM: "Centre-right", MDB: "Centre", NOVO: "Right", PATRI: "Right", PCB: "Far-left", PCdoB: "Left", PCO: "Far-left", PDT: "Left", PEN: "Right", PHS: "Centre-right", PMB: "Centre-left", PMDB: "Centre", PMN: "Centre-left", PODE: "Centre-right", PP: "Right", PPL: "Centre-left", PPS: "Centre-left", PR: "Centre-right", PRB: "Centre-right", PROS: "Centre-right", PRP: "Centre-right", PRTB: "Right", PSB: "Left", PSC: "Right", PSD: "Centre-left", PSDB: "Centre", PSL: "Right", PSOL: "Left", PSTU: "Far-left", PT: "Left", PTB: "Centre", PTC: "Centre-right", PTdoB: "Centre", PTN: "Centre-right", PV: "Centre", REDE: "Centre-left", SD: "Centre-left"}
 
 // ==========================================================================
 // D3 MAIN
@@ -46,7 +27,28 @@ function getColor(type) {
     case 'expenses':
       return d3.scaleOrdinal()
       .domain(["aircraft-renting-or-charter-of-aircraft", "participation-in-course,-talk-or-similar-event", "publication-subscriptions", "purchase-of-office-supplies", "software-purchase-or-renting;-postal-services;-subscriptions", "terrestrial,-maritime-and-fluvial-tickets", "watercraft-renting-or-charter", "flight-tickets", "locomotion,-meal-and-lodging", "lodging,-except-for-congressperson-from-distrito-federal", "automotive-vehicle-renting-or-charter", "security-service-provided-by-specialized-company", "taxi,-toll-and-parking", "consultancy,-research-and-technical-work", "automotive-vehicle-renting-or-watercraft-charter", "publicity-of-parliamentary-activity", "congressperson-meal", "maintenance-of-office-supporting-parliamentary-activity", "fuels-and-lubricants", "postal-services", "telecommunication", "flight-ticket-issue"])
-      .range(["#88579e", "#6bb742", "#ac40af", "#51be80", "#7463d7", "#b9ac3d", "#d379df", "#5f762a", "#ce438d", "#3a865b", "#d9425d", "#4cc2bc", "#cf5032", "#53a0d5", "#db9234", "#5072c3", "#9cb169", "#a598de", "#97662e", "#dc85b4", "#e09071", "#a74f64"])
+      .range(["#88579e", "#6bb742", "#ac40af", "#51be80", "#7463d7", "#b9ac3d", "#d379df", "#5f762a", "#ce438d", "#3a865b", "#d9425d", "#4cc2bc", "#cf5032", "#53a0d5", "#db9234", "#5072c3", "#9cb169", "#a598de", "#97662e", "#dc85b4", "#e09071", "#a74f64"]);
+    case 'regions':
+      return d3.scaleOrdinal()
+      .domain(["North", "Northeast", "Central-West", "Southeast", "South", "North"])
+      .range(["#7fc97f", "#beaed4", "#fdc086", "#ffff99", "#386cb0"]);
+    case 'spectrums':
+      return d3.scaleOrdinal()
+      .domain(["Far-left", "Left", "Centre-left", "Centre", "Centre-right", "Right", "Far-right"])
+      .range(["#8c510a", "#d8b365", "#f6e8c3", "#f5f5f5", "#c7eae5", "#5ab4ac", "#01665e"]);
+  }
+}
+
+function humanize(rawString) {
+  var aux = rawString.replace(/-/g, ' ')
+  return aux.charAt(0).toUpperCase() + aux.slice(1)
+}
+
+function trim(string, maxLength){
+  if(string.length > maxLength){
+    return string.substring(0,maxLength-3)+"...";
+  }else{
+    return string;
   }
 }
 
@@ -121,7 +123,7 @@ function updateHistogramSVG(){
     .attr("stroke", "black")
     .raise()
   })
-  .append('title').text(d=>d.name)
+  .append('title').text(d=>humanize(d.name))
 
   // Legend plotting
   var legend = svg.append("g")
@@ -161,7 +163,8 @@ function updateHistogramSVG(){
   .attr("x", +svg.attr("width")-21)
   .attr("y", 4.5)
   .attr("dy", "0.32em")
-  .text(d=>d)
+  .text(d=>trim(humanize(d), 10))
+  .append('title').text(d=>humanize(d))
 
   document.getElementById("loader1").setAttribute("style", "display: none;")
   document.getElementById("expense-hist-svg").setAttribute("style", "display: auto;")
@@ -172,11 +175,15 @@ function updateDonnutSVG() {
   var singleType = ''
   if (window.resolutionType == 'states') singleType = 'state'
   else if (window.resolutionType == 'parties') singleType = 'party'
+  else if (window.resolutionType == 'regions') singleType = 'region'
+  else if (window.resolutionType == 'spectrums') singleType = 'spectrum'
 
   var objectData = {}
   switch(window.resolutionType){
     case 'states':
+    case 'regions':
     case 'parties':
+    case 'spectrums':
       window.generalData.map(function(d, i) {
         d[Object.keys(d)[0]].map(function(v, j) {
           if (objectData[v[singleType]]) {
@@ -249,7 +256,7 @@ function updateDonnutSVG() {
   })
   .append('title').text(function(d){
     var pct = Math.round(d.data.value/objectData.map(v=>v.value).reduce((a,b)=>a+b)*100)
-    return d.data.key+"\n"+pct+"%"
+    return humanize(d.data.key)+"\n"+pct+"%"
   })
 
   // Legend plotting
@@ -292,7 +299,8 @@ function updateDonnutSVG() {
   .attr("x", +svg.attr("width")-21)
   .attr("y", 4.5)
   .attr("dy", "0.32em")
-  .text(d=>d)
+  .text(d=>trim(humanize(d), 20))
+  .append('title').text(d=>humanize(d))
 
   document.getElementById("loader2").setAttribute("style", "display: none;")
   document.getElementById("expense-donnut-svg").setAttribute("style", "display: auto;")
@@ -387,6 +395,8 @@ function changeType(groupName) {
   window.partyFilters = []
   window.expenseFilters = []
   window.congressmanFilters = []
+  window.regionFilters = []
+  window.spectrumFilters = []
   var names = ['party', 'state', 'subquota'];
   for (var i = 0; i < names.length; i++) {
     var name = names[i];document.getElementsByName(name+'-group').forEach(function(box) {box.checked = false;})
@@ -411,6 +421,12 @@ function filterData(name) {
     case 'congressman':
       window.congressmanFilters = filterList;
       break;
+    case 'region':
+      window.regionFilters = filterList;
+      break;
+    case 'spectrum':
+      window.spectrumFilters = filterList;
+      break;
   }
 
   buildData();
@@ -429,23 +445,31 @@ function buildData(){
           var seedData = seedResult.reduce(function(a, b){
             return b.expenses.map(function(v, i){
               var inc = 0
-              if ((window.stateFilters.length == 0 || window.stateFilters.includes(b.state)) && (window.partyFilters.length == 0 || window.partyFilters.includes(b.party)) && (window.congressmanFilters.length == 0 || window.congressmanFilters.includes(b.id))){
+              if ((window.stateFilters.length == 0 || window.stateFilters.includes(b.state)) && (window.partyFilters.length == 0 || window.partyFilters.includes(b.party)) && (window.congressmanFilters.length == 0 || window.congressmanFilters.includes(b.id)) && (window.regionFilters.length == 0 || window.regionFilters.includes(mapStateRegion[b.state])) && (window.spectrumFilters.length == 0 || window.spectrumFilters.includes(mapPartySpectrum[b.party]))){
                 inc = v
               }
 
               var tmpState = {}
+              var tmpRegion = {}
               var tmpParty = {}
+              var tmpSpectrum = {}
               var tmpExpenses = {}
               var tmpRaw = 0
               if (a.length == 0) {
                 tmpState[b.state] = inc
+                tmpRegion[mapStateRegion[b.state]] = inc
                 tmpParty[b.party] = inc
+                tmpSpectrum[mapPartySpectrum[b.party]] = inc
                 tmpExpenses[seed] = inc
               } else {
                 tmpState = a[i].states
                 tmpState[b.state] = (tmpState[b.state] || 0) + inc
+                tmpRegion = a[i].regions
+                tmpRegion[mapStateRegion[b.state]] = (tmpRegion[mapStateRegion[b.state]] || 0) + inc
                 tmpParty = a[i].parties
                 tmpParty[b.party] = (tmpParty[b.party] || 0) + inc
+                tmpSpectrum = a[i].spectrums
+                tmpSpectrum[mapPartySpectrum[b.party]] = (tmpSpectrum[mapPartySpectrum[b.party]] || 0) + inc
                 tmpExpenses = a[i].expenses
                 tmpExpenses[seed] = (tmpExpenses[seed] || 0) + inc
 
@@ -455,7 +479,9 @@ function buildData(){
               return {
                 raw: tmpRaw + inc,
                 states: tmpState,
+                regions: tmpRegion,
                 parties: tmpParty,
+                spectrums: tmpSpectrum,
                 expenses: tmpExpenses
               }
             });
@@ -466,7 +492,9 @@ function buildData(){
               return {
                 raw: d.raw + seedData[i].raw,
                 states: d.states.merge(seedData[i].states, (a,b)=>a+b),
+                regions: d.regions.merge(seedData[i].regions, (a,b)=>a+b),
                 parties: d.parties.merge(seedData[i].parties, (a,b)=>a+b),
+                spectrums: d.spectrums.merge(seedData[i].spectrums, (a,b)=>a+b),
                 expenses: d.expenses.merge(seedData[i].expenses, (a,b)=>a+b)
               }
             })
@@ -477,13 +505,15 @@ function buildData(){
           var tmpObj = {}
           tmpObj[seed] = seedResult
           .filter(function(v, i) {
-            return (window.stateFilters.length == 0 || window.stateFilters.includes(v.state)) && (window.partyFilters.length == 0 || window.partyFilters.includes(v.party)) && (window.congressmanFilters.length == 0 || window.congressmanFilters.includes(v.id));
+            return (window.stateFilters.length == 0 || window.stateFilters.includes(v.state)) && (window.partyFilters.length == 0 || window.partyFilters.includes(v.party)) && (window.congressmanFilters.length == 0 || window.congressmanFilters.includes(v.id)) && (window.regionFilters.length == 0 || window.regionFilters.includes(mapStateRegion[v.state])) && (window.spectrumFilters.length == 0 || window.spectrumFilters.includes(mapPartySpectrum[v.party]));
           })
           .map(function(v, i) {
             return {
               id: v.id,
               state: v.state,
+              region: mapStateRegion[v.state],
               party: v.party,
+              spectrum: mapPartySpectrum[v.party],
               expense: v.expenses.reduce((a,b)=>a+b)
             }
           })
@@ -498,7 +528,11 @@ function buildData(){
           if(!window.optionsState){
             buildOptions(Object.keys(window.condensedData[window.sections.start].states).map(function(d){return {id: d, name: d}}), 'state-fieldset', 'state-group', 'checkbox', function(){filterData('state')});
 
+            buildOptions(Object.keys(window.condensedData[window.sections.start].regions).map(function(d){return {id: d, name: d}}), 'region-fieldset', 'region-group', 'checkbox', function(){filterData('region')});
+
             buildOptions(Object.keys(window.condensedData[window.sections.start].parties).map(function(d){return {id: d, name: d}}), 'party-fieldset', 'party-group', 'checkbox', function(){filterData('party')});
+
+            buildOptions(Object.keys(window.condensedData[window.sections.start].spectrums).map(function(d){return {id: d, name: d}}), 'spectrum-fieldset', 'spectrum-group', 'checkbox', function(){filterData('spectrum')});
 
             buildOptions(Object.keys(window.condensedData[window.sections.start].expenses).map(function(d){return {id: d, name: d}}), 'subquota-fieldset', 'subquota-group', 'checkbox', function(){filterData('subquota')});
 
@@ -527,6 +561,8 @@ window.onload = function() {
   window.partyFilters = []
   window.expenseFilters = []
   window.congressmanFilters = []
+  window.regionFilters = []
+  window.spectrumFilters = []
   window.sections = {start: 22, end: 70}
   window.generalData = []
   window.optionsState = false
