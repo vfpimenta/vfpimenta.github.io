@@ -118,7 +118,7 @@ function fillBasicData(rawString) {
   document.getElementById('info').style.display = "inherit";
 
   var photo = document.createElement('img');
-  photo.src = "http://www.camara.gov.br/internet/deputado/bandep/" + window.congressmanId + ".jpg";
+  photo.src = "https://www.camara.gov.br/internet/deputado/bandep/" + window.congressmanId + ".jpg";
 
   var photoNode = document.getElementById('image-container');
   if(photoNode.firstChild) photoNode.removeChild(photoNode.firstChild);
