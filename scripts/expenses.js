@@ -348,7 +348,7 @@ function buildOptions(dataset, parentFieldset, groupName, type, eventListener){
     addListener(checkbox, 'click', eventListener)
 
     var span = document.createElement('span')
-    span.innerHTML = dataset[i].name
+    span.innerHTML = humanize(dataset[i].name)
 
     fieldset.appendChild(checkbox)
     fieldset.appendChild(span)
